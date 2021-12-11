@@ -6,14 +6,14 @@ Vue.use(Vuex);
 
 let y = new Date(Date.now() - 864e5);
 let d = new Date();
+// let a = 0;
 
 export const store = new Vuex.Store({
   state: {
     gold: [[], false],
     item: [{ id: null, name: null }, false],
     itemData: [
-      { city: null, buy: null, buy_date: null, sell: null, sell_date: null },
-      false,
+      // { city: null, buy: null, buy_date: null, sell: null, sell_date: null }
     ],
   },
   getters: {
@@ -121,16 +121,12 @@ export const store = new Vuex.Store({
         "Thetford",
         "Black Market",
       ];
-      const sell = [];
-      const sell_date = [];
-      const buy = [];
-      const buy_date = [];
-
       for (; item_lenght < this.state.item[0].id.length - 1; ) {
-        sell[item_lenght] = [];
-        sell_date[item_lenght] = [];
-        buy[item_lenght] = [];
-        buy_date[item_lenght] = [];
+        // sell[item_lenght] = [];
+        // sell_date[item_lenght] = [];
+        // buy[item_lenght] = [];
+        // buy_date[item_lenght] = [];
+        // city_data[item_lenght] = [];
 
         //loop city
         await axios
@@ -160,25 +156,37 @@ export const store = new Vuex.Store({
               "&qualities=1"
           )
           .then((items) => {
-            /* for (let x = item_lenght; x < 10 + item_lenght;) {
-              if ( x == this.state.item[0]["id"][item_lenght]) { //check item
-                for (let y = 0; y < 7; y++){
-                  if (city[y] == items.data[x]){ //check city
-                    sell[item_lenght][y] = items.data[x].sell_price_min
-                    sell_date[item_lenght][y] = items.data[x].sell_price_min_date
-                    buy[item_lenght][y] = items.data[x].buy_price_max
-                    buy_date[item_lenght][y] = items.data[x].buy_price_max_date
-                  }
+            for (let x = item_lenght; x < 10 + item_lenght; ) {
+              for (let y = 0; y < 7; y++) {
+                if (
+                  items.data[x].item_id ==
+                    this.state.item[0]["id"][item_lenght] &&
+                  city[y] == items.data[x].city
+                ) {
+                  //check item
+                  //check city
+                  console.log("2222222222222222222222//" + y);
+                  commit("SET_ITEM_DATA_CITY", {
+                    id_item: items.data[x].item_id,
+                    city: items.data[x].city,
+                    buy: items.data[x].buy_price_max,
+                    buy_date: items.data[x].buy_price_max_date,
+                    sell: items.data[x].sell_price_min,
+                    sell_date: items.data[x].sell_price_min_date,
+                  });
                 }
               }
-              x++
-            } */
+              x++;
+            }
             console.log("55555555555555555555");
             console.log(items.data);
-            if (city[0] == items.data[0].city) {
-              console.log("YES!!");
-            }
-            console.log(this.state.item[0]["id"][0]);
+            console.log(this.state.item[0]["id"][item_lenght]);
+            console.log("gold :");
+            console.log(this.state.gold);
+            console.log("item_data :");
+            console.log(this.state.itemData);
+            console.log("item :");
+            console.log(this.state.item);
             console.log("55555555555555555555");
           });
         if (item_lenght == 0) {
@@ -203,6 +211,9 @@ export const store = new Vuex.Store({
       /* console.log("555555555555555555");
       console.log(this.state.item[0].id.length);
       console.log("555555555555555555"); */
+    },
+    SET_ITEM_DATA_CITY(state, setdata) {
+      state.itemData.push(setdata);
     },
   },
 });
