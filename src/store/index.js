@@ -112,15 +112,6 @@ export const store = new Vuex.Store({
 
       //itemData
       let item_lenght = 0;
-      const city = [
-        "Bridgewatch",
-        "Caerleon",
-        "Fort Sterling",
-        "Lymhurst",
-        "Martlock",
-        "Thetford",
-        "Black Market",
-      ];
       for (; item_lenght < this.state.item[0].id.length - 1; ) {
         // sell[item_lenght] = [];
         // sell_date[item_lenght] = [];
@@ -157,48 +148,45 @@ export const store = new Vuex.Store({
           )
           .then((items) => {
             console.log("XXXXXXXXXXXXXXXXXXXXXXXX");
-            console.log(items.data[6].item_id);
+            console.log(items.data);
             console.log("XXXXXXXXXXXXXXXXXXXXXXXX");
-            for (let z = item_lenght; z < 10 + item_lenght; ) {
-              for (let x = 0; x < 10; ) {
-                const item_test = [];
-                console.log(x * 6);
-                console.log(items.data[x * 6].item_id);
-                console.log(this.state.item[0]["id"][z]);
-                // commit("SET_ITEM_DATA_ITEM", [items.data[x*6].item_id]);
+            for (let ic = item_lenght; ic < 10 + item_lenght; ic++) {
+              for (let il = 0; il < 10; ) {
+                let aa = il * 6;
+                const item_detail = {
+                  item_id: items.data[aa].item_id,
+                  details: [],
+                };
+                console.log(aa);
+                console.log(items.data[aa].item_id);
+                console.log(this.state.item[0]["id"][ic]);
+                // commit("SET_ITEM_DATA_ITEM", [items.data[il*6].item_id]);
 
-                if (items.data[x * 6].item_id == this.state.item[0]["id"][z]) {
-                  item_test.push({
-                    item_id: items.data[x].item_id,
-                    details: null,
-                  });
-                  for (let y = 0; y < 6; y++) {
-                    let s = x * 6 + y;
-                    console.log("item : true" + x * 6);
-                    if (city[y] == items.data[s].city) {
-                      console.log("city : true" + s);
-                      item_test[x].details[y] = {
-                        city: items.data[s].city,
-                        history: [],
-                      };
-                      item_test[x].details[y].history.push({
-                        buy: items.data[s].buy_price_max,
-                        buy_date: items.data[s].buy_price_max_date,
-                        sell: items.data[s].sell_price_min,
-                        sell_date: items.data[s].sell_price_min_date,
-                      });
-                      console.log("999999999999999999999999999999999");
-                      console.log(item_test);
-                      console.log("999999999999999999999999999999999");
-                    }
+                if (items.data[aa].item_id == this.state.item[0]["id"][ic]) {
+                  console.log(item_detail);
+                  for (let cl = 0; cl < 6; cl++) {
+                    let s = aa + cl;
+                    console.log("item loop : " + il);
+                    console.log("s = ( il * 6 ) + cl : " + s);
+                    console.log("item check : " + ic);
+                    console.log("city loop : " + cl);
+                    item_detail.details[cl] = {
+                      city: items.data[s].city,
+                      buy: items.data[s].buy_price_max,
+                      buy_date: items.data[s].buy_price_max_date,
+                      sell: items.data[s].sell_price_min,
+                      sell_date: items.data[s].sell_price_min_date,
+                    };
+                    console.log("999999999999999999999999999999999");
+                    console.log(item_detail);
+                    console.log("999999999999999999999999999999999");
                   }
                   commit("SET_ITEM_DATA_CITY", {
-                    item_test,
+                    item_detail,
                   });
                 }
-                x++;
+                il++;
               }
-              z++;
             }
             console.log(
               "//////////////////////----start" +

@@ -80,7 +80,7 @@
             </g>
           </g>
         </svg>
-        <p class="mt-auto mb-0 d-inline">Gold price555</p>
+        <p class="mt-auto mb-0 d-inline">Gold price</p>
         <v-spacer></v-spacer>
         <p class="mt-auto mb-0 d-inline mr-4">{{ day }}</p>
         <p class="mt-auto mb-0 d-inline">{{ montsh }}</p>
@@ -255,8 +255,10 @@ export default {
         },
       },
     });
-    console.log("gold1 : " + myChart);
-    console.log("gold2 : " + ctx);
+    console.log("gold1 : ");
+    console.log(myChart);
+    console.log("gold2 : ");
+    console.log(ctx);
     console.log(y);
   },
 };
