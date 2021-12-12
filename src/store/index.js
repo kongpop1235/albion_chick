@@ -156,38 +156,55 @@ export const store = new Vuex.Store({
               "&qualities=1"
           )
           .then((items) => {
-            for (let x = item_lenght; x < 10 + item_lenght; ) {
-              for (let y = 0; y < 7; y++) {
-                if (
-                  items.data[x].item_id ==
-                    this.state.item[0]["id"][item_lenght] &&
-                  city[y] == items.data[x].city
-                ) {
-                  //check item
-                  //check city
-                  console.log("2222222222222222222222//" + y);
+            console.log("XXXXXXXXXXXXXXXXXXXXXXXX");
+            console.log(items.data[6].item_id);
+            console.log("XXXXXXXXXXXXXXXXXXXXXXXX");
+            for (let z = item_lenght; z < 10 + item_lenght; ) {
+              for (let x = 0; x < 10; ) {
+                const item_test = [];
+                console.log(x * 6);
+                console.log(items.data[x * 6].item_id);
+                console.log(this.state.item[0]["id"][z]);
+                // commit("SET_ITEM_DATA_ITEM", [items.data[x*6].item_id]);
+
+                if (items.data[x * 6].item_id == this.state.item[0]["id"][z]) {
+                  item_test.push({
+                    item_id: items.data[x].item_id,
+                    details: null,
+                  });
+                  for (let y = 0; y < 6; y++) {
+                    let s = x * 6 + y;
+                    console.log("item : true" + x * 6);
+                    if (city[y] == items.data[s].city) {
+                      console.log("city : true" + s);
+                      item_test[x].details[y] = {
+                        city: items.data[s].city,
+                        history: [],
+                      };
+                      item_test[x].details[y].history.push({
+                        buy: items.data[s].buy_price_max,
+                        buy_date: items.data[s].buy_price_max_date,
+                        sell: items.data[s].sell_price_min,
+                        sell_date: items.data[s].sell_price_min_date,
+                      });
+                      console.log("999999999999999999999999999999999");
+                      console.log(item_test);
+                      console.log("999999999999999999999999999999999");
+                    }
+                  }
                   commit("SET_ITEM_DATA_CITY", {
-                    id_item: items.data[x].item_id,
-                    city: items.data[x].city,
-                    buy: items.data[x].buy_price_max,
-                    buy_date: items.data[x].buy_price_max_date,
-                    sell: items.data[x].sell_price_min,
-                    sell_date: items.data[x].sell_price_min_date,
+                    item_test,
                   });
                 }
+                x++;
               }
-              x++;
+              z++;
             }
-            console.log("55555555555555555555");
-            console.log(items.data);
-            console.log(this.state.item[0]["id"][item_lenght]);
-            console.log("gold :");
-            console.log(this.state.gold);
-            console.log("item_data :");
-            console.log(this.state.itemData);
-            console.log("item :");
-            console.log(this.state.item);
-            console.log("55555555555555555555");
+            console.log(
+              "//////////////////////----start" +
+                item_lenght +
+                "----//////////////////////"
+            );
           });
         if (item_lenght == 0) {
           item_lenght = 10;
@@ -195,6 +212,15 @@ export const store = new Vuex.Store({
           item_lenght += 10;
         }
       }
+      console.log("55555555555555555555");
+      console.log(this.state.item[0]["id"][item_lenght]);
+      console.log("gold :");
+      console.log(this.state.gold);
+      console.log("item_data :");
+      console.log(this.state.itemData);
+      console.log("item :");
+      console.log(this.state.item);
+      console.log("55555555555555555555");
     },
   },
   mutations: {
