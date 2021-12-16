@@ -317,7 +317,6 @@ export default {
       .then((item_id) => {
         console.log("++++++++++++++++++++");
         console.log(item_id.data);
-        this.$store.dispatch("getItem");
         console.log("++++++++++++++++++++");
         for (let x = 1; x <= 5; x++) {
           //max 7810
@@ -483,6 +482,7 @@ export default {
           // console.log("this lp :" + lp);
           cnl1 = h;
         }
+
         //Caerleon
         if (
           profit[item_lenght][1] >= c_bh &&
@@ -798,7 +798,7 @@ export default {
       //reset price
       //best sell
       hp = 0;
-      lp = 0;
+      lp = Infinity;
       //Caerleon
       c_bh = 0;
       c_bl = Infinity;
@@ -827,6 +827,7 @@ export default {
       // console.log(cnl2); //เมืองที่ไปขาย
       // console.log("xxxxxxxxxxxxxxxxx");
     }
+    
     //best_sell
     this.item_n = item_name[item_id_bp];
     this.api_img_link_f = api_name_link;
@@ -836,6 +837,7 @@ export default {
     this.city_sell = numeral(cnh1_p).format("0,0");
     this.city_sell_color = "color : " + city[1][cnh2];
     // console.log(hp + "/" + lp);
+
     //Caerleon
     c_profit_check.sort(function(a, b) {
       return b - a;
@@ -856,6 +858,7 @@ export default {
     }
     // console.log(this.c_item_n);
     // console.log(this.c_item_p);
+
     //Thetford
     t_profit_check.sort(function(c, d) {
       return d - c;

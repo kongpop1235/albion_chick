@@ -13,7 +13,7 @@
 import Menu from "@/components/core/Menu.vue";
 import Content from "@/components/core/Content.vue";
 import Footer from "@/components/core/footer.vue";
-import {store} from '@/store/index.js';
+import { store } from "@/store/index.js";
 
 export default {
   name: "App",
@@ -21,13 +21,15 @@ export default {
   components: {
     Menu,
     Content,
-    Footer
+    Footer,
   },
   data: () => ({
     overlay: false,
   }),
   mounted() {
-  }
+    this.$store.dispatch("getGold");
+    this.$store.dispatch("getItem");
+  },
 };
 </script>
 

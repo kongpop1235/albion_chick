@@ -9,7 +9,7 @@
           width="32"
           height="32"
           viewBox="0 0 172 172"
-          style=" fill:#000000;"
+          style="fill: #000000"
           class="mr-4"
         >
           <g
@@ -136,14 +136,13 @@ export default {
     let gold = [];
     let time = [];
 
-    const wait = (timeToDelay) => //delay
-      new Promise((resolve) => setTimeout(resolve, timeToDelay));
-    this.$store.dispatch("getGold");
+    const wait = (
+      timeToDelay //delay
+    ) => new Promise((resolve) => setTimeout(resolve, timeToDelay));
     //log
-    await wait(1000);//delay time
+    await wait(2000); //delay time
 
     if (this.$store.getters.gold[1] == true) {
-
       //check Gold data
       /* console.log("+++++++++++++++++++");
       console.log(this.$store.getters.gold[0]);
