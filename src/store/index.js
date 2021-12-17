@@ -14,7 +14,7 @@ export const store = new Vuex.Store({
     itemData: [
       /*{item_id : null, details: [{city : null, buy : null, buy_data : null, sell : null, sell_data : null}]}*/
     ],
-    item_profit: [],
+    item_profit: [false, null, null, null],
   },
   getters: {
     gold: (state) => state.gold,
@@ -58,7 +58,7 @@ export const store = new Vuex.Store({
             }); */
           let ic = 1;
 
-          for (let i = 1; i <= 1500; i++) {
+          for (let i = 1; i < 100; i++) {
             //max loop 7694
             if (ic == 187) {
               ic = 188;
@@ -222,6 +222,20 @@ export const store = new Vuex.Store({
       const best_sell_check = [null]; //เก็บข้อมูลโดยรวม
       const profit_check = [];
       let best_loop = 0;
+      //caerleon
+      let c_bh = null;
+      let c_bl = Infinity;
+      let c_cl = null; //เมืองที่ไปซื้อสินค้า
+      const c_best_check = [null]; //เก็บข้อมูลโดยรวม
+      const c_profit_check = [];
+      let c_best_loop = 0;
+      //thetford
+      let t_bh = null;
+      let t_bl = null;
+      let t_cl = null;
+      const t_best_check = [null];
+      const t_profit_check = [];
+      let t_best_loop = 0;
 
       for (
         let HL_item_lenght = 0;
@@ -256,11 +270,74 @@ export const store = new Vuex.Store({
               .sell;
             cl = h;
           }
+          //caerleon
+          if (
+            this.getters.itemData[HL_item_lenght].item_detail.details[1].sell >=
+              c_bh &&
+            this.getters.itemData[HL_item_lenght].item_detail.details[1].sell !=
+              0 &&
+            this.getters.itemData[HL_item_lenght].item_detail.details[1].sell !=
+              null
+          ) {
+            c_bh = this.getters.itemData[HL_item_lenght].item_detail.details[1]
+              .sell;
+            if (
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell <
+                this.getters.itemData[HL_item_lenght].item_detail.details[1]
+                  .sell &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell != 0 &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell != null &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell < c_bl
+            ) {
+              c_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
+                h
+              ].sell;
+              c_cl = h;
+            }
+          }
+          //Thetford
+          if (
+            this.getters.itemData[HL_item_lenght].item_detail.details[5].sell >=
+              t_bh &&
+            this.getters.itemData[HL_item_lenght].item_detail.details[5].sell !=
+              0 &&
+            this.getters.itemData[HL_item_lenght].item_detail.details[5].sell !=
+              null
+          ) {
+            t_bh = this.getters.itemData[HL_item_lenght].item_detail.details[5]
+              .sell;
+            if (
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell <
+                this.getters.itemData[HL_item_lenght].item_detail.details[5]
+                  .sell &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell != 0 &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell != null &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell < t_bl
+            ) {
+              t_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
+                h
+              ].sell;
+              t_cl = h;
+            }
+          }
         }
+        //ส่วนบันทึกราคาไอเท็มต่อชิ้นก่อนขึ้นชิ้นใหม่
         //best sell
         hp -= lp;
+        //Caerleon
+        c_bh -= c_bl;
+        //Thetford
+        t_bh -= t_bl;
 
-        //best sell
+        //best sell ส่วนบันทึกราคาไอเท็มต่อชิ้นก่อนขึ้นชิ้นใหม่
         if (hp < 200000 && lp != 0 && lp != null) {
           best_sell_check[best_loop] = {
             item: null,
@@ -284,24 +361,111 @@ export const store = new Vuex.Store({
           best_sell_check[best_loop].city_buy_price = this.getters.itemData[
             HL_item_lenght
           ].item_detail.details[cl].sell;
-          best_sell_check[best_loop].city_color_buy = city[cl];
+          best_sell_check[best_loop].city_color_buy = "color : " + city[cl];
           best_sell_check[best_loop].city_sell_price = this.getters.itemData[
             HL_item_lenght
           ].item_detail.details[ch].sell;
           best_sell_check[best_loop].city_sell = this.getters.itemData[
             HL_item_lenght
           ].item_detail.details[ch].city;
-          best_sell_check[best_loop].city_color_sell = city[ch];
+          best_sell_check[best_loop].city_color_sell = "color : " + city[ch];
           best_sell_check[best_loop].api_img =
             "https://render.albiononline.com/v1/item/" +
             this.getters.item[0].id[HL_item_lenght] +
             ".png";
           best_loop++;
         }
+        //Caerleon ส่วนบันทึกราคาไอเท็มต่อชิ้นก่อนขึ้นชิ้นใหม่
+        if (c_bh < 200000 && c_bl != Infinity && c_bl != 0 && c_bl != null) {
+          c_best_check[c_best_loop] = {
+            item: null,
+            profit: null,
+            city_buy: null,
+            city_buy_price: null,
+            city_color_buy: null,
+            city_sell: null,
+            city_sell_price: null,
+            city_color_sell: null,
+            api_img: null,
+          };
+          c_best_check[c_best_loop].item = this.getters.item[0].name[
+            HL_item_lenght
+          ];
+          c_profit_check[c_best_loop] = c_bh; //สำหรับจัดเรียงมูลค่า
+          c_best_check[c_best_loop].profit = c_bh;
+          c_best_check[c_best_loop].city_buy = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[c_cl].city;
+          c_best_check[c_best_loop].city_buy_price = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[c_cl].sell;
+          c_best_check[c_best_loop].city_color_buy = "color : " + city[c_cl];
+          c_best_check[c_best_loop].city_sell = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[1].city;
+          c_best_check[c_best_loop].city_sell_price = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[1].sell;
+          c_best_check[c_best_loop].city_color_sell = "color : " + city[1];
+          c_best_check[c_best_loop].api_img =
+            "https://render.albiononline.com/v1/item/" +
+            this.getters.item[0].id[HL_item_lenght] +
+            ".png";
+          //console.log("c_best : " + c_best[0].profit);
+          c_best_loop++;
+        }
+        //Thetford ส่วนบันทึกราคาไอเท็มต่อชิ้นก่อนขึ้นชิ้นใหม่
+        if (t_bh < 200000 && t_bl != Infinity && t_bl != 0 && t_bl != null) {
+          console.log(
+            "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    Thetford"
+          );
+          t_best_check[t_best_loop] = {
+            item: null,
+            profit: null,
+            city_buy: null,
+            city_buy_price: null,
+            city_color_buy: null,
+            city_sell: null,
+            city_sell_price: null,
+            city_color_sell: null,
+            api_img: null,
+          };
+          t_best_check[t_best_loop].item = this.getters.item[0].name[
+            HL_item_lenght
+          ];
+          t_profit_check[t_best_loop] = t_bh; //สำหรับจัดเรียงมูลค่า
+          t_best_check[t_best_loop].profit = t_bh;
+          t_best_check[t_best_loop].city_buy = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[t_cl].city;
+          t_best_check[t_best_loop].city_buy_price = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[t_cl].sell;
+          t_best_check[t_best_loop].city_color_buy = "color : " + city[t_cl];
+          t_best_check[t_best_loop].city_sell = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[5].city;
+          t_best_check[t_best_loop].city_sell_price = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[5].sell;
+          t_best_check[t_best_loop].city_color_sell = "color : " + city[1];
+          t_best_check[t_best_loop].api_img =
+            "https://render.albiononline.com/v1/item/" +
+            this.getters.item[0].id[HL_item_lenght] +
+            ".png";
+          t_best_loop++;
+        }
+
         //reset price
         //best sell
         hp = 0;
         lp = 0;
+        //Caerleon
+        c_bh = 0;
+        c_bl = Infinity;
+        //thetford
+        t_bh = 0;
+        t_bl = Infinity;
       }
       //best sell
       const best_sell = [];
@@ -332,7 +496,7 @@ export const store = new Vuex.Store({
               best_sell_check[i].city_buy_price
             ).format("0,0");
             best_sell[u].city_color_buy = best_sell_check[i].city_color_buy;
-            best_sell[u].city_sell = best_sell_check[i].city_sell
+            best_sell[u].city_sell = best_sell_check[i].city_sell;
             best_sell[u].city_sell_price = numeral(
               best_sell_check[i].city_sell_price
             ).format("0,0");
@@ -341,7 +505,85 @@ export const store = new Vuex.Store({
           }
         }
       }
+      //Caerleon
+      const c_best_sell = [];
+      c_profit_check.sort(function(c, d) {
+        return d - c;
+      });
+      // console.log("c_profit_check : " + c_profit_check);
+      // console.log("c_best : " + c_best);
+      for (let u = 0; u < c_profit_check.length; u++) {
+        for (let i = 0; i < c_profit_check.length; i++) {
+          if (c_profit_check[u] == c_best_check[i].profit) {
+            c_best_sell[u] = {
+              item: null,
+              profit: null,
+              city_buy: null,
+              city_buy_price: null,
+              city_color_buy: null,
+              city_sell: null,
+              city_sell_price: null,
+              city_color_sell: null,
+              api_img: null,
+            };
+            c_best_sell[u].item = c_best_check[i].item;
+            c_best_sell[u].profit = numeral(c_best_check[i].profit).format(
+              "0,0"
+            );
+            c_best_sell[u].city_buy = c_best_check[i].city_buy;
+            c_best_sell[u].city_buy_price = numeral(
+              c_best_check[i].city_buy_price
+            ).format("0,0");
+            c_best_sell[u].city_color_buy = c_best_check[i].city_color_buy;
+            c_best_sell[u].city_sell = c_best_check[i].city_sell;
+            c_best_sell[u].city_sell_price = numeral(
+              c_best_check[i].city_sell_price
+            ).format("0,0");
+            c_best_sell[u].city_color_sell = c_best_check[i].city_color_sell;
+            c_best_sell[u].api_img = c_best_check[i].api_img;
+          }
+        }
+      }
+      //Thetford
+      const t_best_sell = [];
+      t_profit_check.sort(function(e, f) {
+        return f - e;
+      });
+      for (let u = 0; u < t_profit_check.length; u++) {
+        for (let i = 0; i < t_profit_check.length; i++) {
+          if (t_profit_check[u] == t_best_check[i].profit) {
+            t_best_sell[u] = {
+              item: null,
+              profit: null,
+              city_buy: null,
+              city_buy_price: null,
+              city_color_buy: null,
+              city_sell: null,
+              city_sell_price: null,
+              city_color_sell: null,
+              api_img: null,
+            };
+            t_best_sell[u].item = t_best_check[i].item;
+            t_best_sell[u].profit = numeral(t_best_check[i].profit).format(
+              "0,0"
+            );
+            t_best_sell[u].city_buy = t_best_check[i].city_buy;
+            t_best_sell[u].city_buy_price = numeral(
+              t_best_check[i].city_buy_price
+            ).format("0,0");
+            t_best_sell[u].city_color_buy = t_best_check[i].city_color_buy;
+            t_best_sell[u].city_sell = t_best_check[i].city_sell;
+            t_best_sell[u].city_sell_price = numeral(
+              t_best_check[i].city_sell_price
+            ).format("0,0");
+            t_best_sell[u].city_color_sell = t_best_check[i].city_color_sell;
+            t_best_sell[u].api_img = t_best_check[i].api_img;
+          }
+        }
+      }
       await commit("SET_H_L_PRICE", best_sell);
+      await commit("SET_H_L_PRICE_C", c_best_sell);
+      await commit("SET_H_L_PRICE_T", t_best_sell);
       console.log("****************************");
       console.log(this.getters.item_profit);
       console.log(best_sell);
@@ -367,7 +609,13 @@ export const store = new Vuex.Store({
       state.itemData.push(setdata);
     },
     SET_H_L_PRICE(state, best_sell) {
-      state.item_profit.push(best_sell);
+      state.item_profit[1] = best_sell;
+    },
+    SET_H_L_PRICE_C(state, c_best_sell) {
+      state.item_profit[2] = c_best_sell;
+    },
+    SET_H_L_PRICE_T(state, t_best_sell) {
+      state.item_profit[3] = t_best_sell;
     },
   },
 });

@@ -817,15 +817,6 @@ export default {
       //Bridgewatch
       b_bh = 0;
       b_bl = Infinity;
-
-      // console.log("xxxxxxxxxxxxxxxxx");
-      // console.log("Id_Item : " + api_name_link);
-      // console.log(item_name[item_id_bp]);
-      // console.log(item_id_bp); //เบอร์ไอเทม
-      // console.log(bs_best); //กำไรต่อชิ้น
-      // console.log(cnh2); //เมืองที่ไปซื้อ
-      // console.log(cnl2); //เมืองที่ไปขาย
-      // console.log("xxxxxxxxxxxxxxxxx");
     }
     
     //best_sell
