@@ -14,7 +14,14 @@ export const store = new Vuex.Store({
     itemData: [
       /*{item_id : null, details: [{city : null, buy : null, buy_data : null, sell : null, sell_data : null}]}*/
     ],
-    item_profit: [false, null, null, null],
+    item_profit: {
+      check: false,
+      best_sell: null,
+      caerleon: null,
+      thetford: null,
+      martlock: null,
+      lymhurst: null,
+    },
   },
   getters: {
     gold: (state) => state.gold,
@@ -58,7 +65,7 @@ export const store = new Vuex.Store({
             }); */
           let ic = 1;
 
-          for (let i = 1; i < 100; i++) {
+          for (let i = 1; i < 21; i++) {
             //max loop 7694
             if (ic == 187) {
               ic = 188;
@@ -236,6 +243,20 @@ export const store = new Vuex.Store({
       const t_best_check = [null];
       const t_profit_check = [];
       let t_best_loop = 0;
+      //Martlock
+      let m_bh = null;
+      let m_bl = null;
+      let m_cl = null;
+      const m_best_check = [null];
+      const m_profit_check = [];
+      let m_best_loop = 0;
+      //Lymhurst
+      let l_bh = null;
+      let l_bl = null;
+      let l_cl = null;
+      const l_best_check = [null];
+      const l_profit_check = [];
+      let l_best_loop = 0;
 
       for (
         let HL_item_lenght = 0;
@@ -256,8 +277,21 @@ export const store = new Vuex.Store({
             hp = this.getters.itemData[HL_item_lenght].item_detail.details[h]
               .sell;
             ch = h;
+            if (this.getters.itemData[HL_item_lenght].item_detail.details[h].city == "Lymhurst" && this.getters.itemData[HL_item_lenght].item_detail["item_id"] == "T5_FARM_OX_BABY") {
+            console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            console.log(this.getters.itemData[HL_item_lenght].item_detail["item_id"]);
+            console.log(this.getters.itemData[HL_item_lenght].item_detail.details[h].sell);
+            console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            }
           }
           //find best low price
+          if (this.getters.itemData[HL_item_lenght].item_detail.details[h].city == "Caerleon" && this.getters.itemData[HL_item_lenght].item_detail["item_id"] == "T5_FARM_OX_BABY") {
+          console.log("-----------------------------------------");
+            console.log(this.getters.itemData[HL_item_lenght].item_detail["item_id"]);
+            console.log(this.getters.itemData[HL_item_lenght].item_detail.details[h].sell);
+            console.log(this.getters.itemData[HL_item_lenght].item_detail.details[h].city);
+          console.log("-----------------------------------------");
+          }
           if (
             this.getters.itemData[HL_item_lenght].item_detail.details[h].sell <
               hp &&
@@ -266,6 +300,14 @@ export const store = new Vuex.Store({
             this.getters.itemData[HL_item_lenght].item_detail.details[h].sell !=
               null
           ) {
+            console.log("+++++++" + this.getters.itemData[HL_item_lenght].item_detail["item_id"] + " : " + this.getters.itemData[HL_item_lenght].item_detail.details[h].city);
+            if (this.getters.itemData[HL_item_lenght].item_detail.details[h].city == "Caerleon" && this.getters.itemData[HL_item_lenght].item_detail["item_id"] == "T5_FARM_OX_BABY") {
+              console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+              console.log("Caerleon");
+              console.log(this.getters.itemData[HL_item_lenght].item_detail["item_id"]);
+              console.log(this.getters.itemData[HL_item_lenght].item_detail.detail[h].sell);
+              console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            }
             lp = this.getters.itemData[HL_item_lenght].item_detail.details[h]
               .sell;
             cl = h;
@@ -328,6 +370,64 @@ export const store = new Vuex.Store({
               t_cl = h;
             }
           }
+          //Martlock
+          if (
+            this.getters.itemData[HL_item_lenght].item_detail.details[4].sell >=
+              m_bh &&
+            this.getters.itemData[HL_item_lenght].item_detail.details[4].sell !=
+              0 &&
+            this.getters.itemData[HL_item_lenght].item_detail.details[4].sell !=
+              null
+          ) {
+            m_bh = this.getters.itemData[HL_item_lenght].item_detail.details[4]
+              .sell;
+            if (
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell <
+                this.getters.itemData[HL_item_lenght].item_detail.details[4]
+                  .sell &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell != 0 &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell != null &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell < m_bl
+            ) {
+              m_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
+                h
+              ].sell;
+              m_cl = h;
+            }
+          }
+          //Lymhurst
+          if (
+            this.getters.itemData[HL_item_lenght].item_detail.details[3].sell >=
+              l_bh &&
+            this.getters.itemData[HL_item_lenght].item_detail.details[3].sell !=
+              0 &&
+            this.getters.itemData[HL_item_lenght].item_detail.details[3].sell !=
+              null
+          ) {
+            l_bh = this.getters.itemData[HL_item_lenght].item_detail.details[3]
+              .sell;
+            if (
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell <
+                this.getters.itemData[HL_item_lenght].item_detail.details[3]
+                  .sell &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell != 0 &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell != null &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell < l_bl
+            ) {
+              l_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
+                h
+              ].sell;
+              l_cl = h;
+            }
+          }
         }
         //ส่วนบันทึกราคาไอเท็มต่อชิ้นก่อนขึ้นชิ้นใหม่
         //best sell
@@ -336,6 +436,10 @@ export const store = new Vuex.Store({
         c_bh -= c_bl;
         //Thetford
         t_bh -= t_bl;
+        //Martlock
+        m_bh -= m_bl;
+        //Lymhurst
+        l_bh -= l_bl;
 
         //best sell ส่วนบันทึกราคาไอเท็มต่อชิ้นก่อนขึ้นชิ้นใหม่
         if (hp < 200000 && lp != 0 && lp != null) {
@@ -416,9 +520,6 @@ export const store = new Vuex.Store({
         }
         //Thetford ส่วนบันทึกราคาไอเท็มต่อชิ้นก่อนขึ้นชิ้นใหม่
         if (t_bh < 200000 && t_bl != Infinity && t_bl != 0 && t_bl != null) {
-          console.log(
-            "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    Thetford"
-          );
           t_best_check[t_best_loop] = {
             item: null,
             profit: null,
@@ -455,6 +556,82 @@ export const store = new Vuex.Store({
             ".png";
           t_best_loop++;
         }
+        //Martlock
+        if (m_bh < 200000 && m_bl != Infinity && m_bl != 0 && m_bl != null) {
+          m_best_check[m_best_loop] = {
+            item: null,
+            profit: null,
+            city_buy: null,
+            city_buy_price: null,
+            city_color_buy: null,
+            city_sell: null,
+            city_sell_price: null,
+            city_color_sell: null,
+            api_img: null,
+          };
+          m_best_check[m_best_loop].item = this.getters.item[0].name[
+            HL_item_lenght
+          ];
+          m_profit_check[m_best_loop] = m_bh; //สำหรับจัดเรียงมูลค่า
+          m_best_check[m_best_loop].profit = m_bh;
+          m_best_check[m_best_loop].city_buy = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[m_cl].city;
+          m_best_check[m_best_loop].city_buy_price = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[m_cl].sell;
+          m_best_check[m_best_loop].city_color_buy = "color : " + city[m_cl];
+          m_best_check[m_best_loop].city_sell = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[4].city;
+          m_best_check[m_best_loop].city_sell_price = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[4].sell;
+          m_best_check[m_best_loop].city_color_sell = "color : " + city[1];
+          m_best_check[m_best_loop].api_img =
+            "https://render.albiononline.com/v1/item/" +
+            this.getters.item[0].id[HL_item_lenght] +
+            ".png";
+          m_best_loop++;
+        }
+        //Lymhurst
+        if (l_bh < 200000 && l_bl != Infinity && l_bl != 0 && l_bl != null) {
+          l_best_check[l_best_loop] = {
+            item: null,
+            profit: null,
+            city_buy: null,
+            city_buy_price: null,
+            city_color_buy: null,
+            city_sell: null,
+            city_sell_price: null,
+            city_color_sell: null,
+            api_img: null,
+          };
+          l_best_check[l_best_loop].item = this.getters.item[0].name[
+            HL_item_lenght
+          ];
+          l_profit_check[l_best_loop] = l_bh; //สำหรับจัดเรียงมูลค่า
+          l_best_check[l_best_loop].profit = l_bh;
+          l_best_check[l_best_loop].city_buy = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[l_cl].city;
+          l_best_check[l_best_loop].city_buy_price = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[l_cl].sell;
+          l_best_check[l_best_loop].city_color_buy = "color : " + city[l_cl];
+          l_best_check[l_best_loop].city_sell = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[3].city;
+          l_best_check[l_best_loop].city_sell_price = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[3].sell;
+          l_best_check[l_best_loop].city_color_sell = "color : " + city[1];
+          l_best_check[l_best_loop].api_img =
+            "https://render.albiononline.com/v1/item/" +
+            this.getters.item[0].id[HL_item_lenght] +
+            ".png";
+          l_best_loop++;
+        }
 
         //reset price
         //best sell
@@ -466,6 +643,12 @@ export const store = new Vuex.Store({
         //thetford
         t_bh = 0;
         t_bl = Infinity;
+        //Martlock
+        m_bh = 0;
+        m_bl = Infinity;
+        //Lymhurst
+        l_bh = 0;
+        l_bl = Infinity;
       }
       //best sell
       const best_sell = [];
@@ -581,9 +764,85 @@ export const store = new Vuex.Store({
           }
         }
       }
+      //Martlock
+      const m_best_sell = [];
+      m_profit_check.sort(function(g, h) {
+        return h - g;
+      });
+      for (let u = 0; u < m_profit_check.length; u++) {
+        for (let i = 0; i < m_profit_check.length; i++) {
+          if (m_profit_check[u] == m_best_check[i].profit) {
+            m_best_sell[u] = {
+              item: null,
+              profit: null,
+              city_buy: null,
+              city_buy_price: null,
+              city_color_buy: null,
+              city_sell: null,
+              city_sell_price: null,
+              city_color_sell: null,
+              api_img: null,
+            };
+            m_best_sell[u].item = m_best_check[i].item;
+            m_best_sell[u].profit = numeral(m_best_check[i].profit).format(
+              "0,0"
+            );
+            m_best_sell[u].city_buy = m_best_check[i].city_buy;
+            m_best_sell[u].city_buy_price = numeral(
+              m_best_check[i].city_buy_price
+            ).format("0,0");
+            m_best_sell[u].city_color_buy = m_best_check[i].city_color_buy;
+            m_best_sell[u].city_sell = m_best_check[i].city_sell;
+            m_best_sell[u].city_sell_price = numeral(
+              m_best_check[i].city_sell_price
+            ).format("0,0");
+            m_best_sell[u].city_color_sell = m_best_check[i].city_color_sell;
+            m_best_sell[u].api_img = m_best_check[i].api_img;
+          }
+        }
+      }
+      //Lymhurst
+      const l_best_sell = [];
+      l_profit_check.sort(function(i, j) {
+        return j - i;
+      });
+      for (let u = 0; u < l_profit_check.length; u++) {
+        for (let i = 0; i < l_profit_check.length; i++) {
+          if (l_profit_check[u] == l_best_check[i].profit) {
+            l_best_sell[u] = {
+              item: null,
+              profit: null,
+              city_buy: null,
+              city_buy_price: null,
+              city_color_buy: null,
+              city_sell: null,
+              city_sell_price: null,
+              city_color_sell: null,
+              api_img: null,
+            };
+            l_best_sell[u].item = l_best_check[i].item;
+            l_best_sell[u].profit = numeral(l_best_check[i].profit).format(
+              "0,0"
+            );
+            l_best_sell[u].city_buy = l_best_check[i].city_buy;
+            l_best_sell[u].city_buy_price = numeral(
+              l_best_check[i].city_buy_price
+            ).format("0,0");
+            l_best_sell[u].city_color_buy = l_best_check[i].city_color_buy;
+            l_best_sell[u].city_sell = l_best_check[i].city_sell;
+            l_best_sell[u].city_sell_price = numeral(
+              l_best_check[i].city_sell_price
+            ).format("0,0");
+            l_best_sell[u].city_color_sell = l_best_check[i].city_color_sell;
+            l_best_sell[u].api_img = l_best_check[i].api_img;
+          }
+        }
+      }
       await commit("SET_H_L_PRICE", best_sell);
       await commit("SET_H_L_PRICE_C", c_best_sell);
       await commit("SET_H_L_PRICE_T", t_best_sell);
+      await commit("SET_H_L_PRICE_M", m_best_sell);
+      await commit("SET_H_L_PRICE_L", l_best_sell);
       console.log("****************************");
       console.log(this.getters.item_profit);
       console.log(best_sell);
@@ -609,13 +868,19 @@ export const store = new Vuex.Store({
       state.itemData.push(setdata);
     },
     SET_H_L_PRICE(state, best_sell) {
-      state.item_profit[1] = best_sell;
+      state.item_profit["best_sell"] = best_sell;
     },
     SET_H_L_PRICE_C(state, c_best_sell) {
-      state.item_profit[2] = c_best_sell;
+      state.item_profit["caerleon"] = c_best_sell;
     },
     SET_H_L_PRICE_T(state, t_best_sell) {
-      state.item_profit[3] = t_best_sell;
+      state.item_profit["thetford"] = t_best_sell;
+    },
+    SET_H_L_PRICE_M(state, m_best_sell) {
+      state.item_profit["martlock"] = m_best_sell;
+    },
+    SET_H_L_PRICE_L(state, l_best_sell) {
+      state.item_profit["lymhurst"] = l_best_sell;
     },
   },
 });
