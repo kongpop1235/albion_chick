@@ -21,6 +21,8 @@ export const store = new Vuex.Store({
       thetford: null,
       martlock: null,
       lymhurst: null,
+      fortSterling: null,
+      bridgewatch: null
     },
   },
   getters: {
@@ -257,6 +259,20 @@ export const store = new Vuex.Store({
       const l_best_check = [null];
       const l_profit_check = [];
       let l_best_loop = 0;
+      //FortSterling
+      let f_bh = null;
+      let f_bl = null;
+      let f_cl = null;
+      const f_best_check = [null];
+      const f_profit_check = [];
+      let f_best_loop = 0;
+      //Bridgewatch
+      let b_bh = null;
+      let b_bl = null;
+      let b_cl = null;
+      const b_best_check = [null];
+      const b_profit_check = [];
+      let b_best_loop = 0;
 
       for (
         let HL_item_lenght = 0;
@@ -267,7 +283,7 @@ export const store = new Vuex.Store({
           //Best Sell
           //find best hight price
           if (
-            this.getters.itemData[HL_item_lenght].item_detail.details[h].sell >
+            this.getters.itemData[HL_item_lenght].item_detail.details[h].sell >=
               hp &&
             this.getters.itemData[HL_item_lenght].item_detail.details[h].sell !=
               0 &&
@@ -277,40 +293,26 @@ export const store = new Vuex.Store({
             hp = this.getters.itemData[HL_item_lenght].item_detail.details[h]
               .sell;
             ch = h;
-            if (this.getters.itemData[HL_item_lenght].item_detail.details[h].city == "Lymhurst" && this.getters.itemData[HL_item_lenght].item_detail["item_id"] == "T5_FARM_OX_BABY") {
-            console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-            console.log(this.getters.itemData[HL_item_lenght].item_detail["item_id"]);
-            console.log(this.getters.itemData[HL_item_lenght].item_detail.details[h].sell);
-            console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            //find best low price
+            for (let hl = 0; hl < 6; hl++) {
+              if (
+                this.getters.itemData[HL_item_lenght].item_detail.details[hl]
+                  .sell <
+                  this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                    .sell &&
+                this.getters.itemData[HL_item_lenght].item_detail.details[hl]
+                  .sell != 0 &&
+                this.getters.itemData[HL_item_lenght].item_detail.details[hl]
+                  .sell != null &&
+                this.getters.itemData[HL_item_lenght].item_detail.details[hl]
+                  .sell < lp
+              ) {
+                lp = this.getters.itemData[HL_item_lenght].item_detail.details[
+                  hl
+                ].sell;
+                cl = hl;
+              }
             }
-          }
-          //find best low price
-          if (this.getters.itemData[HL_item_lenght].item_detail.details[h].city == "Caerleon" && this.getters.itemData[HL_item_lenght].item_detail["item_id"] == "T5_FARM_OX_BABY") {
-          console.log("-----------------------------------------");
-            console.log(this.getters.itemData[HL_item_lenght].item_detail["item_id"]);
-            console.log(this.getters.itemData[HL_item_lenght].item_detail.details[h].sell);
-            console.log(this.getters.itemData[HL_item_lenght].item_detail.details[h].city);
-          console.log("-----------------------------------------");
-          }
-          if (
-            this.getters.itemData[HL_item_lenght].item_detail.details[h].sell <
-              hp &&
-            this.getters.itemData[HL_item_lenght].item_detail.details[h].sell !=
-              0 &&
-            this.getters.itemData[HL_item_lenght].item_detail.details[h].sell !=
-              null
-          ) {
-            console.log("+++++++" + this.getters.itemData[HL_item_lenght].item_detail["item_id"] + " : " + this.getters.itemData[HL_item_lenght].item_detail.details[h].city);
-            if (this.getters.itemData[HL_item_lenght].item_detail.details[h].city == "Caerleon" && this.getters.itemData[HL_item_lenght].item_detail["item_id"] == "T5_FARM_OX_BABY") {
-              console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-              console.log("Caerleon");
-              console.log(this.getters.itemData[HL_item_lenght].item_detail["item_id"]);
-              console.log(this.getters.itemData[HL_item_lenght].item_detail.detail[h].sell);
-              console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-            }
-            lp = this.getters.itemData[HL_item_lenght].item_detail.details[h]
-              .sell;
-            cl = h;
           }
           //caerleon
           if (
@@ -428,9 +430,67 @@ export const store = new Vuex.Store({
               l_cl = h;
             }
           }
+          //FortSterling
+          if (
+            this.getters.itemData[HL_item_lenght].item_detail.details[2].sell >=
+              f_bh &&
+            this.getters.itemData[HL_item_lenght].item_detail.details[2].sell !=
+              0 &&
+            this.getters.itemData[HL_item_lenght].item_detail.details[2].sell !=
+              null
+          ) {
+            f_bh = this.getters.itemData[HL_item_lenght].item_detail.details[2]
+              .sell;
+            if (
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell <
+                this.getters.itemData[HL_item_lenght].item_detail.details[2]
+                  .sell &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell != 0 &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell != null &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell < f_bl
+            ) {
+              f_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
+                h
+              ].sell;
+              f_cl = h;
+            }
+          }
+          //Bridgewatch
+          if (
+            this.getters.itemData[HL_item_lenght].item_detail.details[0].sell >=
+              f_bh &&
+            this.getters.itemData[HL_item_lenght].item_detail.details[0].sell !=
+              0 &&
+            this.getters.itemData[HL_item_lenght].item_detail.details[0].sell !=
+              null
+          ) {
+            b_bh = this.getters.itemData[HL_item_lenght].item_detail.details[0]
+              .sell;
+            if (
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell <
+                this.getters.itemData[HL_item_lenght].item_detail.details[0]
+                  .sell &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell != 0 &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell != null &&
+              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                .sell < f_bl
+            ) {
+              b_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
+                h
+              ].sell;
+              b_cl = h;
+            }
+          }
         }
         //ส่วนบันทึกราคาไอเท็มต่อชิ้นก่อนขึ้นชิ้นใหม่
-        //best sell
+        //Best sell
         hp -= lp;
         //Caerleon
         c_bh -= c_bl;
@@ -440,6 +500,10 @@ export const store = new Vuex.Store({
         m_bh -= m_bl;
         //Lymhurst
         l_bh -= l_bl;
+        //FortSterling
+        f_bh -= f_bl;
+        //Bridgewatch
+        b_bh -= b_bl;
 
         //best sell ส่วนบันทึกราคาไอเท็มต่อชิ้นก่อนขึ้นชิ้นใหม่
         if (hp < 200000 && lp != 0 && lp != null) {
@@ -632,11 +696,87 @@ export const store = new Vuex.Store({
             ".png";
           l_best_loop++;
         }
+        //FortSterling
+        if (f_bh < 200000 && f_bl != Infinity && f_bl != 0 && f_bl != null) {
+          f_best_check[f_best_loop] = {
+            item: null,
+            profit: null,
+            city_buy: null,
+            city_buy_price: null,
+            city_color_buy: null,
+            city_sell: null,
+            city_sell_price: null,
+            city_color_sell: null,
+            api_img: null,
+          };
+          f_best_check[f_best_loop].item = this.getters.item[0].name[
+            HL_item_lenght
+          ];
+          f_profit_check[f_best_loop] = f_bh; //สำหรับจัดเรียงมูลค่า
+          f_best_check[f_best_loop].profit = f_bh;
+          f_best_check[f_best_loop].city_buy = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[f_cl].city;
+          f_best_check[f_best_loop].city_buy_price = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[f_cl].sell;
+          f_best_check[f_best_loop].city_color_buy = "color : " + city[f_cl];
+          f_best_check[f_best_loop].city_sell = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[3].city;
+          f_best_check[f_best_loop].city_sell_price = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[3].sell;
+          f_best_check[f_best_loop].city_color_sell = "color : " + city[1];
+          f_best_check[f_best_loop].api_img =
+            "https://render.albiononline.com/v1/item/" +
+            this.getters.item[0].id[HL_item_lenght] +
+            ".png";
+          f_best_loop++;
+        }
+        //Bridgewatch
+        if (b_bh < 200000 && b_bl != Infinity && b_bl != 0 && b_bl != null) {
+          b_best_check[b_best_loop] = {
+            item: null,
+            profit: null,
+            city_buy: null,
+            city_buy_price: null,
+            city_color_buy: null,
+            city_sell: null,
+            city_sell_price: null,
+            city_color_sell: null,
+            api_img: null,
+          };
+          b_best_check[b_best_loop].item = this.getters.item[0].name[
+            HL_item_lenght
+          ];
+          b_profit_check[b_best_loop] = b_bh; //สำหรับจัดเรียงมูลค่า
+          b_best_check[b_best_loop].profit = b_bh;
+          b_best_check[b_best_loop].city_buy = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[b_cl].city;
+          b_best_check[b_best_loop].city_buy_price = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[b_cl].sell;
+          b_best_check[b_best_loop].city_color_buy = "color : " + city[b_cl];
+          b_best_check[b_best_loop].city_sell = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[0].city;
+          b_best_check[b_best_loop].city_sell_price = this.getters.itemData[
+            HL_item_lenght
+          ].item_detail.details[0].sell;
+          b_best_check[b_best_loop].city_color_sell = "color : " + city[0];
+          b_best_check[b_best_loop].api_img =
+            "https://render.albiononline.com/v1/item/" +
+            this.getters.item[0].id[HL_item_lenght] +
+            ".png";
+          b_best_loop++;
+        }
 
         //reset price
         //best sell
         hp = 0;
-        lp = 0;
+        lp = Infinity;
         //Caerleon
         c_bh = 0;
         c_bl = Infinity;
@@ -649,6 +789,12 @@ export const store = new Vuex.Store({
         //Lymhurst
         l_bh = 0;
         l_bl = Infinity;
+        //FortSterling
+        f_bh = 0;
+        f_bl = Infinity;
+        //Bridgewatch
+        b_bh = 0;
+        b_bl = Infinity;
       }
       //best sell
       const best_sell = [];
@@ -838,14 +984,91 @@ export const store = new Vuex.Store({
           }
         }
       }
+      //FortSterling
+      const f_best_sell = [];
+      f_profit_check.sort(function(i, j) {
+        return j - i;
+      });
+      for (let u = 0; u < f_profit_check.length; u++) {
+        for (let i = 0; i < f_profit_check.length; i++) {
+          if (f_profit_check[u] == f_best_check[i].profit) {
+            f_best_sell[u] = {
+              item: null,
+              profit: null,
+              city_buy: null,
+              city_buy_price: null,
+              city_color_buy: null,
+              city_sell: null,
+              city_sell_price: null,
+              city_color_sell: null,
+              api_img: null,
+            };
+            f_best_sell[u].item = f_best_check[i].item;
+            f_best_sell[u].profit = numeral(f_best_check[i].profit).format(
+              "0,0"
+            );
+            f_best_sell[u].city_buy = f_best_check[i].city_buy;
+            f_best_sell[u].city_buy_price = numeral(
+              f_best_check[i].city_buy_price
+            ).format("0,0");
+            f_best_sell[u].city_color_buy = f_best_check[i].city_color_buy;
+            f_best_sell[u].city_sell = f_best_check[i].city_sell;
+            f_best_sell[u].city_sell_price = numeral(
+              f_best_check[i].city_sell_price
+            ).format("0,0");
+            f_best_sell[u].city_color_sell = f_best_check[i].city_color_sell;
+            f_best_sell[u].api_img = f_best_check[i].api_img;
+          }
+        }
+      }
+      //Bridgewatch
+      const b_best_sell = [];
+      b_profit_check.sort(function(k, l) {
+        return l - k;
+      });
+      for (let u = 0; u < b_profit_check.length; u++) {
+        for (let i = 0; i < b_profit_check.length; i++) {
+          if (b_profit_check[u] == b_best_check[i].profit) {
+            b_best_sell[u] = {
+              item: null,
+              profit: null,
+              city_buy: null,
+              city_buy_price: null,
+              city_color_buy: null,
+              city_sell: null,
+              city_sell_price: null,
+              city_color_sell: null,
+              api_img: null,
+            };
+            b_best_sell[u].item = b_best_check[i].item;
+            b_best_sell[u].profit = numeral(b_best_check[i].profit).format(
+              "0,0"
+            );
+            b_best_sell[u].city_buy = b_best_check[i].city_buy;
+            b_best_sell[u].city_buy_price = numeral(
+              b_best_check[i].city_buy_price
+            ).format("0,0");
+            b_best_sell[u].city_color_buy = b_best_check[i].city_color_buy;
+            b_best_sell[u].city_sell = b_best_check[i].city_sell;
+            b_best_sell[u].city_sell_price = numeral(
+              b_best_check[i].city_sell_price
+            ).format("0,0");
+            b_best_sell[u].city_color_sell = b_best_check[i].city_color_sell;
+            b_best_sell[u].api_img = b_best_check[i].api_img;
+          }
+        }
+      }
       await commit("SET_H_L_PRICE", best_sell);
       await commit("SET_H_L_PRICE_C", c_best_sell);
       await commit("SET_H_L_PRICE_T", t_best_sell);
       await commit("SET_H_L_PRICE_M", m_best_sell);
       await commit("SET_H_L_PRICE_L", l_best_sell);
+      await commit("SET_H_L_PRICE_F", f_best_sell);
+      await commit("SET_H_L_PRICE_B", b_best_sell);
       console.log("****************************");
       console.log(this.getters.item_profit);
       console.log(best_sell);
+      console.log(this.getters.item_profit.best_sell[0]);
       console.log("****************************");
     },
   },
@@ -881,6 +1104,12 @@ export const store = new Vuex.Store({
     },
     SET_H_L_PRICE_L(state, l_best_sell) {
       state.item_profit["lymhurst"] = l_best_sell;
+    },
+    SET_H_L_PRICE_F(state, f_best_sell) {
+      state.item_profit["fortSterling"] = f_best_sell;
+    },
+    SET_H_L_PRICE_B(state, b_best_sell) {
+      state.item_profit["bridgewatch"] = b_best_sell;
     },
   },
 });

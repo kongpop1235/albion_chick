@@ -107,10 +107,6 @@ export default {
     };
   },
   async mounted() {
-    console.log("11111111");
-    console.log(this.$store.getters.gold);
-    console.log(this.$store.getters.time);
-    console.log("11111111");
 
     const d = new Date();
     const y = new Date(Date.now() - 864e5); // 864e5 == 86400000 == 24*60*60*1000 yesterday easy day
