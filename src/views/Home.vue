@@ -1,5 +1,5 @@
 <template>
-  <v-card class="rounded-0 bg_main px-0 mx-10 my-6" elevation="0" rounded-0>
+  <v-card class="rounded-0 bg_main px-0 mx-10 my-6" elevation="0" rounded-0 v-if="this.$store.getters.item_profit.check">
     <v-row>
       <v-col cols="12" lg="4">
         <BestSell
@@ -16,24 +16,24 @@
       <v-col cols="12" lg="8">
         <Top5SellCaerleon
           class="grey--text text--lighten-1"
-          :c_api_img_1="this.$store.getters.item_profit.caerleon[0].api_img"
-          :c_item_name_1="this.$store.getters.item_profit.caerleon[0].item"
-          :c_item_p_1="this.$store.getters.item_profit.caerleon[0].profit"
-          :c_city_buy_1="this.$store.getters.item_profit.caerleon[0].city_buy_price"
-          :c_city_buy_color_1="this.$store.getters.item_profit.caerleon[0].city_color_buy"
-          :c_city_sell_1="this.$store.getters.item_profit.caerleon[0].city_sell_price"
-          :c_api_img_2="this.$store.getters.item_profit.caerleon[1].api_img"
-          :c_item_name_2="this.$store.getters.item_profit.caerleon[1].item"
-          :c_item_p_2="this.$store.getters.item_profit.caerleon[1].profit"
-          :c_city_buy_2="this.$store.getters.item_profit.caerleon[1].city_buy_price"
-          :c_city_buy_color_2="this.$store.getters.item_profit.caerleon[1].city_color_buy"
-          :c_city_sell_2="this.$store.getters.item_profit.caerleon[1].city_sell_price"
-          :c_api_img_3="this.$store.getters.item_profit.caerleon[2].api_img"
-          :c_item_name_3="this.$store.getters.item_profit.caerleon[2].item"
-          :c_item_p_3="this.$store.getters.item_profit.caerleon[2].profit"
-          :c_city_buy_3="this.$store.getters.item_profit.caerleon[2].city_buy_price"
-          :c_city_buy_color_3="this.$store.getters.item_profit.caerleon[2].city_color_buy"
-          :c_city_sell_3="this.$store.getters.item_profit.caerleon[2].city_sell_price"
+          :c_api_img_1="this.$store.getters.item_profit.Caerleon[0].api_img"
+          :c_item_name_1="this.$store.getters.item_profit.Caerleon[0].item"
+          :c_item_p_1="this.$store.getters.item_profit.Caerleon[0].profit"
+          :c_city_buy_1="this.$store.getters.item_profit.Caerleon[0].city_buy_price"
+          :c_city_buy_color_1="this.$store.getters.item_profit.Caerleon[0].city_color_buy"
+          :c_city_sell_1="this.$store.getters.item_profit.Caerleon[0].city_sell_price"
+          :c_api_img_2="this.$store.getters.item_profit.Caerleon[1].api_img"
+          :c_item_name_2="this.$store.getters.item_profit.Caerleon[1].item"
+          :c_item_p_2="this.$store.getters.item_profit.Caerleon[1].profit"
+          :c_city_buy_2="this.$store.getters.item_profit.Caerleon[1].city_buy_price"
+          :c_city_buy_color_2="this.$store.getters.item_profit.Caerleon[1].city_color_buy"
+          :c_city_sell_2="this.$store.getters.item_profit.Caerleon[1].city_sell_price"
+          :c_api_img_3="this.$store.getters.item_profit.Caerleon[2].api_img"
+          :c_item_name_3="this.$store.getters.item_profit.Caerleon[2].item"
+          :c_item_p_3="this.$store.getters.item_profit.Caerleon[2].profit"
+          :c_city_buy_3="this.$store.getters.item_profit.Caerleon[2].city_buy_price"
+          :c_city_buy_color_3="this.$store.getters.item_profit.Caerleon[2].city_color_buy"
+          :c_city_sell_3="this.$store.getters.item_profit.Caerleon[2].city_sell_price"
         />
       </v-col>
       <v-col cols="12" lg="4">
@@ -42,104 +42,104 @@
       <v-col cols="12" lg="4">
         <Thetford
           class="grey--text text--lighten-1"
-          :t_api_img_1="this.$store.getters.item_profit.thetford[0].api_img"
-          :t_item_name_1="this.$store.getters.item_profit.thetford[0].item"
-          :t_item_p_1="this.$store.getters.item_profit.thetford[0].profit"
+          :t_api_img_1="this.$store.getters.item_profit.Thetford[0].api_img"
+          :t_item_name_1="this.$store.getters.item_profit.Thetford[0].item"
+          :t_item_p_1="this.$store.getters.item_profit.Thetford[0].profit"
           :t_percen_1="100"
-          :t_city_buy_1="this.$store.getters.item_profit.thetford[0].city_buy_price"
-          :t_city_buy_color_1="this.$store.getters.item_profit.thetford[0].city_color_buy"
-          :t_city_sell_1="this.$store.getters.item_profit.thetford[0].city_sell_price"
-          :t_api_img_2="this.$store.getters.item_profit.thetford[1].api_img"
-          :t_item_name_2="this.$store.getters.item_profit.thetford[1].item"
-          :t_item_p_2="this.$store.getters.item_profit.thetford[1].profit"
+          :t_city_buy_1="this.$store.getters.item_profit.Thetford[0].city_buy_price"
+          :t_city_buy_color_1="this.$store.getters.item_profit.Thetford[0].city_color_buy"
+          :t_city_sell_1="this.$store.getters.item_profit.Thetford[0].city_sell_price"
+          :t_api_img_2="this.$store.getters.item_profit.Thetford[1].api_img"
+          :t_item_name_2="this.$store.getters.item_profit.Thetford[1].item"
+          :t_item_p_2="this.$store.getters.item_profit.Thetford[1].profit"
           :t_percen_2="100"
-          :t_city_buy_2="this.$store.getters.item_profit.thetford[1].city_buy_price"
-          :t_city_buy_color_2="this.$store.getters.item_profit.thetford[1].city_color_buy"
-          :t_city_sell_2="this.$store.getters.item_profit.thetford[1].city_sell_price"
+          :t_city_buy_2="this.$store.getters.item_profit.Thetford[1].city_buy_price"
+          :t_city_buy_color_2="this.$store.getters.item_profit.Thetford[1].city_color_buy"
+          :t_city_sell_2="this.$store.getters.item_profit.Thetford[1].city_sell_price"
         />
       </v-col>
       <v-col cols="12" lg="4">
         <Martlock
           class="grey--text text--lighten-1"
-          :m_api_img_1="this.$store.getters.item_profit.martlock[0].api_img"
-          :m_item_name_1="this.$store.getters.item_profit.martlock[0].item"
-          :m_item_p_1="this.$store.getters.item_profit.martlock[0].profit"
+          :m_api_img_1="this.$store.getters.item_profit.Martlock[0].api_img"
+          :m_item_name_1="this.$store.getters.item_profit.Martlock[0].item"
+          :m_item_p_1="this.$store.getters.item_profit.Martlock[0].profit"
           :m_percen_1="100"
-          :m_city_buy_1="this.$store.getters.item_profit.martlock[0].city_buy_price"
-          :m_city_buy_color_1="this.$store.getters.item_profit.martlock[0].city_color_buy"
-          :m_city_sell_1="this.$store.getters.item_profit.martlock[0].city_sell_price"
-          :m_api_img_2="this.$store.getters.item_profit.martlock[1].api_img"
-          :m_item_name_2="this.$store.getters.item_profit.martlock[1].item"
-          :m_item_p_2="this.$store.getters.item_profit.martlock[1].profit"
+          :m_city_buy_1="this.$store.getters.item_profit.Martlock[0].city_buy_price"
+          :m_city_buy_color_1="this.$store.getters.item_profit.Martlock[0].city_color_buy"
+          :m_city_sell_1="this.$store.getters.item_profit.Martlock[0].city_sell_price"
+          :m_api_img_2="this.$store.getters.item_profit.Martlock[1].api_img"
+          :m_item_name_2="this.$store.getters.item_profit.Martlock[1].item"
+          :m_item_p_2="this.$store.getters.item_profit.Martlock[1].profit"
           :m_percen_2="100"
-          :m_city_buy_2="this.$store.getters.item_profit.martlock[1].city_buy_price"
-          :m_city_buy_color_2="this.$store.getters.item_profit.martlock[1].city_color_buy"
-          :m_city_sell_2="this.$store.getters.item_profit.martlock[1].city_sell_price"
+          :m_city_buy_2="this.$store.getters.item_profit.Martlock[1].city_buy_price"
+          :m_city_buy_color_2="this.$store.getters.item_profit.Martlock[1].city_color_buy"
+          :m_city_sell_2="this.$store.getters.item_profit.Martlock[1].city_sell_price"
         />
       </v-col>
       <v-col cols="12" lg="4">
         <Lymhurst
           class="grey--text text--lighten-1"
-          :l_api_img_1="this.$store.getters.item_profit.lymhurst[0].api_img"
-          :l_item_name_1="this.$store.getters.item_profit.lymhurst[0].item"
-          :l_item_p_1="this.$store.getters.item_profit.lymhurst[0].profit"
+          :l_api_img_1="this.$store.getters.item_profit.Lymhurst[0].api_img"
+          :l_item_name_1="this.$store.getters.item_profit.Lymhurst[0].item"
+          :l_item_p_1="this.$store.getters.item_profit.Lymhurst[0].profit"
           :l_percen_1="100"
-          :l_city_buy_1="this.$store.getters.item_profit.lymhurst[0].city_buy_price"
-          :l_city_buy_color_1="this.$store.getters.item_profit.lymhurst[0].city_color_buy"
-          :l_city_sell_1="this.$store.getters.item_profit.lymhurst[0].city_sell_price"
-          :l_api_img_2="this.$store.getters.item_profit.lymhurst[1].api_img"
-          :l_item_name_2="this.$store.getters.item_profit.lymhurst[1].item"
-          :l_item_p_2="this.$store.getters.item_profit.lymhurst[1].profit"
+          :l_city_buy_1="this.$store.getters.item_profit.Lymhurst[0].city_buy_price"
+          :l_city_buy_color_1="this.$store.getters.item_profit.Lymhurst[0].city_color_buy"
+          :l_city_sell_1="this.$store.getters.item_profit.Lymhurst[0].city_sell_price"
+          :l_api_img_2="this.$store.getters.item_profit.Lymhurst[1].api_img"
+          :l_item_name_2="this.$store.getters.item_profit.Lymhurst[1].item"
+          :l_item_p_2="this.$store.getters.item_profit.Lymhurst[1].profit"
           :l_percen_2="100"
-          :l_city_buy_2="this.$store.getters.item_profit.lymhurst[1].city_buy_price"
-          :l_city_buy_color_2="this.$store.getters.item_profit.lymhurst[1].city_color_buy"
-          :l_city_sell_2="this.$store.getters.item_profit.lymhurst[1].city_sell_price"
+          :l_city_buy_2="this.$store.getters.item_profit.Lymhurst[1].city_buy_price"
+          :l_city_buy_color_2="this.$store.getters.item_profit.Lymhurst[1].city_color_buy"
+          :l_city_sell_2="this.$store.getters.item_profit.Lymhurst[1].city_sell_price"
         />
       </v-col>
       <v-col cols="12" lg="4">
         <FortSterling
           class="grey--text text--lighten-1"
-          :f_api_img_1="this.$store.getters.item_profit.fortSterling[0].api_img"
-          :f_item_name_1="this.$store.getters.item_profit.fortSterling[0].item"
-          :f_item_p_1="this.$store.getters.item_profit.fortSterling[0].profit"
+          :f_api_img_1="this.$store.getters.item_profit.FortSterling[0].api_img"
+          :f_item_name_1="this.$store.getters.item_profit.FortSterling[0].item"
+          :f_item_p_1="this.$store.getters.item_profit.FortSterling[0].profit"
           :f_percen_1="100"
-          :f_city_buy_1="this.$store.getters.item_profit.fortSterling[0].city_buy_price"
+          :f_city_buy_1="this.$store.getters.item_profit.FortSterling[0].city_buy_price"
           :f_city_buy_color_1="
-            this.$store.getters.item_profit.fortSterling[0].city_color_buy
+            this.$store.getters.item_profit.FortSterling[0].city_color_buy
           "
-          :f_city_sell_1="this.$store.getters.item_profit.fortSterling[0].city_sell_price"
-          :f_api_img_2="this.$store.getters.item_profit.fortSterling[1].api_img"
-          :f_item_name_2="this.$store.getters.item_profit.fortSterling[1].item"
-          :f_item_p_2="this.$store.getters.item_profit.fortSterling[1].profit"
+          :f_city_sell_1="this.$store.getters.item_profit.FortSterling[0].city_sell_price"
+          :f_api_img_2="this.$store.getters.item_profit.FortSterling[1].api_img"
+          :f_item_name_2="this.$store.getters.item_profit.FortSterling[1].item"
+          :f_item_p_2="this.$store.getters.item_profit.FortSterling[1].profit"
           :f_percen_2="100"
-          :f_city_buy_2="this.$store.getters.item_profit.fortSterling[1].city_buy_price"
+          :f_city_buy_2="this.$store.getters.item_profit.FortSterling[1].city_buy_price"
           :f_city_buy_color_2="
-            this.$store.getters.item_profit.fortSterling[1].city_color_buy
+            this.$store.getters.item_profit.FortSterling[1].city_color_buy
           "
-          :f_city_sell_2="this.$store.getters.item_profit.fortSterling[1].city_sell_price"
+          :f_city_sell_2="this.$store.getters.item_profit.FortSterling[1].city_sell_price"
         />
       </v-col>
       <v-col cols="12" lg="4">
         <Bridgewatch
           class="grey--text text--lighten-1"
-          :b_api_img_1="this.$store.getters.item_profit.bridgewatch[0].api_img"
-          :b_item_name_1="this.$store.getters.item_profit.bridgewatch[0].item"
-          :b_item_p_1="this.$store.getters.item_profit.bridgewatch[0].profit"
+          :b_api_img_1="this.$store.getters.item_profit.Bridgewatch[0].api_img"
+          :b_item_name_1="this.$store.getters.item_profit.Bridgewatch[0].item"
+          :b_item_p_1="this.$store.getters.item_profit.Bridgewatch[0].profit"
           :b_percen_1="100"
-          :b_city_buy_1="this.$store.getters.item_profit.bridgewatch[0].city_buy_price"
+          :b_city_buy_1="this.$store.getters.item_profit.Bridgewatch[0].city_buy_price"
           :b_city_buy_color_1="
-            this.$store.getters.item_profit.bridgewatch[0].city_color_buy
+            this.$store.getters.item_profit.Bridgewatch[0].city_color_buy
           "
-          :b_city_sell_1="this.$store.getters.item_profit.bridgewatch[0].city_sell_price"
-          :b_api_img_2="this.$store.getters.item_profit.bridgewatch[1].api_img"
-          :b_item_name_2="this.$store.getters.item_profit.bridgewatch[1].item"
-          :b_item_p_2="this.$store.getters.item_profit.bridgewatch[1].profit"
+          :b_city_sell_1="this.$store.getters.item_profit.Bridgewatch[0].city_sell_price"
+          :b_api_img_2="this.$store.getters.item_profit.Bridgewatch[1].api_img"
+          :b_item_name_2="this.$store.getters.item_profit.Bridgewatch[1].item"
+          :b_item_p_2="this.$store.getters.item_profit.Bridgewatch[1].profit"
           :b_percen_2="100"
-          :b_city_buy_2="this.$store.getters.item_profit.bridgewatch[1].city_buy_price"
+          :b_city_buy_2="this.$store.getters.item_profit.Bridgewatch[1].city_buy_price"
           :b_city_buy_color_2="
-            this.$store.getters.item_profit.bridgewatch[1].city_color_buy
+            this.$store.getters.item_profit.Bridgewatch[1].city_color_buy
           "
-          :b_city_sell_2="this.$store.getters.item_profit.bridgewatch[1].city_sell_price"
+          :b_city_sell_2="this.$store.getters.item_profit.Bridgewatch[1].city_sell_price"
         />
       </v-col>
     </v-row>

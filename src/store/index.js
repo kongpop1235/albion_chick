@@ -6,6 +6,22 @@ import numeral from "numeral";
 Vue.use(Vuex);
 
 // let a = 0;
+const cd = [
+  "Bridgewatch",
+  "Caerleon",
+  "FortSterling",
+  "Lymhurst",
+  "Martlock",
+  "Thetford",
+];
+const city = [
+  "#FF952C",
+  "#FF2626",
+  "#F9F9F9",
+  "#38CD00",
+  "#00ADE9",
+  "#C62EFF",
+];
 
 export const store = new Vuex.Store({
   state: {
@@ -17,12 +33,12 @@ export const store = new Vuex.Store({
     item_profit: {
       check: false,
       best_sell: null,
-      caerleon: null,
-      thetford: null,
-      martlock: null,
-      lymhurst: null,
-      fortSterling: null,
-      bridgewatch: null
+      Caerleon: null,
+      Thetford: null,
+      Martlock: null,
+      Lymhurst: null,
+      FortSterling: null,
+      Bridgewatch: null,
     },
   },
   getters: {
@@ -30,6 +46,13 @@ export const store = new Vuex.Store({
     item: (state) => state.item,
     itemData: (state) => state.itemData,
     item_profit: (state) => state.item_profit,
+    best_sell: (state) => state.item_profit.best_sell,
+    Bridgewatch: (state) => state.item_profit.Bridgewatch,
+    Caerleon: (state) => state.item_profit.Caerleon,
+    FortSterling: (state) => state.item_profit.FortSterling,
+    Lymhurst: (state) => state.item_profit.Lymhurst,
+    Martlock: (state) => state.item_profit.Martlock,
+    Thetford: (state) => state.item_profit.Thetford,
   },
   actions: {
     getGold({ commit }) {
@@ -67,7 +90,7 @@ export const store = new Vuex.Store({
             }); */
           let ic = 1;
 
-          for (let i = 1; i < 21; i++) {
+          for (let i = 1; i < 41; i++) {
             //max loop 7694
             if (ic == 187) {
               ic = 188;
@@ -164,7 +187,8 @@ export const store = new Vuex.Store({
                 let aa = il * 6;
                 const item_detail = {
                   item_id: items.data[aa].item_id,
-                  details: [],
+                  api_img: "https://render.albiononline.com/v1/item/" + items.data[aa].item_id + ".png",
+                  details: {Bridgewatch:null, Caerleon:null, FortSterling:null, Lymhurst:null, Martlock:null, Thetford:null},
                 };
                 // commit("SET_ITEM_DATA_ITEM", [items.data[il*6].item_id]);
 
@@ -176,8 +200,9 @@ export const store = new Vuex.Store({
                     console.log("s = ( il * 6 ) + cl : " + s);
                     console.log("item check : " + ic);
                     console.log("city loop : " + cl); */
-                    item_detail.details[cl] = {
+                    item_detail.details[cd[cl]] = {
                       city: items.data[s].city,
+                      color: city[cl],
                       buy: items.data[s].buy_price_max,
                       buy_date: items.data[s].buy_price_max_date,
                       sell: items.data[s].sell_price_min,
@@ -214,14 +239,6 @@ export const store = new Vuex.Store({
       console.log("55555555555555555555");
 
       //-----------------------------Find Hiht/Low price-------------------------------
-      const city = [
-        "#FF952C",
-        "#FF2626",
-        "#F9F9F9",
-        "#38CD00",
-        "#00ADE9",
-        "#C62EFF",
-      ];
 
       //best_sell
       let hp = null;
@@ -283,32 +300,32 @@ export const store = new Vuex.Store({
           //Best Sell
           //find best hight price
           if (
-            this.getters.itemData[HL_item_lenght].item_detail.details[h].sell >=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]].sell >=
               hp &&
-            this.getters.itemData[HL_item_lenght].item_detail.details[h].sell !=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]].sell !=
               0 &&
-            this.getters.itemData[HL_item_lenght].item_detail.details[h].sell !=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]].sell !=
               null
           ) {
-            hp = this.getters.itemData[HL_item_lenght].item_detail.details[h]
+            hp = this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
               .sell;
             ch = h;
             //find best low price
             for (let hl = 0; hl < 6; hl++) {
               if (
-                this.getters.itemData[HL_item_lenght].item_detail.details[hl]
+                this.getters.itemData[HL_item_lenght].item_detail.details[cd[hl]]
                   .sell <
-                  this.getters.itemData[HL_item_lenght].item_detail.details[h]
+                  this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                     .sell &&
-                this.getters.itemData[HL_item_lenght].item_detail.details[hl]
+                this.getters.itemData[HL_item_lenght].item_detail.details[cd[hl]]
                   .sell != 0 &&
-                this.getters.itemData[HL_item_lenght].item_detail.details[hl]
+                this.getters.itemData[HL_item_lenght].item_detail.details[cd[hl]]
                   .sell != null &&
-                this.getters.itemData[HL_item_lenght].item_detail.details[hl]
+                this.getters.itemData[HL_item_lenght].item_detail.details[cd[hl]]
                   .sell < lp
               ) {
                 lp = this.getters.itemData[HL_item_lenght].item_detail.details[
-                  hl
+                  cd[hl]
                 ].sell;
                 cl = hl;
               }
@@ -316,174 +333,174 @@ export const store = new Vuex.Store({
           }
           //caerleon
           if (
-            this.getters.itemData[HL_item_lenght].item_detail.details[1].sell >=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[1]].sell >=
               c_bh &&
-            this.getters.itemData[HL_item_lenght].item_detail.details[1].sell !=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[1]].sell !=
               0 &&
-            this.getters.itemData[HL_item_lenght].item_detail.details[1].sell !=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[1]].sell !=
               null
           ) {
-            c_bh = this.getters.itemData[HL_item_lenght].item_detail.details[1]
+            c_bh = this.getters.itemData[HL_item_lenght].item_detail.details[cd[1]]
               .sell;
             if (
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell <
-                this.getters.itemData[HL_item_lenght].item_detail.details[1]
+                this.getters.itemData[HL_item_lenght].item_detail.details[cd[1]]
                   .sell &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell != 0 &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell != null &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell < c_bl
             ) {
               c_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
-                h
+                cd[h]
               ].sell;
               c_cl = h;
             }
           }
           //Thetford
           if (
-            this.getters.itemData[HL_item_lenght].item_detail.details[5].sell >=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[5]].sell >=
               t_bh &&
-            this.getters.itemData[HL_item_lenght].item_detail.details[5].sell !=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[5]].sell !=
               0 &&
-            this.getters.itemData[HL_item_lenght].item_detail.details[5].sell !=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[5]].sell !=
               null
           ) {
-            t_bh = this.getters.itemData[HL_item_lenght].item_detail.details[5]
+            t_bh = this.getters.itemData[HL_item_lenght].item_detail.details[cd[5]]
               .sell;
             if (
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell <
-                this.getters.itemData[HL_item_lenght].item_detail.details[5]
+                this.getters.itemData[HL_item_lenght].item_detail.details[cd[5]]
                   .sell &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell != 0 &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell != null &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell < t_bl
             ) {
               t_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
-                h
+                cd[h]
               ].sell;
               t_cl = h;
             }
           }
           //Martlock
           if (
-            this.getters.itemData[HL_item_lenght].item_detail.details[4].sell >=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[4]].sell >=
               m_bh &&
-            this.getters.itemData[HL_item_lenght].item_detail.details[4].sell !=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[4]].sell !=
               0 &&
-            this.getters.itemData[HL_item_lenght].item_detail.details[4].sell !=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[4]].sell !=
               null
           ) {
-            m_bh = this.getters.itemData[HL_item_lenght].item_detail.details[4]
+            m_bh = this.getters.itemData[HL_item_lenght].item_detail.details[cd[4]]
               .sell;
             if (
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell <
-                this.getters.itemData[HL_item_lenght].item_detail.details[4]
+                this.getters.itemData[HL_item_lenght].item_detail.details[cd[4]]
                   .sell &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell != 0 &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell != null &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell < m_bl
             ) {
               m_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
-                h
+                cd[h]
               ].sell;
               m_cl = h;
             }
           }
           //Lymhurst
           if (
-            this.getters.itemData[HL_item_lenght].item_detail.details[3].sell >=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[3]].sell >=
               l_bh &&
-            this.getters.itemData[HL_item_lenght].item_detail.details[3].sell !=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[3]].sell !=
               0 &&
-            this.getters.itemData[HL_item_lenght].item_detail.details[3].sell !=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[3]].sell !=
               null
           ) {
-            l_bh = this.getters.itemData[HL_item_lenght].item_detail.details[3]
+            l_bh = this.getters.itemData[HL_item_lenght].item_detail.details[cd[3]]
               .sell;
             if (
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell <
-                this.getters.itemData[HL_item_lenght].item_detail.details[3]
+                this.getters.itemData[HL_item_lenght].item_detail.details[cd[3]]
                   .sell &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell != 0 &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell != null &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell < l_bl
             ) {
               l_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
-                h
+                cd[h]
               ].sell;
               l_cl = h;
             }
           }
           //FortSterling
           if (
-            this.getters.itemData[HL_item_lenght].item_detail.details[2].sell >=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[2]].sell >=
               f_bh &&
-            this.getters.itemData[HL_item_lenght].item_detail.details[2].sell !=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[2]].sell !=
               0 &&
-            this.getters.itemData[HL_item_lenght].item_detail.details[2].sell !=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[2]].sell !=
               null
           ) {
-            f_bh = this.getters.itemData[HL_item_lenght].item_detail.details[2]
+            f_bh = this.getters.itemData[HL_item_lenght].item_detail.details[cd[2]]
               .sell;
             if (
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell <
-                this.getters.itemData[HL_item_lenght].item_detail.details[2]
+                this.getters.itemData[HL_item_lenght].item_detail.details[cd[2]]
                   .sell &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell != 0 &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell != null &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell < f_bl
             ) {
               f_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
-                h
+                cd[h]
               ].sell;
               f_cl = h;
             }
           }
           //Bridgewatch
           if (
-            this.getters.itemData[HL_item_lenght].item_detail.details[0].sell >=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[0]].sell >=
               f_bh &&
-            this.getters.itemData[HL_item_lenght].item_detail.details[0].sell !=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[0]].sell !=
               0 &&
-            this.getters.itemData[HL_item_lenght].item_detail.details[0].sell !=
+            this.getters.itemData[HL_item_lenght].item_detail.details[cd[0]].sell !=
               null
           ) {
-            b_bh = this.getters.itemData[HL_item_lenght].item_detail.details[0]
+            b_bh = this.getters.itemData[HL_item_lenght].item_detail.details[cd[0]]
               .sell;
             if (
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell <
-                this.getters.itemData[HL_item_lenght].item_detail.details[0]
+                this.getters.itemData[HL_item_lenght].item_detail.details[cd[0]]
                   .sell &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell != 0 &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell != null &&
-              this.getters.itemData[HL_item_lenght].item_detail.details[h]
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
                 .sell < f_bl
             ) {
               b_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
-                h
+                cd[h]
               ].sell;
               b_cl = h;
             }
@@ -525,17 +542,17 @@ export const store = new Vuex.Store({
           best_sell_check[best_loop].profit = hp;
           best_sell_check[best_loop].city_buy = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[cl].city;
+          ].item_detail.details[cd[cl]].city;
           best_sell_check[best_loop].city_buy_price = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[cl].sell;
+          ].item_detail.details[cd[cl]].sell;
           best_sell_check[best_loop].city_color_buy = "color : " + city[cl];
           best_sell_check[best_loop].city_sell_price = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[ch].sell;
+          ].item_detail.details[cd[ch]].sell;
           best_sell_check[best_loop].city_sell = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[ch].city;
+          ].item_detail.details[cd[ch]].city;
           best_sell_check[best_loop].city_color_sell = "color : " + city[ch];
           best_sell_check[best_loop].api_img =
             "https://render.albiononline.com/v1/item/" +
@@ -563,17 +580,17 @@ export const store = new Vuex.Store({
           c_best_check[c_best_loop].profit = c_bh;
           c_best_check[c_best_loop].city_buy = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[c_cl].city;
+          ].item_detail.details[cd[c_cl]].city;
           c_best_check[c_best_loop].city_buy_price = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[c_cl].sell;
+          ].item_detail.details[cd[c_cl]].sell;
           c_best_check[c_best_loop].city_color_buy = "color : " + city[c_cl];
           c_best_check[c_best_loop].city_sell = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[1].city;
+          ].item_detail.details[cd[1]].city;
           c_best_check[c_best_loop].city_sell_price = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[1].sell;
+          ].item_detail.details[cd[1]].sell;
           c_best_check[c_best_loop].city_color_sell = "color : " + city[1];
           c_best_check[c_best_loop].api_img =
             "https://render.albiononline.com/v1/item/" +
@@ -602,17 +619,17 @@ export const store = new Vuex.Store({
           t_best_check[t_best_loop].profit = t_bh;
           t_best_check[t_best_loop].city_buy = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[t_cl].city;
+          ].item_detail.details[cd[t_cl]].city;
           t_best_check[t_best_loop].city_buy_price = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[t_cl].sell;
+          ].item_detail.details[cd[t_cl]].sell;
           t_best_check[t_best_loop].city_color_buy = "color : " + city[t_cl];
           t_best_check[t_best_loop].city_sell = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[5].city;
+          ].item_detail.details[cd[5]].city;
           t_best_check[t_best_loop].city_sell_price = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[5].sell;
+          ].item_detail.details[cd[5]].sell;
           t_best_check[t_best_loop].city_color_sell = "color : " + city[1];
           t_best_check[t_best_loop].api_img =
             "https://render.albiononline.com/v1/item/" +
@@ -640,17 +657,17 @@ export const store = new Vuex.Store({
           m_best_check[m_best_loop].profit = m_bh;
           m_best_check[m_best_loop].city_buy = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[m_cl].city;
+          ].item_detail.details[cd[m_cl]].city;
           m_best_check[m_best_loop].city_buy_price = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[m_cl].sell;
+          ].item_detail.details[cd[m_cl]].sell;
           m_best_check[m_best_loop].city_color_buy = "color : " + city[m_cl];
           m_best_check[m_best_loop].city_sell = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[4].city;
+          ].item_detail.details[cd[4]].city;
           m_best_check[m_best_loop].city_sell_price = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[4].sell;
+          ].item_detail.details[cd[4]].sell;
           m_best_check[m_best_loop].city_color_sell = "color : " + city[1];
           m_best_check[m_best_loop].api_img =
             "https://render.albiononline.com/v1/item/" +
@@ -678,17 +695,17 @@ export const store = new Vuex.Store({
           l_best_check[l_best_loop].profit = l_bh;
           l_best_check[l_best_loop].city_buy = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[l_cl].city;
+          ].item_detail.details[cd[l_cl]].city;
           l_best_check[l_best_loop].city_buy_price = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[l_cl].sell;
+          ].item_detail.details[cd[l_cl]].sell;
           l_best_check[l_best_loop].city_color_buy = "color : " + city[l_cl];
           l_best_check[l_best_loop].city_sell = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[3].city;
+          ].item_detail.details[cd[3]].city;
           l_best_check[l_best_loop].city_sell_price = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[3].sell;
+          ].item_detail.details[cd[3]].sell;
           l_best_check[l_best_loop].city_color_sell = "color : " + city[1];
           l_best_check[l_best_loop].api_img =
             "https://render.albiononline.com/v1/item/" +
@@ -716,17 +733,17 @@ export const store = new Vuex.Store({
           f_best_check[f_best_loop].profit = f_bh;
           f_best_check[f_best_loop].city_buy = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[f_cl].city;
+          ].item_detail.details[cd[f_cl]].city;
           f_best_check[f_best_loop].city_buy_price = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[f_cl].sell;
+          ].item_detail.details[cd[f_cl]].sell;
           f_best_check[f_best_loop].city_color_buy = "color : " + city[f_cl];
           f_best_check[f_best_loop].city_sell = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[3].city;
+          ].item_detail.details[cd[3]].city;
           f_best_check[f_best_loop].city_sell_price = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[3].sell;
+          ].item_detail.details[cd[3]].sell;
           f_best_check[f_best_loop].city_color_sell = "color : " + city[1];
           f_best_check[f_best_loop].api_img =
             "https://render.albiononline.com/v1/item/" +
@@ -754,17 +771,17 @@ export const store = new Vuex.Store({
           b_best_check[b_best_loop].profit = b_bh;
           b_best_check[b_best_loop].city_buy = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[b_cl].city;
+          ].item_detail.details[cd[b_cl]].city;
           b_best_check[b_best_loop].city_buy_price = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[b_cl].sell;
+          ].item_detail.details[cd[b_cl]].sell;
           b_best_check[b_best_loop].city_color_buy = "color : " + city[b_cl];
           b_best_check[b_best_loop].city_sell = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[0].city;
+          ].item_detail.details[cd[0]].city;
           b_best_check[b_best_loop].city_sell_price = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[0].sell;
+          ].item_detail.details[cd[0]].sell;
           b_best_check[b_best_loop].city_color_sell = "color : " + city[0];
           b_best_check[b_best_loop].api_img =
             "https://render.albiononline.com/v1/item/" +
@@ -1068,7 +1085,7 @@ export const store = new Vuex.Store({
       console.log("****************************");
       console.log(this.getters.item_profit);
       console.log(best_sell);
-      console.log(this.getters.item_profit.best_sell[0]);
+      console.log(this.getters.itemData[0].item_detail.api_img);
       console.log("****************************");
     },
   },
@@ -1094,22 +1111,23 @@ export const store = new Vuex.Store({
       state.item_profit["best_sell"] = best_sell;
     },
     SET_H_L_PRICE_C(state, c_best_sell) {
-      state.item_profit["caerleon"] = c_best_sell;
+      state.item_profit["Caerleon"] = c_best_sell;
     },
     SET_H_L_PRICE_T(state, t_best_sell) {
-      state.item_profit["thetford"] = t_best_sell;
+      state.item_profit["Thetford"] = t_best_sell;
     },
     SET_H_L_PRICE_M(state, m_best_sell) {
-      state.item_profit["martlock"] = m_best_sell;
+      state.item_profit["Martlock"] = m_best_sell;
     },
     SET_H_L_PRICE_L(state, l_best_sell) {
-      state.item_profit["lymhurst"] = l_best_sell;
+      state.item_profit["Lymhurst"] = l_best_sell;
     },
     SET_H_L_PRICE_F(state, f_best_sell) {
-      state.item_profit["fortSterling"] = f_best_sell;
+      state.item_profit["FortSterling"] = f_best_sell;
     },
     SET_H_L_PRICE_B(state, b_best_sell) {
-      state.item_profit["bridgewatch"] = b_best_sell;
+      state.item_profit["Bridgewatch"] = b_best_sell;
+      state.item_profit["check"] = true;
     },
   },
 });
