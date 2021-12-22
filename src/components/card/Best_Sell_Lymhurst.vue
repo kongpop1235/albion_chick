@@ -26,7 +26,7 @@
               BUY : <span :style="l_city_buy_color_1">{{ l_city_buy_1 }}</span>
             </p>
             <p class="mb-1">
-              SELL : <span class="ls">{{ l_city_sell_1 }}</span>
+              SELL : <span :style="l_city_sell_color_1">{{ l_city_sell_1 }}</span>
             </p>
           </div>
           <v-spacer></v-spacer>
@@ -89,7 +89,7 @@
               BUY : <span :style="l_city_buy_color_2">{{ l_city_buy_2 }}</span>
             </p>
             <p class="mb-1">
-              SELL : <span class="ls">{{ l_city_sell_2 }}</span>
+              SELL : <span :style="l_city_sell_color_1">{{ l_city_sell_2 }}</span>
             </p>
           </div>
           <v-spacer></v-spacer>
@@ -151,6 +151,7 @@ export default {
     "l_city_buy_1",
     "l_city_buy_color_1",
     "l_city_sell_1",
+    "l_city_sell_color_1",
     "l_item_name_2",
     "l_api_img_2",
     "l_item_p_2",
@@ -158,12 +159,10 @@ export default {
     "l_city_buy_2",
     "l_city_buy_color_2",
     "l_city_sell_2",
+    "l_city_sell_color_2"
   ],
 };
 </script>
 
 <style scoped>
-.ls {
-  color: #38cd00;
-}
 </style>

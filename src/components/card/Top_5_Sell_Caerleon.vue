@@ -27,7 +27,7 @@
                 <span :style="c_city_buy_color_1">{{ c_city_buy_1 }}</span>
               </p>
               <p class="mb-1">
-                SELL : <span class="cs">{{ c_city_sell_1 }}</span>
+                SELL : <span :style="c_city_sell_color_1">{{ c_city_sell_1 }}</span>
               </p>
             </div>
           </v-card-text>
@@ -52,7 +52,7 @@
                 <span :style="c_city_buy_color_2">{{ c_city_buy_2 }}</span>
               </p>
               <p class="mb-1">
-                SELL : <span class="cs">{{ c_city_sell_2 }}</span>
+                SELL : <span :style="c_city_sell_color_2">{{ c_city_sell_2 }}</span>
               </p>
             </div>
           </v-card-text>
@@ -77,7 +77,7 @@
                 <span :style="c_city_buy_color_3">{{ c_city_buy_3 }}</span>
               </p>
               <p class="mb-1">
-                SELL : <span class="cs">{{ c_city_sell_3 }}</span>
+                SELL : <span :style="c_city_sell_color_3">{{ c_city_sell_3 }}</span>
               </p>
             </div>
           </v-card-text>
@@ -97,24 +97,24 @@ export default {
     "c_city_buy_1",
     "c_city_buy_color_1",
     "c_city_sell_1",
+    "c_city_sell_color_1",
     "c_item_name_2",
     "c_api_img_2",
     "c_item_p_2",
     "c_city_buy_2",
     "c_city_buy_color_2",
     "c_city_sell_2",
+    "c_city_sell_color_2",
     "c_item_name_3",
     "c_api_img_3",
     "c_item_p_3",
     "c_city_buy_3",
     "c_city_buy_color_3",
     "c_city_sell_3",
+    "c_city_sell_color_3",
   ],
 };
 </script>
 
 <style scoped>
-.cs {
-  color: #ff2626;
-}
 </style>

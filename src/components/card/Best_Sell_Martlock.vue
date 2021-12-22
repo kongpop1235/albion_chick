@@ -26,7 +26,7 @@
               BUY : <span :style="m_city_buy_color_1">{{ m_city_buy_1 }}</span>
             </p>
             <p class="mb-1">
-              SELL : <span class="ms">{{ m_city_sell_1 }}</span>
+              SELL : <span :style="m_city_sell_color_1">{{ m_city_sell_1 }}</span>
             </p>
           </div>
           <v-spacer></v-spacer>
@@ -89,7 +89,7 @@
               BUY : <span :style="m_city_buy_color_2">{{ m_city_buy_2 }}</span>
             </p>
             <p class="mb-1">
-              SELL : <span class="ms">{{ m_city_sell_2 }}</span>
+              SELL : <span :style="m_city_sell_color_2">{{ m_city_sell_2 }}</span>
             </p>
           </div>
           <v-spacer></v-spacer>
@@ -150,18 +150,17 @@ export default {name: "martlock",
     "m_city_buy_1",
     "m_city_buy_color_1",
     "m_city_sell_1",
+    "m_city_sell_color_1",
     "m_item_name_2",
     "m_api_img_2",
     "m_item_p_2",
     "m_percen_2",
     "m_city_buy_2",
     "m_city_buy_color_2",
-    "m_city_sell_2"
+    "m_city_sell_2",
+    "m_city_sell_color_2"
   ],};
 </script>
 
 <style scoped>
-.ms{
-  color: #00ADE9;
-}
 </style>

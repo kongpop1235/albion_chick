@@ -26,7 +26,7 @@
               BUY : <span :style="f_city_buy_color_1">{{ f_city_buy_1 }}</span>
             </p>
             <p class="mb-1">
-              SELL : <span class="fs">{{ f_city_sell_1 }}</span>
+              SELL : <span :style="f_city_sell_color_1">{{ f_city_sell_1 }}</span>
             </p>
           </div>
           <v-spacer></v-spacer>
@@ -89,7 +89,7 @@
               BUY : <span :style="f_city_buy_color_2">{{ f_city_buy_2 }}</span>
             </p>
             <p class="mb-1">
-              SELL : <span class="fs">{{ f_city_sell_2 }}</span>
+              SELL : <span :style="f_city_sell_color_2">{{ f_city_sell_2 }}</span>
             </p>
           </div>
           <v-spacer></v-spacer>
@@ -151,6 +151,7 @@ export default {
     "f_city_buy_1",
     "f_city_buy_color_1",
     "f_city_sell_1",
+    "f_city_sell_color_1",
     "f_item_name_2",
     "f_api_img_2",
     "f_item_p_2",
@@ -158,12 +159,10 @@ export default {
     "f_city_buy_2",
     "f_city_buy_color_2",
     "f_city_sell_2",
+    "f_city_sell_color_2",
   ],
 };
 </script>
 
 <style scopde>
-.fs{
-  color: #F9F9F9;
-}
 </style>

@@ -630,7 +630,7 @@ export const store = new Vuex.Store({
           t_best_check[t_best_loop].city_sell_price = this.getters.itemData[
             HL_item_lenght
           ].item_detail.details[cd[5]].sell;
-          t_best_check[t_best_loop].city_color_sell = "color : " + city[1];
+          t_best_check[t_best_loop].city_color_sell = "color : " + city[5];
           t_best_check[t_best_loop].api_img =
             "https://render.albiononline.com/v1/item/" +
             this.getters.item[0].id[HL_item_lenght] +
@@ -668,7 +668,7 @@ export const store = new Vuex.Store({
           m_best_check[m_best_loop].city_sell_price = this.getters.itemData[
             HL_item_lenght
           ].item_detail.details[cd[4]].sell;
-          m_best_check[m_best_loop].city_color_sell = "color : " + city[1];
+          m_best_check[m_best_loop].city_color_sell = "color : " + city[4];
           m_best_check[m_best_loop].api_img =
             "https://render.albiononline.com/v1/item/" +
             this.getters.item[0].id[HL_item_lenght] +
@@ -706,7 +706,7 @@ export const store = new Vuex.Store({
           l_best_check[l_best_loop].city_sell_price = this.getters.itemData[
             HL_item_lenght
           ].item_detail.details[cd[3]].sell;
-          l_best_check[l_best_loop].city_color_sell = "color : " + city[1];
+          l_best_check[l_best_loop].city_color_sell = "color : " + city[3];
           l_best_check[l_best_loop].api_img =
             "https://render.albiononline.com/v1/item/" +
             this.getters.item[0].id[HL_item_lenght] +
@@ -740,11 +740,11 @@ export const store = new Vuex.Store({
           f_best_check[f_best_loop].city_color_buy = "color : " + city[f_cl];
           f_best_check[f_best_loop].city_sell = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[cd[3]].city;
+          ].item_detail.details[cd[2]].city;
           f_best_check[f_best_loop].city_sell_price = this.getters.itemData[
             HL_item_lenght
-          ].item_detail.details[cd[3]].sell;
-          f_best_check[f_best_loop].city_color_sell = "color : " + city[1];
+          ].item_detail.details[cd[2]].sell;
+          f_best_check[f_best_loop].city_color_sell = "color : " + city[2];
           f_best_check[f_best_loop].api_img =
             "https://render.albiononline.com/v1/item/" +
             this.getters.item[0].id[HL_item_lenght] +
