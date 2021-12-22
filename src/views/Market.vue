@@ -102,6 +102,9 @@ export default {
             console.log("not true");
           }
         }
+        if (this.main.length == 0) {
+          alert("No profitable item found." + "\n" + "Please change to a new city.");
+        }
         this.display = "d-flex bg_card rounded-lg position-relative mb-6";
         console.log("this main");
         console.log(this.main);
@@ -122,34 +125,9 @@ export default {
       } else {
         alert("Select city to buy item and city to sell item");
       }
-      /*
-      this.testc = true;
-      for (let x = 0; x < this.$store.getters.itemData.length; x++) {
-        console.log(x);
-        this.main[x] = {
-          show_img: this.$store.getters.itemData[x].item_detail.api_img,
-          show_name: this.$store.getters.itemData[x].item_detail.item_id,
-          show_profit: 1000,
-          show_buy: this.$store.getters.itemData[x].item_detail.details[buy_s].buy,
-          show_buy_color: this.$store.getters.itemData[x].item_detail.details[buy_s]
-            .color,
-          show_sell: this.$store.getters.itemData[x].item_detail.details[sell_s].sell,
-          show_sell_color: this.$store.getters.itemData[x].item_detail.details[sell_s]
-            .color,
-        };
-      } */
+      //ทำเรื่องกำไรแบบเป็น percen ใน data index.vue
     },
-    /* check_item: function () {
-      const buy_s = this.select_buy
-      document.getElementById("test1").innerHTML = this.$store.getters.itemData[0].item_detail.details[buy_s].city;
-
-      var vrows = document.createElement("vrow");
-      vrows.innerHTML = '<v-row><v-col cols="12" lg="6">'+'<v-img max-height="80" max-width="80" :src="this.$store.getters.itemData[0].item_detail.api_img" class="mb-2 mr-4">'+'segggggggggg'+'</v-col><v-col cols="12" lg="6">'+'</v-col></v-row>';
-      document.getElementById("vrow").appendChild(vrows);
-    }, */
   },
-  //แผนการทำงาน
-  /* ทำการคำนวนหามูลค่าสินค้าใน Market แล้วค่อย prop ข้อมูลไปยัง market_render แล้ววนลูป run ออกมา */
   mounted() {},
 };
 </script>
