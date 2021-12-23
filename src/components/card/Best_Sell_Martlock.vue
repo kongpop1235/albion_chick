@@ -1,9 +1,5 @@
 <template>
-  <v-card
-    :elevation="0"
-    class="bg_card rounded-lg position-relative"
-    height="308px"
-  >
+  <v-card :elevation="0" class="bg_card rounded-lg position-relative" height="308px">
     <v-row class="ma-0">
       <v-col cols="12" class="pb-0">
         <v-card-title class="pt-1 pl-3 text-h grey--text text--lighten-1">
@@ -31,8 +27,8 @@
           </div>
           <v-spacer></v-spacer>
           <div class="green--text mb-2 mr-2 text-right">
-            <p class="mb-2">+{{m_percen_1}}%</p>
-            <p class="mr-3 text-h6 d-inline">+{{m_item_p_1}}</p>
+            <p class="mb-2">+ {{ m_percen_1 }}%</p>
+            <p class="mr-3 text-h6 d-inline">+{{ m_item_p_1 }}</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
@@ -40,7 +36,7 @@
               width="16"
               height="16"
               viewBox="0 0 172 172"
-              style=" fill:#000000;"
+              style="fill: #000000"
               class="d-inline"
             >
               <g
@@ -61,9 +57,7 @@
               >
                 <path d="M0,172v-172h172v172z" fill="none"></path>
                 <g fill="#4caf50">
-                  <path
-                    d="M5.8738,152.65l80.1262,-138.7825l80.1262,138.7825z"
-                  ></path>
+                  <path d="M5.8738,152.65l80.1262,-138.7825l80.1262,138.7825z"></path>
                   <path
                     d="M86,18.1675l76.4024,132.3325h-152.8048l76.4024,-132.3325M86,9.5675l-83.85,145.2325h167.7l-83.85,-145.2325z"
                   ></path>
@@ -94,8 +88,8 @@
           </div>
           <v-spacer></v-spacer>
           <div class="green--text mb-2 mr-2 text-right">
-            <p class="mb-2">+{{m_percen_2}}%</p>
-            <p class="mr-3 text-h6 d-inline">+{{m_item_p_2}}</p>
+            <p class="mb-2">+ {{ m_percen_2 }}%</p>
+            <p class="mr-3 text-h6 d-inline">+{{ m_item_p_2 }}</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
@@ -103,7 +97,7 @@
               width="16"
               height="16"
               viewBox="0 0 172 172"
-              style=" fill:#000000;"
+              style="fill: #000000"
               class="d-inline"
             >
               <g
@@ -124,9 +118,7 @@
               >
                 <path d="M0,172v-172h172v172z" fill="none"></path>
                 <g fill="#4caf50">
-                  <path
-                    d="M5.8738,152.65l80.1262,-138.7825l80.1262,138.7825z"
-                  ></path>
+                  <path d="M5.8738,152.65l80.1262,-138.7825l80.1262,138.7825z"></path>
                   <path
                     d="M86,18.1675l76.4024,132.3325h-152.8048l76.4024,-132.3325M86,9.5675l-83.85,145.2325h167.7l-83.85,-145.2325z"
                   ></path>
@@ -141,7 +133,8 @@
 </template>
 
 <script>
-export default {name: "martlock",
+export default {
+  name: "martlock",
   props: [
     "m_item_name_1",
     "m_api_img_1",
@@ -158,9 +151,9 @@ export default {name: "martlock",
     "m_city_buy_2",
     "m_city_buy_color_2",
     "m_city_sell_2",
-    "m_city_sell_color_2"
-  ],};
+    "m_city_sell_color_2",
+  ],
+};
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

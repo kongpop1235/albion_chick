@@ -7,8 +7,10 @@
             <v-img src="@/assets/chicat2.jpg"></v-img>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title class="text-h6 grey--text text--lighten-1">
-              Albion Chick
+            <v-list-item-title
+              class="grey--text text--lighten-1 text-menu text-uppercase"
+            >
+              <h5 class="py-4">Albion Chick</h5>
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -16,19 +18,19 @@
 
       <v-divider></v-divider>
 
-      <v-list nav dense>
+      <v-list nav dense class="text-uppercase">
         <router-link to="/" class="text-decoration-none">
-          <v-list-item link>
+          <v-list-item link id="m-animation">
             <v-list-item-icon>
               <v-icon class="grey--text text--lighten-1">mdi-home</v-icon>
             </v-list-item-icon>
-            <v-list-item-title class="grey--text text--lighten-1"
+            <v-list-item-title class="grey--text text--lighten-1 text-menu py-3"
               >home</v-list-item-title
             >
           </v-list-item>
         </router-link>
         <router-link to="/Market" class="text-decoration-none">
-          <v-list-item link>
+          <v-list-item link id="m-animation">
             <v-list-item-icon>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +39,7 @@
                 width="24"
                 height="24"
                 viewBox="0 0 172 172"
-                style=" fill:#000000;"
+                style="fill: #000000"
               >
                 <g
                   fill="none"
@@ -64,16 +66,16 @@
                 </g>
               </svg>
             </v-list-item-icon>
-            <v-list-item-title class="grey--text text--lighten-1"
-              >Market</v-list-item-title
+            <v-list-item-title class="grey--text text--lighten-1 text-menu py-3"
+              >caravan</v-list-item-title
             >
           </v-list-item>
         </router-link>
-        <v-list-item link>
+        <v-list-item link id="m-animation">
           <v-list-item-icon>
             <v-icon class="grey--text text--lighten-1">mdi-star</v-icon>
           </v-list-item-icon>
-          <v-list-item-title class="grey--text text--lighten-1"
+          <v-list-item-title class="grey--text text--lighten-1 text-menu py-3"
             >Starred</v-list-item-title
           >
         </v-list-item>
@@ -86,4 +88,48 @@
 export default {};
 </script>
 
-<style></style>
+<style scoped>
+#m-animation:hover {
+  animation: text-shadow 1.5s ease-in-out infinite;
+  font-weight: 900;
+  line-height: 1;
+}
+
+
+
+@keyframes text-shadow {
+  0% {
+    transform: translateY(0);
+    text-shadow: 0 0 0 #0c2ffb, 0 0 0 #2cfcfd, 0 0 0 #fb203b, 0 0 0 #fefc4b;
+  }
+
+  20% {
+    transform: translateY(-1em);
+    text-shadow: 0 0.125em 0 #0c2ffb, 0 0.25em 0 #2cfcfd, 0 -0.125em 0 #fb203b,
+      0 -0.25em 0 #fefc4b;
+  }
+
+  40% {
+    transform: translateY(0.5em);
+    text-shadow: 0 -0.0625em 0 #0c2ffb, 0 -0.125em 0 #2cfcfd, 0 0.0625em 0 #fb203b,
+      0 0.125em 0 #fefc4b;
+  }
+
+  60% {
+    transform: translateY(-0.25em);
+    text-shadow: 0 0.03125em 0 #0c2ffb, 0 0.0625em 0 #2cfcfd, 0 -0.03125em 0 #fb203b,
+      0 -0.0625em 0 #fefc4b;
+  }
+
+  80% {
+    transform: translateY(0);
+    text-shadow: 0 0 0 #0c2ffb, 0 0 0 #2cfcfd, 0 0 0 #fb203b, 0 0 0 #fefc4b;
+  }
+}
+
+
+/*Animation by : 
+CodePen Home
+Animated Text-Shadow
+Erin E. Sullivan */
+</style>

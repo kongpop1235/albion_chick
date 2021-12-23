@@ -31,7 +31,7 @@
           </div>
           <v-spacer></v-spacer>
           <div class="green--text mb-2 mr-2 text-right">
-            <p class="mb-2">+{{ f_percen_1 }}%</p>
+            <p class="mb-2">+ {{ f_percen_1 }}%</p>
             <p class="mr-3 text-h6 d-inline">+{{ f_item_p_1 }}</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@
           </div>
           <v-spacer></v-spacer>
           <div class="green--text mb-2 mr-2 text-right">
-            <p class="mb-2">+{{f_percen_2}}%</p>
+            <p class="mb-2">+ {{f_percen_2}}%</p>
             <p class="mr-3 text-h6 d-inline">+{{ f_item_p_2 }}</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"

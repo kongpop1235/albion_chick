@@ -31,7 +31,7 @@
           </div>
           <v-spacer></v-spacer>
           <div class="green--text mb-2 mr-2 text-right">
-            <p class="mb-2">+{{ b_percen_1 }}%</p>
+            <p class="mb-2">+ {{b_percent_1}}%</p>
             <p class="mr-3 text-h6 d-inline">+{{ b_item_p_1 }}</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@
           </div>
           <v-spacer></v-spacer>
           <div class="green--text mb-2 mr-2 text-right">
-            <p class="mb-2">+{{ b_percen_2 }}%</p>
+            <p class="mb-2">+ {{b_percent_2}}%</p>
             <p class="mr-3 text-h6 d-inline">+{{ b_item_p_2 }}</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -147,19 +147,19 @@ export default {
     "b_item_name_1",
     "b_api_img_1",
     "b_item_p_1",
-    "b_percen_1",
     "b_city_buy_1",
     "b_city_buy_color_1",
     "b_city_sell_1",
     "b_city_sell_color_1",
+    "b_percent_1",
     "b_item_name_2",
     "b_api_img_2",
     "b_item_p_2",
-    "b_percen_2",
     "b_city_buy_2",
     "b_city_buy_color_2",
     "b_city_sell_2",
     "b_city_sell_color_2",
+    "b_percent_2",
   ],
 };
 </script>

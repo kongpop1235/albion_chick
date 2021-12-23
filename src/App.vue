@@ -38,6 +38,9 @@ export default {
   font-size: 23px;
   letter-spacing: 2px;
 }
+.text-menu {
+  letter-spacing: 5px;
+}
 .text_list {
   font-size: 0.9rem;
   letter-spacing: 1.05px;

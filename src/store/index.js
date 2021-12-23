@@ -90,7 +90,7 @@ export const store = new Vuex.Store({
             }); */
           let ic = 1;
 
-          for (let i = 1; i < 41; i++) {
+          for (let i = 1; i < 1000; i++) {
             //max loop 7694
             if (ic == 187) {
               ic = 188;
@@ -158,32 +158,113 @@ export const store = new Vuex.Store({
         await axios
           .get(
             "https://www.albion-online-data.com/api/v2/stats/prices/" +
-              this.state.item[0].id[0 + item_lenght] +
-              "," +
-              this.state.item[0].id[1 + item_lenght] +
-              "," +
-              this.state.item[0].id[2 + item_lenght] +
-              "," +
-              this.state.item[0].id[3 + item_lenght] +
-              "," +
-              this.state.item[0].id[4 + item_lenght] +
-              "," +
-              this.state.item[0].id[5 + item_lenght] +
-              "," +
-              this.state.item[0].id[6 + item_lenght] +
-              "," +
-              this.state.item[0].id[7 + item_lenght] +
-              "," +
-              this.state.item[0].id[8 + item_lenght] +
-              "," +
-              this.state.item[0].id[9 + item_lenght] +
+              this.state.item[0].id[0 + item_lenght] + "," +
+              this.state.item[0].id[1 + item_lenght] + "," +
+              this.state.item[0].id[2 + item_lenght] + "," +
+              this.state.item[0].id[3 + item_lenght] + "," +
+              this.state.item[0].id[4 + item_lenght] + "," +
+              this.state.item[0].id[5 + item_lenght] + "," +
+              this.state.item[0].id[6 + item_lenght] + "," +
+              this.state.item[0].id[7 + item_lenght] + "," +
+              this.state.item[0].id[8 + item_lenght] + "," +
+              this.state.item[0].id[9 + item_lenght] + "," +
+              this.state.item[0].id[10 + item_lenght] + "," +
+              this.state.item[0].id[11 + item_lenght] + "," +
+              this.state.item[0].id[12 + item_lenght] + "," +
+              this.state.item[0].id[13 + item_lenght] + "," +
+              this.state.item[0].id[14 + item_lenght] + "," +
+              this.state.item[0].id[15 + item_lenght] + "," +
+              this.state.item[0].id[16 + item_lenght] + "," +
+              this.state.item[0].id[17 + item_lenght] + "," +
+              this.state.item[0].id[18 + item_lenght] + "," +
+              this.state.item[0].id[19 + item_lenght] + "," +
+              this.state.item[0].id[20 + item_lenght] + "," +
+              this.state.item[0].id[21 + item_lenght] + "," +
+              this.state.item[0].id[22 + item_lenght] + "," +
+              this.state.item[0].id[23 + item_lenght] + "," +
+              this.state.item[0].id[24 + item_lenght] + "," +
+              this.state.item[0].id[25 + item_lenght] + "," +
+              this.state.item[0].id[26 + item_lenght] + "," +
+              this.state.item[0].id[27 + item_lenght] + "," +
+              this.state.item[0].id[28 + item_lenght] + "," +
+              this.state.item[0].id[29 + item_lenght] + "," +
+              this.state.item[0].id[30 + item_lenght] + "," +
+              this.state.item[0].id[31 + item_lenght] + "," +
+              this.state.item[0].id[32 + item_lenght] + "," +
+              this.state.item[0].id[33 + item_lenght] + "," +
+              this.state.item[0].id[34 + item_lenght] + "," +
+              this.state.item[0].id[35 + item_lenght] + "," +
+              this.state.item[0].id[36 + item_lenght] + "," +
+              this.state.item[0].id[37 + item_lenght] + "," +
+              this.state.item[0].id[38 + item_lenght] + "," +
+              this.state.item[0].id[39 + item_lenght] + "," +
+              this.state.item[0].id[40 + item_lenght] + "," +
+              this.state.item[0].id[41 + item_lenght] + "," +
+              this.state.item[0].id[42 + item_lenght] + "," +
+              this.state.item[0].id[43 + item_lenght] + "," +
+              this.state.item[0].id[44 + item_lenght] + "," +
+              this.state.item[0].id[45 + item_lenght] + "," +
+              this.state.item[0].id[46 + item_lenght] + "," +
+              this.state.item[0].id[47 + item_lenght] + "," +
+              this.state.item[0].id[48 + item_lenght] + "," +
+              this.state.item[0].id[49 + item_lenght] + "," +
+              this.state.item[0].id[50 + item_lenght] + "," +
+              this.state.item[0].id[51 + item_lenght] + "," +
+              this.state.item[0].id[52 + item_lenght] + "," +
+              this.state.item[0].id[53 + item_lenght] + "," +
+              this.state.item[0].id[54 + item_lenght] + "," +
+              this.state.item[0].id[55 + item_lenght] + "," +
+              this.state.item[0].id[56 + item_lenght] + "," +
+              this.state.item[0].id[57 + item_lenght] + "," +
+              this.state.item[0].id[58 + item_lenght] + "," +
+              this.state.item[0].id[59 + item_lenght] + "," +
+              this.state.item[0].id[60 + item_lenght] + "," +
+              this.state.item[0].id[61 + item_lenght] + "," +
+              this.state.item[0].id[62 + item_lenght] + "," +
+              this.state.item[0].id[63 + item_lenght] + "," +
+              this.state.item[0].id[64 + item_lenght] + "," +
+              this.state.item[0].id[65 + item_lenght] + "," +
+              this.state.item[0].id[66 + item_lenght] + "," +
+              this.state.item[0].id[67 + item_lenght] + "," +
+              this.state.item[0].id[68 + item_lenght] + "," +
+              this.state.item[0].id[69 + item_lenght] + "," +
+              this.state.item[0].id[70 + item_lenght] + "," +
+              this.state.item[0].id[71 + item_lenght] + "," +
+              this.state.item[0].id[72 + item_lenght] + "," +
+              this.state.item[0].id[73 + item_lenght] + "," +
+              this.state.item[0].id[74 + item_lenght] + "," +
+              this.state.item[0].id[75 + item_lenght] + "," +
+              this.state.item[0].id[76 + item_lenght] + "," +
+              this.state.item[0].id[77 + item_lenght] + "," +
+              this.state.item[0].id[78 + item_lenght] + "," +
+              this.state.item[0].id[79 + item_lenght] + "," +
+              this.state.item[0].id[80 + item_lenght] + "," +
+              this.state.item[0].id[81 + item_lenght] + "," +
+              this.state.item[0].id[82 + item_lenght] + "," +
+              this.state.item[0].id[83 + item_lenght] + "," +
+              this.state.item[0].id[84 + item_lenght] + "," +
+              this.state.item[0].id[85 + item_lenght] + "," +
+              this.state.item[0].id[86 + item_lenght] + "," +
+              this.state.item[0].id[87 + item_lenght] + "," +
+              this.state.item[0].id[88 + item_lenght] + "," +
+              this.state.item[0].id[89 + item_lenght] + "," +
+              this.state.item[0].id[90 + item_lenght] + "," +
+              this.state.item[0].id[91 + item_lenght] + "," +
+              this.state.item[0].id[92 + item_lenght] + "," +
+              this.state.item[0].id[93 + item_lenght] + "," +
+              this.state.item[0].id[94 + item_lenght] + "," +
+              this.state.item[0].id[95 + item_lenght] + "," +
+              this.state.item[0].id[96 + item_lenght] + "," +
+              this.state.item[0].id[97 + item_lenght] + "," +
+              this.state.item[0].id[98 + item_lenght] + "," +
+              this.state.item[0].id[99 + item_lenght] +
               "?locations=" +
               "bridgewatch,caerleon,fortsterling,lymhurst,martlock,thetford" +
               "&qualities=1"
           )
           .then((items) => {
-            for (let ic = item_lenght; ic < 10 + item_lenght; ic++) {
-              for (let il = 0; il < 10; ) {
+            for (let ic = item_lenght; ic < 100 + item_lenght; ic++) {
+              for (let il = 0; il < 100; ) {
                 let aa = il * 6;
                 const item_detail = {
                   item_id: items.data[aa].item_id,
@@ -223,9 +304,9 @@ export const store = new Vuex.Store({
             );
           });
         if (item_lenght == 0) {
-          item_lenght = 10;
+          item_lenght = 100;
         } else {
-          item_lenght += 10;
+          item_lenght += 100;
         }
       }
       console.log("55555555555555555555");
@@ -534,6 +615,7 @@ export const store = new Vuex.Store({
             city_sell_price: null,
             city_color_sell: null,
             api_img: null,
+            percent: null,
           };
           best_sell_check[best_loop].item = this.getters.item[0].name[
             HL_item_lenght
@@ -558,6 +640,7 @@ export const store = new Vuex.Store({
             "https://render.albiononline.com/v1/item/" +
             this.getters.item[0].id[HL_item_lenght] +
             ".png";
+            best_sell_check[best_loop].percent = numeral(hp / this.getters.itemData[HL_item_lenght].item_detail.details[cd[ch]].sell).format('0,0');
           best_loop++;
         }
         //Caerleon ส่วนบันทึกราคาไอเท็มต่อชิ้นก่อนขึ้นชิ้นใหม่
@@ -572,6 +655,7 @@ export const store = new Vuex.Store({
             city_sell_price: null,
             city_color_sell: null,
             api_img: null,
+            percent: null,
           };
           c_best_check[c_best_loop].item = this.getters.item[0].name[
             HL_item_lenght
@@ -596,7 +680,7 @@ export const store = new Vuex.Store({
             "https://render.albiononline.com/v1/item/" +
             this.getters.item[0].id[HL_item_lenght] +
             ".png";
-          //console.log("c_best : " + c_best[0].profit);
+          c_best_check[c_best_loop].percent = numeral((hp / this.getters.itemData[HL_item_lenght].item_detail.details[cd[1]].sell)*100).format('0,0');
           c_best_loop++;
         }
         //Thetford ส่วนบันทึกราคาไอเท็มต่อชิ้นก่อนขึ้นชิ้นใหม่
@@ -611,6 +695,7 @@ export const store = new Vuex.Store({
             city_sell_price: null,
             city_color_sell: null,
             api_img: null,
+            percent: null,
           };
           t_best_check[t_best_loop].item = this.getters.item[0].name[
             HL_item_lenght
@@ -635,6 +720,7 @@ export const store = new Vuex.Store({
             "https://render.albiononline.com/v1/item/" +
             this.getters.item[0].id[HL_item_lenght] +
             ".png";
+          t_best_check[t_best_loop].percent = numeral((hp / this.getters.itemData[HL_item_lenght].item_detail.details[cd[5]].sell)*100).format('0,0');
           t_best_loop++;
         }
         //Martlock
@@ -649,6 +735,7 @@ export const store = new Vuex.Store({
             city_sell_price: null,
             city_color_sell: null,
             api_img: null,
+            percent: null,
           };
           m_best_check[m_best_loop].item = this.getters.item[0].name[
             HL_item_lenght
@@ -673,6 +760,7 @@ export const store = new Vuex.Store({
             "https://render.albiononline.com/v1/item/" +
             this.getters.item[0].id[HL_item_lenght] +
             ".png";
+          m_best_check[m_best_loop].percent = numeral((hp / this.getters.itemData[HL_item_lenght].item_detail.details[cd[4]].sell)*100).format('0,0');
           m_best_loop++;
         }
         //Lymhurst
@@ -687,6 +775,7 @@ export const store = new Vuex.Store({
             city_sell_price: null,
             city_color_sell: null,
             api_img: null,
+            percent: null,
           };
           l_best_check[l_best_loop].item = this.getters.item[0].name[
             HL_item_lenght
@@ -711,6 +800,7 @@ export const store = new Vuex.Store({
             "https://render.albiononline.com/v1/item/" +
             this.getters.item[0].id[HL_item_lenght] +
             ".png";
+          l_best_check[l_best_loop].percent = numeral((hp / this.getters.itemData[HL_item_lenght].item_detail.details[cd[3]].sell)*100).format('0,0');
           l_best_loop++;
         }
         //FortSterling
@@ -725,6 +815,7 @@ export const store = new Vuex.Store({
             city_sell_price: null,
             city_color_sell: null,
             api_img: null,
+            percent: null,
           };
           f_best_check[f_best_loop].item = this.getters.item[0].name[
             HL_item_lenght
@@ -749,6 +840,7 @@ export const store = new Vuex.Store({
             "https://render.albiononline.com/v1/item/" +
             this.getters.item[0].id[HL_item_lenght] +
             ".png";
+          f_best_check[f_best_loop].percent = numeral((hp / this.getters.itemData[HL_item_lenght].item_detail.details[cd[2]].sell)*100).format('0,0');
           f_best_loop++;
         }
         //Bridgewatch
@@ -763,6 +855,7 @@ export const store = new Vuex.Store({
             city_sell_price: null,
             city_color_sell: null,
             api_img: null,
+            percent: null,
           };
           b_best_check[b_best_loop].item = this.getters.item[0].name[
             HL_item_lenght
@@ -787,6 +880,7 @@ export const store = new Vuex.Store({
             "https://render.albiononline.com/v1/item/" +
             this.getters.item[0].id[HL_item_lenght] +
             ".png";
+          b_best_check[b_best_loop].percent = numeral((hp / this.getters.itemData[HL_item_lenght].item_detail.details[cd[0]].sell)*100).format('0,0');
           b_best_loop++;
         }
 
@@ -831,6 +925,7 @@ export const store = new Vuex.Store({
               city_sell_price: null,
               city_color_sell: null,
               api_img: null,
+              percent: null,
             };
 
             best_sell[u].item = best_sell_check[i].item;
@@ -848,6 +943,7 @@ export const store = new Vuex.Store({
             ).format("0,0");
             best_sell[u].city_color_sell = best_sell_check[i].city_color_sell;
             best_sell[u].api_img = best_sell_check[i].api_img;
+            best_sell[u].percent = best_sell_check[i].percent;
           }
         }
       }
@@ -871,6 +967,7 @@ export const store = new Vuex.Store({
               city_sell_price: null,
               city_color_sell: null,
               api_img: null,
+              percent: null,
             };
             c_best_sell[u].item = c_best_check[i].item;
             c_best_sell[u].profit = numeral(c_best_check[i].profit).format(
@@ -887,6 +984,7 @@ export const store = new Vuex.Store({
             ).format("0,0");
             c_best_sell[u].city_color_sell = c_best_check[i].city_color_sell;
             c_best_sell[u].api_img = c_best_check[i].api_img;
+            c_best_sell[u].percent = c_best_check[i].percent;
           }
         }
       }
@@ -908,6 +1006,7 @@ export const store = new Vuex.Store({
               city_sell_price: null,
               city_color_sell: null,
               api_img: null,
+              percent:null,
             };
             t_best_sell[u].item = t_best_check[i].item;
             t_best_sell[u].profit = numeral(t_best_check[i].profit).format(
@@ -924,6 +1023,7 @@ export const store = new Vuex.Store({
             ).format("0,0");
             t_best_sell[u].city_color_sell = t_best_check[i].city_color_sell;
             t_best_sell[u].api_img = t_best_check[i].api_img;
+            t_best_sell[u].percent = t_best_check[i].percent;
           }
         }
       }
@@ -945,6 +1045,7 @@ export const store = new Vuex.Store({
               city_sell_price: null,
               city_color_sell: null,
               api_img: null,
+              percent: null,
             };
             m_best_sell[u].item = m_best_check[i].item;
             m_best_sell[u].profit = numeral(m_best_check[i].profit).format(
@@ -961,6 +1062,7 @@ export const store = new Vuex.Store({
             ).format("0,0");
             m_best_sell[u].city_color_sell = m_best_check[i].city_color_sell;
             m_best_sell[u].api_img = m_best_check[i].api_img;
+            m_best_sell[u].percent = m_best_check[i].percent;
           }
         }
       }
@@ -982,6 +1084,7 @@ export const store = new Vuex.Store({
               city_sell_price: null,
               city_color_sell: null,
               api_img: null,
+              percent: null,
             };
             l_best_sell[u].item = l_best_check[i].item;
             l_best_sell[u].profit = numeral(l_best_check[i].profit).format(
@@ -998,6 +1101,7 @@ export const store = new Vuex.Store({
             ).format("0,0");
             l_best_sell[u].city_color_sell = l_best_check[i].city_color_sell;
             l_best_sell[u].api_img = l_best_check[i].api_img;
+            l_best_sell[u].percent = l_best_check[i].percent;
           }
         }
       }
@@ -1019,6 +1123,7 @@ export const store = new Vuex.Store({
               city_sell_price: null,
               city_color_sell: null,
               api_img: null,
+              percent: null,
             };
             f_best_sell[u].item = f_best_check[i].item;
             f_best_sell[u].profit = numeral(f_best_check[i].profit).format(
@@ -1035,6 +1140,7 @@ export const store = new Vuex.Store({
             ).format("0,0");
             f_best_sell[u].city_color_sell = f_best_check[i].city_color_sell;
             f_best_sell[u].api_img = f_best_check[i].api_img;
+            f_best_sell[u].percent = f_best_check[i].percent;
           }
         }
       }
@@ -1056,6 +1162,7 @@ export const store = new Vuex.Store({
               city_sell_price: null,
               city_color_sell: null,
               api_img: null,
+              percent: null,
             };
             b_best_sell[u].item = b_best_check[i].item;
             b_best_sell[u].profit = numeral(b_best_check[i].profit).format(
@@ -1072,6 +1179,7 @@ export const store = new Vuex.Store({
             ).format("0,0");
             b_best_sell[u].city_color_sell = b_best_check[i].city_color_sell;
             b_best_sell[u].api_img = b_best_check[i].api_img;
+            b_best_sell[u].percent = b_best_check[i].percent;
           }
         }
       }
