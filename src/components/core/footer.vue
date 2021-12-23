@@ -2,7 +2,7 @@
   <v-card dark flat tile class="bg_main white--text text-center footer">
     <v-card-text>
       &copy;Copyright By KONGPOP - 2021
-      <a href="#"><img src="https://visitor-badge.glitch.me/badge?page_id=Albion_Chick_demo"></a>
+      <a href="#"><img src="https://visitor-badge.glitch.me/badge?page_id=Albion_Chick"></a>
     </v-card-text>
   </v-card>
 </template>
