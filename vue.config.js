@@ -3,5 +3,5 @@ module.exports = {
     'vuetify'
   ],
 
-  publicPath: '/App.vue/'
+  publicPath: '/albion_chick/'
 }
