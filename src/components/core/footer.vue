@@ -1,7 +1,7 @@
 <template>
   <v-card dark flat tile class="bg_main white--text text-center footer">
     <v-card-text>
-      KONGPOP - 2021
+      &copy;Copyright By KONGPOP - 2021
     </v-card-text>
   </v-card>
 </template>
