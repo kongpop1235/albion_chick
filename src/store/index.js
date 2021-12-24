@@ -146,6 +146,15 @@ export const store = new Vuex.Store({
       await commit("SET_ITEM_NAME", item_api_name);
 
       //itemData
+      /* let item_api = '';
+      console.log(this.state.item[0].id[0]);
+      for (let index = 0; index < this.state.item[0].id.length-1; index++) {
+        if(index < this.state.item[0].id.length - 1) {
+          item_api += this.state.item[0].id[index] + ",";
+        } else {
+          item_api += this.state.item[0].id[index];
+        }
+      } */
       let item_lenght = 0;
       for (; item_lenght < this.state.item[0].id.length - 1; ) {
         // sell[item_lenght] = [];
@@ -1192,7 +1201,7 @@ export const store = new Vuex.Store({
       await commit("SET_H_L_PRICE_B", b_best_sell);
       console.log("****************************");
       console.log(this.getters.item_profit);
-      console.log(best_sell);
+      console.table(best_sell);
       console.log(this.getters.itemData[0].item_detail.api_img);
       console.log("****************************");
     },
