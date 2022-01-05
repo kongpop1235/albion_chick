@@ -27,7 +27,7 @@ export default {
     overlay: false,
   }),
   mounted() {
-    this.$store.dispatch("getGold");
+    this.$store.dispatch("getGoldPrice");
     this.$store.dispatch("getItem");
   },
 };

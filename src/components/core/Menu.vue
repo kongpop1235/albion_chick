@@ -71,14 +71,48 @@
             >
           </v-list-item>
         </router-link>
-        <v-list-item link id="m-animation">
-          <v-list-item-icon>
-            <v-icon class="grey--text text--lighten-1">mdi-star</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title class="grey--text text--lighten-1 text-menu py-3"
-            >Starred</v-list-item-title
-          >
-        </v-list-item>
+        <router-link to="/Gold" class="text-decoration-none">
+          <v-list-item link id="m-animation">
+            <v-list-item-icon>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="24"
+                height="24"
+                viewBox="0 0 172 172"
+                style="fill: #000000"
+              >
+                <g
+                  fill="none"
+                  fill-rule="nonzero"
+                  stroke="none"
+                  stroke-width="1"
+                  stroke-linecap="butt"
+                  stroke-linejoin="miter"
+                  stroke-miterlimit="10"
+                  stroke-dasharray=""
+                  stroke-dashoffset="0"
+                  font-family="none"
+                  font-weight="none"
+                  font-size="none"
+                  text-anchor="none"
+                  style="mix-blend-mode: normal"
+                >
+                  <path d="M0,172v-172h172v172z" fill="none"></path>
+                  <g fill="#bdbdbd">
+                    <path
+                      d="M56.00708,40.3125l-13.00708,22.75977v6.80273h-8.49292l-13.00708,22.75977v6.80273h-8.49292l-13.00708,22.75977v17.55273h43h10.75h32.25h10.75h43h32.25v-17.39526l-12.80237,-22.91724h-8.69763v-6.64526l-12.80237,-22.91724h-8.69763v-6.64526l-12.80237,-22.91724h-35.57263zM62.24292,51.0625h15.26416l8.49292,14.86523v3.94727h-8.49292h-15.26416h-3.11792h-5.375v-3.94727zM40.74292,80.625h2.25708h13.00708l8.49292,14.86523v3.94727h-8.49292h-15.26416h-3.11792h-5.375v-3.94727zM83.74292,80.625h13.00708h2.25708l8.49292,14.86523v3.94727h-23.75708h-3.11792h-5.375v-3.94727zM19.24292,110.1875h2.25708h13.00708l8.49292,14.86523v3.94727h-32.25v-3.94727zM62.24292,110.1875h2.25708h13.00708l8.49292,14.86523v3.94727h-32.25v-3.94727zM105.24292,110.1875h13.00708h2.25708l8.49292,14.86523v3.94727h-32.25v-3.94727z"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+            </v-list-item-icon>
+            <v-list-item-title class="grey--text text--lighten-1 text-menu py-3"
+              >gold</v-list-item-title
+            >
+          </v-list-item>
+        </router-link>
       </v-list>
     </v-navigation-drawer>
   </v-card>
@@ -94,8 +128,6 @@ export default {};
   font-weight: 900;
   line-height: 1;
 }
-
-
 
 @keyframes text-shadow {
   0% {
@@ -126,7 +158,6 @@ export default {};
     text-shadow: 0 0 0 #0c2ffb, 0 0 0 #2cfcfd, 0 0 0 #fb203b, 0 0 0 #fefc4b;
   }
 }
-
 
 /*Animation by : 
 CodePen Home

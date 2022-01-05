@@ -138,15 +138,15 @@ export default {
     //log
     await wait(2000); //delay time
 
-    if (this.$store.getters.gold[1] == true) {
+    if (this.$store.getters.gold_price[1] == true) {
       //check Gold data
       /* console.log("+++++++++++++++++++");
-      console.log(this.$store.getters.gold[0]);
+      console.log(this.$store.getters.gold_price[0]);
       console.log("+++++++++++++++++++"); */
 
-      for (let x = 0; x < this.$store.getters.gold[0].length; x++) {
-        gold[x] = this.$store.getters.gold[0][x].price;
-        time[x] = this.$store.getters.gold[0][x].timestamp.substring(11, 16);
+      for (let x = 0; x < 24; x++) {
+        gold[x] = this.$store.getters.gold_price[0][x].price;
+        time[x] = this.$store.getters.gold_price[0][x].timestamp.substring(11, 16);
       }
     }
 

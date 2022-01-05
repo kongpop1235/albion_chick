@@ -2,6 +2,7 @@ import axios from "axios";
 import Vuex from "vuex";
 import Vue from "vue";
 import numeral from "numeral";
+import date from "date.js";
 
 Vue.use(Vuex);
 
@@ -25,7 +26,7 @@ const city = [
 
 export const store = new Vuex.Store({
   state: {
-    gold: [[], false],
+    gold_price: [[], false],
     item: [{ id: null, name: null }, false],
     itemData: [
       /*{item_id : null, details: [{city : null, buy : null, buy_data : null, sell : null, sell_data : null}]}*/
@@ -42,7 +43,7 @@ export const store = new Vuex.Store({
     },
   },
   getters: {
-    gold: (state) => state.gold,
+    gold_price: (state) => state.gold_price,
     item: (state) => state.item,
     itemData: (state) => state.itemData,
     item_profit: (state) => state.item_profit,
@@ -55,8 +56,8 @@ export const store = new Vuex.Store({
     Thetford: (state) => state.item_profit.Thetford,
   },
   actions: {
-    getGold({ commit }) {
-      let y = new Date(Date.now() - 864e5);
+    getGoldPrice({ commit }) {
+      let y = date('3 month ago');
       let d = new Date();
       axios
         .get(
@@ -69,7 +70,7 @@ export const store = new Vuex.Store({
           /* console.log("------------")
           console.log(gold_p.data)
           console.log("------------") */
-          commit("SET_GOLD", gold_p.data);
+          commit("SET_GOLD_PRICE", gold_p.data);
         });
     },
     async getItem({ commit }) {
@@ -1201,15 +1202,15 @@ export const store = new Vuex.Store({
       await commit("SET_H_L_PRICE_B", b_best_sell);
       console.log("****************************");
       console.log(this.getters.item_profit);
-      console.table(best_sell);
+      console.table(b_best_sell);
       console.log(this.getters.itemData[0].item_detail.api_img);
       console.log("****************************");
     },
   },
   mutations: {
-    SET_GOLD(state, gold) {
-      state.gold[0] = gold; //data
-      state.gold[1] = true; //check
+    SET_GOLD_PRICE(state, gold_price) {
+      state.gold_price[0] = gold_price; //data
+      state.gold_price[1] = true; //check
     },
     SET_ITEM_ID(state, itemId) {
       state.item[0]["id"] = itemId;

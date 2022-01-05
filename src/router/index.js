@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Market from '../views/Market.vue'
+import Gold from '../views/gold.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -22,6 +23,11 @@ const routes = [
     path: '/Market',
     name: 'Market',
     component: Market
+  },
+  {
+    path: '/Gold',
+    name: 'Gold',
+    component: Gold
   },
 ]
 
