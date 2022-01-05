@@ -1,4 +1,4 @@
-# albion_web
+# albion_chick
 
 ## Project setup
 ```
