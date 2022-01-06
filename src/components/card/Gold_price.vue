@@ -109,7 +109,7 @@ export default {
   async mounted() {
 
     const d = new Date();
-    const y = new Date(Date.now() - 864e5); // 864e5 == 86400000 == 24*60*60*1000 yesterday easy day
+    // const y = new Date(Date.now() - 864e5); // 864e5 == 86400000 == 24*60*60*1000 yesterday easy day
     const months = [
       "Jan.",
       "Feb.",
@@ -254,7 +254,6 @@ export default {
     console.log(myChart);
     console.log("gold2 : ");
     console.log(ctx);
-    console.log(y);
   },
 };
 </script>

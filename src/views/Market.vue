@@ -24,7 +24,7 @@
               'Bridgewatch',
             ]"
             color="red"
-            item-color="purple darken-4"
+            item-color="red"
           ></v-select>
         </v-col>
         <v-col cols="5">
@@ -42,7 +42,7 @@
               'Bridgewatch',
             ]"
             color="green"
-            item-color="purple darken-4"
+            item-color="green"
           ></v-select>
         </v-col>
         <v-col cols="2">

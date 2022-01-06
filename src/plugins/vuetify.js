@@ -19,7 +19,7 @@ export default new Vuetify({
             bg_card: '#312d4b',
           },
           dark: {
-            primary: '#9155FD',
+            primary: '#FF4C51',
             accent: '#0d6efd',
             secondary: '#8A8D93',
             success: '#56CA00',
