@@ -12,9 +12,10 @@
         <canvas id="gold" class="c-gold" :height="height"></canvas>
       </div>
     </v-card-text>
+    {{ dates[0] }}
     <div class="ma-0 pa-0">
       <v-row>
-        <v-col cols="6">
+        <v-col cols="5">
           <v-select
             v-model="select_buy"
             dark
@@ -25,7 +26,7 @@
             item-color="#FF9F40"
           ></v-select>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="5">
           <v-dialog
             ref="dialog"
             v-model="modal"
@@ -37,7 +38,7 @@
               <v-text-field
                 dark
                 v-model="dateRangeText"
-                label="Picker in dialog"
+                label="DATE TO DATE"
                 prepend-icon="mdi-calendar"
                 readonly
                 v-bind="attrs"
@@ -53,6 +54,9 @@
             </v-date-picker>
           </v-dialog>
         </v-col>
+        <v-col cols="2"
+          ><v-btn block color="#FF9F40" class="me-3 white--text" x-large>text</v-btn></v-col
+        >
       </v-row>
     </div>
   </v-card>
@@ -71,6 +75,9 @@ export default {
       montsh: null,
       year: null,
       height: 0,
+
+      time: [],
+      gold:[],
 
       dates: [y, d],
       modal: false,
@@ -113,24 +120,18 @@ export default {
     this.montsh = month;
     this.day = d.getDate();
 
-    let gold = [];
-    let time = [];
-
     const wait = (
       timeToDelay //delay
     ) => new Promise((resolve) => setTimeout(resolve, timeToDelay));
     //log
     await wait(2000); //delay time
 
-    if (this.$store.getters.gold_price[1] == true) {
-      //check Gold data
-      /* console.log("+++++++++++++++++++");
-      console.log(this.$store.getters.gold_price[0]);
-      console.log("+++++++++++++++++++"); */
+    
 
+    if (this.$store.getters.gold_price[1] == true) {
       for (let x = 0; x < 24; x++) {
-        gold[x] = this.$store.getters.gold_price[0][x].price;
-        time[x] = this.$store.getters.gold_price[0][x].timestamp.substring(11, 16);
+        this.gold.push(this.$store.getters.gold_price[0][x].price);
+        this.time.push(this.$store.getters.gold_price[0][x].timestamp.substring(11, 16));
       }
     }
 
@@ -138,61 +139,11 @@ export default {
     var myChart = new Chart(ctx, {
       type: "bar",
       data: {
-        labels: [
-          time[0],
-          time[1],
-          time[2],
-          time[3],
-          time[4],
-          time[5],
-          time[6],
-          time[7],
-          time[8],
-          time[9],
-          time[10],
-          time[11],
-          time[12],
-          time[13],
-          time[14],
-          time[15],
-          time[16],
-          time[17],
-          time[18],
-          time[19],
-          time[20],
-          time[21],
-          time[22],
-          time[23],
-        ],
+        labels: this.time,
         datasets: [
           {
             label: "gold value ",
-            data: [
-              gold[0],
-              gold[1],
-              gold[2],
-              gold[3],
-              gold[4],
-              gold[5],
-              gold[6],
-              gold[7],
-              gold[8],
-              gold[9],
-              gold[10],
-              gold[11],
-              gold[12],
-              gold[13],
-              gold[14],
-              gold[15],
-              gold[16],
-              gold[17],
-              gold[18],
-              gold[19],
-              gold[20],
-              gold[21],
-              gold[22],
-              gold[23],
-            ],
+            data: this.gold,
             backgroundColor: ["rgba(255, 159, 64, 0.8)"],
             borderRadius: Number.MAX_VALUE,
           },
@@ -208,8 +159,8 @@ export default {
         },
         scales: {
           y: {
-            max: Math.max(...gold) + 10,
-            min: Math.min(...gold) - 10,
+            max: Math.max(...this.gold) + 10,
+            min: Math.min(...this.gold) - 10,
             beginAtZero: true,
             ticks: {
               color: "#bdbdbd",
