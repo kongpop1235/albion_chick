@@ -136,7 +136,7 @@ export default {
       timeToDelay //delay
     ) => new Promise((resolve) => setTimeout(resolve, timeToDelay));
     //log
-    await wait(2000); //delay time
+    await wait(5000); //delay time
 
     if (this.$store.getters.gold_price[1] == true) {
       //check Gold data
@@ -145,8 +145,8 @@ export default {
       console.log("+++++++++++++++++++"); */
 
       for (let x = 0; x < 24; x++) {
-        gold[x] = this.$store.getters.gold_price[0][x].price;
-        time[x] = this.$store.getters.gold_price[0][x].timestamp.substring(11, 16);
+        gold.push(this.$store.getters.gold_price[0][x].price);
+        time.push(this.$store.getters.gold_price[0][x].timestamp.substring(11, 16));
       }
     }
 
@@ -154,61 +154,11 @@ export default {
     var myChart = new Chart(ctx, {
       type: "bar",
       data: {
-        labels: [
-          time[0],
-          time[1],
-          time[2],
-          time[3],
-          time[4],
-          time[5],
-          time[6],
-          time[7],
-          time[8],
-          time[9],
-          time[10],
-          time[11],
-          time[12],
-          time[13],
-          time[14],
-          time[15],
-          time[16],
-          time[17],
-          time[18],
-          time[19],
-          time[20],
-          time[21],
-          time[22],
-          time[23],
-        ],
+        labels: time,
         datasets: [
           {
             label: "gold value ",
-            data: [
-              gold[0],
-              gold[1],
-              gold[2],
-              gold[3],
-              gold[4],
-              gold[5],
-              gold[6],
-              gold[7],
-              gold[8],
-              gold[9],
-              gold[10],
-              gold[11],
-              gold[12],
-              gold[13],
-              gold[14],
-              gold[15],
-              gold[16],
-              gold[17],
-              gold[18],
-              gold[19],
-              gold[20],
-              gold[21],
-              gold[22],
-              gold[23],
-            ],
+            data: gold,
             backgroundColor: ["rgba(255, 159, 64, 0.8)"],
             borderRadius: Number.MAX_VALUE,
           },

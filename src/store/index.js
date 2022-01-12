@@ -57,7 +57,7 @@ export const store = new Vuex.Store({
   },
   actions: {
     getGoldPrice({ commit }) {
-      let y = date('yesterday');
+      let y = date('3 month ago');
       let d = new Date();
       axios
         .get(
