@@ -41,6 +41,7 @@ export const store = new Vuex.Store({
       FortSterling: null,
       Bridgewatch: null,
     },
+    Detail: [null, false],
   },
   getters: {
     gold_price: (state) => state.gold_price,
@@ -54,6 +55,7 @@ export const store = new Vuex.Store({
     Lymhurst: (state) => state.item_profit.Lymhurst,
     Martlock: (state) => state.item_profit.Martlock,
     Thetford: (state) => state.item_profit.Thetford,
+    Detail: (state) => state.Detail,
   },
   actions: {
     getGoldPrice({ commit }) {

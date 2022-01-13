@@ -5,12 +5,15 @@
     rounded-0
   >
     <v-card-title class="mx-0 px-4 mb-5">
-      <h1 class="text-uppercase text-h">best sell</h1>
+      <h1 class="text-uppercase text-h">{{ hd }}</h1>
     </v-card-title>
 
     <v-card-text>
       <v-row id="row_main" v-for="(item, index) in main" :key="index">
-        <v-col cols="12" class="grey--text text--lighten-1 d-flex bg_card rounded-lg position-relative mb-6">
+        <v-col
+          cols="12"
+          class="grey--text text--lighten-1 d-flex bg_card rounded-lg position-relative mb-6"
+        >
           <v-card-text class="d-flex align-center my-0 py-0 pl-2">
             <v-img
               max-height="90"
@@ -80,14 +83,36 @@
 <script>
 export default {
   name: "Best_Sell_Detail",
+  props: ["head"],
   data() {
     return {
+      hd: null,
+      hds: null,
       main: [],
     };
   },
   mounted() {
-    for (let x = 0; x < this.$store.getters["best_sell"].length; x++) {
-      this.main.push(this.$store.getters["best_sell"][x]);
+    if (this.$store.getters.Detail[1] == true) {
+      alert("Start");
+      if (this.$store.getters.Detail[0] == "best_sell") {
+        this.hd = "best sell";
+      } else if (this.$store.getters.Detail[0] == "best_sell_c") {
+        this.hd = "best sell caerleon";
+      } else if (this.$store.getters.Detail[0] == "best_sell_t") {
+        this.hd = "best sell thetford"
+      } else if (this.$store.getters.Detail[0] == "best_sell_m") {
+        this.hd = "best sell martlock"
+      } else if (this.$store.getters.Detail[0] == "best_sell_l") {
+        this.hd = "best sell lymhurst"
+      } else if (this.$store.getters.Detail[0] == "best_sell_f") {
+        this.hd = "best sell fort sterling"
+      } else if (this.$store.getters.Detail[0] == "best_sell_b") {
+        this.hd = "best sell bridwatch"
+      }
+      this.hds = this.$store.getters.Detail[0];
+      for (let x = 0; x < this.$store.getters[this.hds].length; x++) {
+        this.main.push(this.$store.getters[this.hds][x]);
+      }
     }
   },
 };
