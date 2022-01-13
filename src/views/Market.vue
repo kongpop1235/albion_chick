@@ -169,7 +169,8 @@ export default {
       //ทำเรื่องกำไรแบบเป็น percen ใน data index.vue
     },
   },
-  mounted() {},
+  mounted() {
+  },
 };
 </script>
 
