@@ -33,9 +33,9 @@ export default {
     y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
 
     this.x = "height : " + y * 0.80 + "px;";
-    alert(this.x);
+    console.log(this.x);
 
-    let 
+    let
     gold = [],
     time = [];
 
@@ -51,9 +51,9 @@ export default {
       console.log(this.$store.getters.gold_price[0]);
       console.log("+++++++++++++++++++"); */
 
-      for (let x = 0; x < this.$store.getters.gold_price[0].length; x++) {
+      for (let x = 0; x < this.$store.getters.gold_price[0].length; x+=24) {
         gold.push(this.$store.getters.gold_price[0][x].price);
-        time.push(this.$store.getters.gold_price[0][x].timestamp.substring(0,10) + "||" + this.$store.getters.gold_price[0][x].timestamp.substring(11, 16));
+        time.push(this.$store.getters.gold_price[0][x].timestamp.substring(0,10));
       }
     }
 
