@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Market from '../views/Market.vue'
 import Gold from '../views/gold.vue'
+import Best_Sell_Detail from '../components/core/Best_Sell_Detail.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -29,6 +30,11 @@ const routes = [
     name: 'Gold',
     component: Gold
   },
+  {
+    path: '/Best_Sell',
+    name: 'Best_Sell',
+    component: Best_Sell_Detail
+  }
 ]
 
 const router = new VueRouter({

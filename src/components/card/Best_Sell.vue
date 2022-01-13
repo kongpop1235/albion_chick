@@ -80,13 +80,15 @@
         </v-col>
       </v-row>
       <v-expand-transition>
-        <div
-          v-if="hover"
-          class="d-flex transition-fast-in-fast-out pa darken-2 v-card--reveal white--text text-h text-uppercase font-weight-bold rounded-lg"
-          style="height: 100%"
-        >
-          Details
-        </div>
+        <router-link to="/Best_Sell" class="text-decoration-none">
+          <div
+            v-if="hover"
+            class="d-flex transition-fast-in-fast-out pa darken-2 v-card--reveal white--text text-h text-uppercase font-weight-bold rounded-lg"
+            style="height: 100%"
+          >
+            Details
+          </div>
+        </router-link>
       </v-expand-transition>
     </v-card>
   </v-hover>
