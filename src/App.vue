@@ -68,4 +68,15 @@ export default {
 #h-show:hover + #h-overlay {
   display: block;
 }
+.pa {
+  background-color : #9155fd;
+}
+.v-card--reveal {
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  opacity: 0.85;
+  position: absolute;
+  width: 100%;
+}
 </style>
