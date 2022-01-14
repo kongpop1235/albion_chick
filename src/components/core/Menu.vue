@@ -19,7 +19,7 @@
       <v-divider></v-divider>
 
       <v-list nav dense class="text-uppercase">
-        <router-link to="/" class="text-decoration-none">
+        <router-link to="/" class="text-decoration-none" @click="action">
           <v-list-item link id="m-animation">
             <v-list-item-icon>
               <v-icon class="grey--text text--lighten-1">mdi-home</v-icon>
@@ -29,7 +29,7 @@
             >
           </v-list-item>
         </router-link>
-        <router-link to="/Market" class="text-decoration-none">
+        <router-link to="/Market" class="text-decoration-none" @click="action">
           <v-list-item link id="m-animation">
             <v-list-item-icon>
               <svg
@@ -71,7 +71,7 @@
             >
           </v-list-item>
         </router-link>
-        <router-link to="/Gold" class="text-decoration-none">
+        <router-link to="/Gold" class="text-decoration-none" @click="action">
           <v-list-item link id="m-animation">
             <v-list-item-icon>
               <svg
@@ -119,7 +119,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    action() {
+      this.$store.getters.Detail[0] = null;
+      this.$store.getters.Detail[1] = false;
+    }
+  },
+};
 </script>
 
 <style scoped>
