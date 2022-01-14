@@ -86,13 +86,20 @@
         </v-row>
       </v-row>
       <v-expand-transition>
-        <div
-          v-if=" hover "
-          class="d-flex transition-fast-in-fast-out pa darken-2 v-card--reveal white--text text-h text-uppercase font-weight-bold rounded-lg"
+        <router-link
+          to="/Detail"
+          v-if="hover"
+          class="d-flex transition-fast-in-fast-out pa darken-2 v-card--reveal white--text text-h text-uppercase font-weight-bold rounded-lg text-decoration-none"
           style="height: 100%"
         >
-          Details
-        </div>
+          <div
+            @click="action"
+            class="d-flex justify-center align-center"
+            style="height: 100%; width: 100%"
+          >
+            <p>Details</p>
+          </div>
+        </router-link>
       </v-expand-transition>
     </v-card>
   </v-hover>
@@ -124,6 +131,13 @@ export default {
     "c_city_sell_3",
     "c_city_sell_color_3",
   ],
+  methods: {
+    action() {
+      alert("Caerleon");
+      this.$store.getters.Detail[0] = "Caerleon";
+      this.$store.getters.Detail[1] = true;
+    },
+  },
 };
 </script>
 

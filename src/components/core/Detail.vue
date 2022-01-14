@@ -96,7 +96,7 @@ export default {
       alert("Start");
       if (this.$store.getters.Detail[0] == "best_sell") {
         this.hd = "best sell";
-      } else if (this.$store.getters.Detail[0] == "best_sell_c") {
+      } else if (this.$store.getters.Detail[0] == "Caerleon") {
         this.hd = "best sell caerleon";
       } else if (this.$store.getters.Detail[0] == "best_sell_t") {
         this.hd = "best sell thetford"
