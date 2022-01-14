@@ -133,7 +133,6 @@ export default {
   ],
   methods: {
     action() {
-      alert("Caerleon");
       this.$store.getters.Detail[0] = "Caerleon";
       this.$store.getters.Detail[1] = true;
     },

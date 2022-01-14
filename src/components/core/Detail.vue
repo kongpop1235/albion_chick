@@ -93,20 +93,19 @@ export default {
   },
   mounted() {
     if (this.$store.getters.Detail[1] == true) {
-      alert("Start");
       if (this.$store.getters.Detail[0] == "best_sell") {
         this.hd = "best sell";
       } else if (this.$store.getters.Detail[0] == "Caerleon") {
         this.hd = "best sell caerleon";
-      } else if (this.$store.getters.Detail[0] == "best_sell_t") {
+      } else if (this.$store.getters.Detail[0] == "Thetford") {
         this.hd = "best sell thetford"
-      } else if (this.$store.getters.Detail[0] == "best_sell_m") {
+      } else if (this.$store.getters.Detail[0] == "Martlock") {
         this.hd = "best sell martlock"
-      } else if (this.$store.getters.Detail[0] == "best_sell_l") {
+      } else if (this.$store.getters.Detail[0] == "Lymhurst") {
         this.hd = "best sell lymhurst"
-      } else if (this.$store.getters.Detail[0] == "best_sell_f") {
+      } else if (this.$store.getters.Detail[0] == "FortSterling") {
         this.hd = "best sell fort sterling"
-      } else if (this.$store.getters.Detail[0] == "best_sell_b") {
+      } else if (this.$store.getters.Detail[0] == "Bridgewatch") {
         this.hd = "best sell bridwatch"
       }
       this.hds = this.$store.getters.Detail[0];

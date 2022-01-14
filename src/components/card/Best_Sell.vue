@@ -86,7 +86,13 @@
           class="d-flex transition-fast-in-fast-out pa darken-2 v-card--reveal white--text text-h text-uppercase font-weight-bold rounded-lg text-decoration-none"
           style="height: 100%"
         >
-          <div @click="action">Details</div>
+          <div
+            @click="action"
+            class="d-flex justify-center align-center"
+            style="height: 100%; width: 100%"
+          >
+            <p>Details</p>
+          </div>
         </router-link>
       </v-expand-transition>
     </v-card>
@@ -98,7 +104,6 @@ export default {
   props: ["bs_in", "bs_ip", "bs_cb", "bs_cs", "bs_img", "bs_cb_c", "bs_cs_c"],
   methods: {
     action() {
-      alert("best sell");
       this.$store.getters.Detail[0] = "best_sell";
       this.$store.getters.Detail[1] = true;
     },

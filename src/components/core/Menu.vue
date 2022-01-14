@@ -128,7 +128,6 @@
 export default {
   methods: {
     action() {
-      alert("null");
       this.$store.getters.Detail[0] = null;
       this.$store.getters.Detail[1] = false;
     },

@@ -131,13 +131,20 @@
         </v-col>
       </v-row>
       <v-expand-transition>
-        <div
+        <router-link
+          to="/Detail"
           v-if="hover"
-          class="d-flex transition-fast-in-fast-out pa darken-2 v-card--reveal white--text text-h text-uppercase font-weight-bold rounded-lg"
+          class="d-flex transition-fast-in-fast-out pa darken-2 v-card--reveal white--text text-h text-uppercase font-weight-bold rounded-lg text-decoration-none"
           style="height: 100%"
         >
-          Details
-        </div>
+          <div
+            @click="action"
+            class="d-flex justify-center align-center"
+            style="height: 100%; width: 100%"
+          >
+            <p>Details</p>
+          </div>
+        </router-link>
       </v-expand-transition>
     </v-card>
   </v-hover>
@@ -164,6 +171,12 @@ export default {
     "m_city_sell_2",
     "m_city_sell_color_2",
   ],
+  methods: {
+    action() {
+      this.$store.getters.Detail[0] = "Martlock";
+      this.$store.getters.Detail[1] = true;
+    },
+  },
 };
 </script>
 
