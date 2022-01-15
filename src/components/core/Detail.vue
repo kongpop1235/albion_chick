@@ -12,7 +12,7 @@
         <v-col cols="1">
           <div class="segmented-control">
             <v-spacer></v-spacer>
-            <input type="radio" name="radio2" value="3" id="tab-1" checked />
+            <input type="radio" name="radio2" value="3" id="tab-1" @click="sorthigh" />
             <label for="tab-1" class="segmented-control__1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +49,7 @@
               </svg>
             </label>
             <v-spacer></v-spacer>
-            <input type="radio" name="radio2" value="4" id="tab-2" />
+            <input type="radio" name="radio2" value="4" id="tab-2" @click="sortlow" />
             <label for="tab-2" class="segmented-control__2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -98,6 +98,11 @@
         <v-col cols="2">
           <div class="form">
             <input type="text" class="form__input" placeholder="Min profit" />
+          </div>
+        </v-col>
+        <v-col cols="1">
+          <div class="btn btn__secondary d-flex align-center" x-large>
+            <p class="my-auto">SEE</p>
           </div>
         </v-col>
       </v-row>
@@ -210,8 +215,32 @@ export default {
       this.$store.getters.Detail[1] = false;
     }
   },
+  methods: {
+    sortlow() {
+      this.main = [];
+      this.$store.getters.Detail[1] = true;
+      if (this.$store.getters.Detail[1] == true) {
+        for (let sl = 150; sl >= 0; sl--) {
+          this.main.push(this.$store.getters[this.hds][sl]);
+          console.log(sl);
+        }
+
+        this.$store.getters.Detail[1] = false;
+      }
+    },
+    sorthigh() {
+      this.main = [];
+      this.$store.getters.Detail[1] = true;
+      if (this.$store.getters.Detail[1] == true) {
+        for (let sh = 0; sh < this.$store.getters[this.hds].length; sh++) {
+          this.main.push(this.$store.getters[this.hds][sh]);
+        }
+
+        this.$store.getters.Detail[1] = false;
+      }
+    },
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>
