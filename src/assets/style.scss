@@ -1,0 +1,49 @@
+/*  SEGMENTED-CONTROL */
+.segmented-control {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  width: 20.4rem;
+  height: 4rem;
+  box-shadow: $shadow;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  input {
+    display: none;
+  }
+
+  > input:checked + label {
+    transition: all 0.5s ease;
+    color: var(--primary);
+  }
+
+  &__1,
+  &__2,
+  &__3 {
+    width: 6.8rem;
+    height: 3.6rem;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: var(--greyDark);
+    transition: all 0.5s ease;
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+
+  &__color {
+    position: absolute;
+    height: 3.4rem;
+    width: 6.2rem;
+    margin-left: 0.3rem;
+    border-radius: 0.8rem;
+    box-shadow: $inner-shadow;
+    pointer-events: none;
+  }
+}
