@@ -652,7 +652,7 @@ export const store = new Vuex.Store({
             "https://render.albiononline.com/v1/item/" +
             this.getters.item[0].id[HL_item_lenght] +
             ".png";
-            best_sell_check[best_loop].percent = numeral(hp / this.getters.itemData[HL_item_lenght].item_detail.details[cd[ch]].sell).format('0,0');
+            best_sell_check[best_loop].percent = numeral((hp / this.getters.itemData[HL_item_lenght].item_detail.details[cd[ch]].sell)*100).format('0,0');
           best_loop++;
         }
         //Caerleon ส่วนบันทึกราคาไอเท็มต่อชิ้นก่อนขึ้นชิ้นใหม่
