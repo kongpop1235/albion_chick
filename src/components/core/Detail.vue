@@ -4,7 +4,7 @@
     elevation="0"
     rounded-0
   >
-    <v-card-title class="mx-0 px-4 mb-5">
+    <v-card-title class="mx-0 px-4 mb-5 pl-0">
       <h1 class="text-uppercase text-h">{{ hd }}</h1>
     </v-card-title>
     <v-card-text class="mx-0 px-0">
@@ -211,7 +211,6 @@ export default {
       for (let x = 0; x < this.$store.getters[this.hds].length; x++) {
         this.main.push(this.$store.getters[this.hds][x]);
       }
-
       this.$store.getters.Detail[1] = false;
     }
   },
@@ -220,11 +219,9 @@ export default {
       this.main = [];
       this.$store.getters.Detail[1] = true;
       if (this.$store.getters.Detail[1] == true) {
-        for (let sl = 150; sl >= 0; sl--) {
+        for (let sl = this.$store.getters[this.hds].length - 1; sl >= 0; sl--) {
           this.main.push(this.$store.getters[this.hds][sl]);
-          console.log(sl);
         }
-
         this.$store.getters.Detail[1] = false;
       }
     },
@@ -235,7 +232,6 @@ export default {
         for (let sh = 0; sh < this.$store.getters[this.hds].length; sh++) {
           this.main.push(this.$store.getters[this.hds][sh]);
         }
-
         this.$store.getters.Detail[1] = false;
       }
     },
