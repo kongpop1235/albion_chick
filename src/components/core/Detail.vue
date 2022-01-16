@@ -92,17 +92,27 @@
         <v-spacer></v-spacer>
         <v-col cols="2">
           <div class="form">
-            <input type="text" class="form__input" placeholder="Max profit" />
+            <input
+              type="text"
+              class="form__input"
+              placeholder="Max profit"
+              v-model="maxp"
+            />
           </div>
         </v-col>
         <v-col cols="2">
           <div class="form">
-            <input type="text" class="form__input" placeholder="Min profit" />
+            <input
+              type="text"
+              class="form__input"
+              placeholder="Min profit"
+              v-model="minp"
+            />
           </div>
         </v-col>
         <v-col cols="1">
           <div class="btn btn__secondary d-flex align-center" x-large>
-            <p class="my-auto">SEE</p>
+            <p class="my-auto" @click="rangprofit">SEE</p>
           </div>
         </v-col>
       </v-row>
@@ -188,6 +198,8 @@ export default {
       hd: null,
       hds: null,
       main: [],
+      low: false,
+      high: true,
     };
   },
   mounted() {
@@ -216,23 +228,68 @@ export default {
   },
   methods: {
     sortlow() {
+      const low = this.main;
+      low.sort(function (a, b) {
+        return parseFloat(b.profit) - parseFloat(a.profit);
+      });
       this.main = [];
-      this.$store.getters.Detail[1] = true;
-      if (this.$store.getters.Detail[1] == true) {
-        for (let sl = this.$store.getters[this.hds].length - 1; sl >= 0; sl--) {
-          this.main.push(this.$store.getters[this.hds][sl]);
-        }
-        this.$store.getters.Detail[1] = false;
+      for (let sl = low.length - 1; sl >= 0; sl--) {
+        this.main.push(low[sl]);
       }
+      this.low = true;
+      this.high = false;
     },
     sorthigh() {
+      const high = this.main;
+      high.sort(function (c, d) {
+        return parseFloat(d.profit) - parseFloat(c.profit);
+      });
       this.main = [];
-      this.$store.getters.Detail[1] = true;
-      if (this.$store.getters.Detail[1] == true) {
-        for (let sh = 0; sh < this.$store.getters[this.hds].length; sh++) {
-          this.main.push(this.$store.getters[this.hds][sh]);
+      for (let sh = 0; sh < high.length; sh++) {
+        this.main.push(high[sh]);
+      }
+
+      this.low = false;
+      this.high = true;
+    },
+    rangprofit() {
+      const maxp = this.maxp;
+      const minp = this.minp;
+      if (maxp == null && minp == null) {
+        alert("input profit min / max [**number only**]");
+      } else if (maxp != null && minp != null) {
+        alert("max || min");
+        if (this.low == true) {
+          const low = this.main;
+          low.sort(function (a, b) {
+            return parseFloat(b.profit) - parseFloat(a.profit);
+          });
+          this.main = [];
+          for (let sls = low.length - 1; sls >= 0; sls--) {
+            if (
+              low[sls].profit > minp &&
+              low[sls].profit < maxp
+            ) {
+              this.main.push(low[sls]);
+            }
+          }
+        } else if (this.high == true) {
+          this.main = [];
+          for (let shs = 0; shs < this.$store.getters[this.hds].length; shs++) {
+            if (
+              this.$store.getters[this.hds][shs].profit > minp &&
+              this.$store.getters[this.hds][shs].profit < maxp
+            ) {
+              this.main.push(this.$store.getters[this.hds][shs]);
+            }
+          }
         }
-        this.$store.getters.Detail[1] = false;
+      } else if (maxp != null && minp == null) {
+        alert("max");
+        this.main = [];
+      } else if (maxp == null && minp != null) {
+        alert("min");
+        this.main = [];
       }
     },
   },
