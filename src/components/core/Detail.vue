@@ -283,22 +283,19 @@ export default {
           }
         }
       } else if (maxp != null && maxp != undefined && maxp != "" && minp == null || minp == undefined || minp == "") {
-        alert("max");
-
         if (this.low == true) {
-          const low = this.main;
-          low.sort(function (a, b) {
-            return parseFloat(b.profit) - parseFloat(a.profit);
-          });
+          alert("max low");
+          const highm = this.main;
           this.main = [];
-          for (let sls = low.length - 1; sls >= 0; sls--) {
+          for (let sls = highm.length - 1; sls >= 0; sls--) {
             if (
-              low[sls].profit < maxp
+              highm[sls].profit < maxp
             ) {
-              this.main.push(low[sls]);
+              this.main.push(highm[sls]);
             }
           }
         } else if (this.high == true) {
+          alert("max high");
           this.main = [];
           for (let shs = 0; shs < this.$store.getters[this.hds].length; shs++) {
             if (
@@ -308,10 +305,33 @@ export default {
             }
           }
         }
-        this.main = [];
-      } else if (maxp == null && minp != null) {
-        alert("min");
-        this.main = [];
+        
+      } else if (maxp == null || maxp == undefined || maxp == "" && minp != null && minp != undefined && minp != "") {
+        if (this.low == true) {
+          alert("min low");
+          const lowm = this.main;
+          lowm.sort(function (a, b) {
+            return parseFloat(a.profit) - parseFloat(b.profit);
+          });
+          this.main = [];
+          for (let sls = 0; sls < lowm.length; sls++) {
+            if (
+              lowm[sls].profit > minp
+            ) {
+              this.main.push(lowm[sls]);
+            }
+          }
+        } else if (this.high == true) {
+        alert("min high");
+          this.main = [];
+          for (let shs = 0; shs < this.$store.getters[this.hds].length; shs++) {
+            if (
+              this.$store.getters[this.hds][shs].profit > minp
+            ) {
+              this.main.push(this.$store.getters[this.hds][shs]);
+            }
+          }
+        }
       }
     },
   },
