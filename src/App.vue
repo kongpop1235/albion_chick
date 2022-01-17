@@ -79,7 +79,9 @@ export default {
   position: absolute;
   width: 100%;
 }
-
+.text-detail{
+  color: var(--greyDark);
+}
 
 
 :root {
@@ -87,6 +89,7 @@ export default {
   --white: #3d3658; /*แสงเข้า*/
   --greyLight-2: #181529; /*เงาด้านใต้*/
   --greyDark: #9baacf; /*สีตัวอะกษรก่อนกด*/
+  --greyDark-05: #9baacf80;
 }
 
 *,
@@ -138,7 +141,7 @@ html {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  color: var(--greyDark);
+  color: var(--greyDark-05);
   transition: all 0.5s ease;
 }
 .segmented-control__1:hover,
@@ -181,7 +184,7 @@ html {
   box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
   background: none;
   font-family: inherit;
-  color: var(--greyDark);
+  color: var(--greyDark-05);
 }
 .form__input::-moz-placeholder {
   color: var(--greyLight-3);

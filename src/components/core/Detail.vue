@@ -90,25 +90,22 @@
           </div>
         </v-col>
         <v-spacer></v-spacer>
-        <v-col cols="2">
-          <div class="form">
-            <input
-              type="text"
-              class="form__input"
-              placeholder="Max profit"
-              v-model="maxp"
-            />
-          </div>
-        </v-col>
-        <v-col cols="2">
-          <div class="form">
-            <input
-              type="text"
-              class="form__input"
-              placeholder="Min profit"
-              v-model="minp"
-            />
-          </div>
+        <v-col cols="5">
+          <v-row class="mx-0">
+            <v-col cols="2" class="d-flex align-center">
+              <p class="text-uppercase text-h6 text-detail my-auto">PROFIT :</p>
+            </v-col>
+            <v-col cols="5">
+              <div class="form">
+                <input type="text" class="form__input" placeholder="Max" v-model="maxp" />
+              </div>
+            </v-col>
+            <v-col cols="5">
+              <div class="form">
+                <input type="text" class="form__input" placeholder="Min" v-model="minp" />
+              </div>
+            </v-col>
+          </v-row>
         </v-col>
         <v-col cols="1">
           <div class="btn btn__secondary d-flex align-center" x-large @click="rangprofit">
@@ -257,7 +254,14 @@ export default {
       const minp = this.minp;
       if (maxp == null && minp == null) {
         alert("input profit min / max [**number only**]");
-      } else if (maxp != null && maxp != undefined && maxp != "" && minp != null && minp != undefined && minp != "") {
+      } else if (
+        maxp != null &&
+        maxp != undefined &&
+        maxp != "" &&
+        minp != null &&
+        minp != undefined &&
+        minp != ""
+      ) {
         alert("max || min");
         console.log("minp :");
         console.log(minp);
@@ -282,15 +286,17 @@ export default {
             }
           }
         }
-      } else if (maxp != null && maxp != undefined && maxp != "" && minp == null || minp == undefined || minp == "") {
+      } else if (
+        (maxp != null && maxp != undefined && maxp != "" && minp == null) ||
+        minp == undefined ||
+        minp == ""
+      ) {
         if (this.low == true) {
           alert("max low");
           const highm = this.main;
           this.main = [];
           for (let sls = highm.length - 1; sls >= 0; sls--) {
-            if (
-              highm[sls].profit < maxp
-            ) {
+            if (highm[sls].profit < maxp) {
               this.main.push(highm[sls]);
             }
           }
@@ -298,15 +304,16 @@ export default {
           alert("max high");
           this.main = [];
           for (let shs = 0; shs < this.$store.getters[this.hds].length; shs++) {
-            if (
-              this.$store.getters[this.hds][shs].profit < maxp
-            ) {
+            if (this.$store.getters[this.hds][shs].profit < maxp) {
               this.main.push(this.$store.getters[this.hds][shs]);
             }
           }
         }
-        
-      } else if (maxp == null || maxp == undefined || maxp == "" && minp != null && minp != undefined && minp != "") {
+      } else if (
+        maxp == null ||
+        maxp == undefined ||
+        (maxp == "" && minp != null && minp != undefined && minp != "")
+      ) {
         if (this.low == true) {
           alert("min low");
           const lowm = this.main;
@@ -315,19 +322,15 @@ export default {
           });
           this.main = [];
           for (let sls = 0; sls < lowm.length; sls++) {
-            if (
-              lowm[sls].profit > minp
-            ) {
+            if (lowm[sls].profit > minp) {
               this.main.push(lowm[sls]);
             }
           }
         } else if (this.high == true) {
-        alert("min high");
+          alert("min high");
           this.main = [];
           for (let shs = 0; shs < this.$store.getters[this.hds].length; shs++) {
-            if (
-              this.$store.getters[this.hds][shs].profit > minp
-            ) {
+            if (this.$store.getters[this.hds][shs].profit > minp) {
               this.main.push(this.$store.getters[this.hds][shs]);
             }
           }
