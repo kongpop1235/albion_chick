@@ -111,8 +111,8 @@
           </div>
         </v-col>
         <v-col cols="1">
-          <div class="btn btn__secondary d-flex align-center" x-large>
-            <p class="my-auto" @click="rangprofit">SEE</p>
+          <div class="btn btn__secondary d-flex align-center" x-large @click="rangprofit">
+            <p class="my-auto">SEE</p>
           </div>
         </v-col>
       </v-row>
@@ -257,20 +257,18 @@ export default {
       const minp = this.minp;
       if (maxp == null && minp == null) {
         alert("input profit min / max [**number only**]");
-      } else if (maxp != null && minp != null) {
+      } else if (maxp != null && maxp != undefined && maxp != "" && minp != null && minp != undefined && minp != "") {
         alert("max || min");
+        console.log("minp :");
+        console.log(minp);
         if (this.low == true) {
-          const low = this.main;
-          low.sort(function (a, b) {
-            return parseFloat(b.profit) - parseFloat(a.profit);
-          });
           this.main = [];
-          for (let sls = low.length - 1; sls >= 0; sls--) {
+          for (let sls = this.$store.getters[this.hds].length - 1; sls >= 0; sls--) {
             if (
-              low[sls].profit > minp &&
-              low[sls].profit < maxp
+              this.$store.getters[this.hds][sls].profit > minp &&
+              this.$store.getters[this.hds][sls].profit < maxp
             ) {
-              this.main.push(low[sls]);
+              this.main.push(this.$store.getters[this.hds][sls]);
             }
           }
         } else if (this.high == true) {
@@ -284,8 +282,32 @@ export default {
             }
           }
         }
-      } else if (maxp != null && minp == null) {
+      } else if (maxp != null && maxp != undefined && maxp != "" && minp == null || minp == undefined || minp == "") {
         alert("max");
+
+        if (this.low == true) {
+          const low = this.main;
+          low.sort(function (a, b) {
+            return parseFloat(b.profit) - parseFloat(a.profit);
+          });
+          this.main = [];
+          for (let sls = low.length - 1; sls >= 0; sls--) {
+            if (
+              low[sls].profit < maxp
+            ) {
+              this.main.push(low[sls]);
+            }
+          }
+        } else if (this.high == true) {
+          this.main = [];
+          for (let shs = 0; shs < this.$store.getters[this.hds].length; shs++) {
+            if (
+              this.$store.getters[this.hds][shs].profit < maxp
+            ) {
+              this.main.push(this.$store.getters[this.hds][shs]);
+            }
+          }
+        }
         this.main = [];
       } else if (maxp == null && minp != null) {
         alert("min");
