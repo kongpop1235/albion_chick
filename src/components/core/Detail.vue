@@ -90,10 +90,29 @@
           </div>
         </v-col>
         <v-spacer></v-spacer>
-        <v-col cols="5">
-          <v-row class="mx-0">
+        <v-col cols="4">
+          <v-row>
+            <v-spacer></v-spacer>
             <v-col cols="2" class="d-flex align-center">
-              <p class="text-uppercase text-h6 text-detail my-auto">PROFIT :</p>
+              <p class="text-uppercase text-h6 text-detail my-auto mx-auto">cost :</p>
+            </v-col>
+            <v-col cols="5">
+              <div class="form">
+                <input type="text" class="form__input" placeholder="Max" v-model="maxc" />
+              </div>
+            </v-col>
+            <v-col cols="5">
+              <div class="form">
+                <input type="text" class="form__input" placeholder="Min" v-model="minc" />
+              </div>
+            </v-col>
+          </v-row>
+        </v-col>
+
+        <v-col cols="4">
+          <v-row>
+            <v-col cols="2" class="d-flex align-center">
+              <p class="text-uppercase text-h6 text-detail my-auto mx-auto">profit :</p>
             </v-col>
             <v-col cols="5">
               <div class="form">
@@ -252,8 +271,29 @@ export default {
     rangprofit() {
       const maxp = this.maxp;
       const minp = this.minp;
-      if (maxp == null && minp == null) {
+      if (
+        maxp == null &&
+        maxp == undefined &&
+        maxp == "" && minp == null &&
+        minp == undefined &&
+        minp == ""
+      ) {
         alert("input profit min / max [**number only**]");
+        if (this.high == true) {
+          this.main = [];
+          for (let x = 0; x < this.$store.getters[this.hds].length; x++) {
+            this.main.push(this.$store.getters[this.hds][x]);
+          }
+        } else if (this.low == true) {
+          const lowm = this.main;
+          lowm.sort(function (a, b) {
+            return parseFloat(b.profit) - parseFloat(a.profit);
+          });
+          this.main = [];
+          for (let sl = lowm.length - 1; sl >= 0; sl--) {
+            this.main.push(lowm[sl]);
+          }
+        }
       } else if (
         maxp != null &&
         maxp != undefined &&
@@ -294,8 +334,11 @@ export default {
         if (this.low == true) {
           alert("max low");
           const highm = this.main;
+          highm.sort(function (a, b) {
+            return parseFloat(a.profit) - parseFloat(b.profit);
+          });
           this.main = [];
-          for (let sls = highm.length - 1; sls >= 0; sls--) {
+          for (let sls = 0; sls < highm.length; sls++) {
             if (highm[sls].profit < maxp) {
               this.main.push(highm[sls]);
             }

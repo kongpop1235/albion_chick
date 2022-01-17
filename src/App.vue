@@ -175,7 +175,7 @@ html {
   grid-row: 3/4;
 }
 .form__input {
-  width: 15.9rem;
+  width: 100%;
   height: 3.6rem;
   border: none;
   border-radius: 0.3rem;
