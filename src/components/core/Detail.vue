@@ -98,12 +98,24 @@
             </v-col>
             <v-col cols="5">
               <div class="form">
-                <input type="text" class="form__input" placeholder="Max" v-model="maxc" />
+                <input
+                  type="text"
+                  class="form__input"
+                  placeholder="Max"
+                  v-model="maxc"
+                  @keydown.enter="rangprofit"
+                />
               </div>
             </v-col>
             <v-col cols="5">
               <div class="form">
-                <input type="text" class="form__input" placeholder="Min" v-model="minc" />
+                <input
+                  type="text"
+                  class="form__input"
+                  placeholder="Min"
+                  v-model="minc"
+                  @keydown.enter="rangprofit"
+                />
               </div>
             </v-col>
           </v-row>
@@ -116,12 +128,24 @@
             </v-col>
             <v-col cols="5">
               <div class="form">
-                <input type="text" class="form__input" placeholder="Max" v-model="maxp" />
+                <input
+                  type="text"
+                  class="form__input"
+                  placeholder="Max"
+                  v-model="maxp"
+                  @keydown.enter="rangprofit"
+                />
               </div>
             </v-col>
             <v-col cols="5">
               <div class="form">
-                <input type="text" class="form__input" placeholder="Min" v-model="minp" />
+                <input
+                  type="text"
+                  class="form__input"
+                  placeholder="Min"
+                  v-model="minp"
+                  @keydown.enter="rangprofit"
+                />
               </div>
             </v-col>
           </v-row>
@@ -269,9 +293,97 @@ export default {
       this.high = true;
     },
     rangprofit() {
-      const maxp = this.maxp;
-      const minp = this.minp;
+      let maxp = this.maxp;
+      let minp = this.minp;
+      let maxc = this.maxc;
+      let minc = this.minc;
       if (
+        (maxp != null && maxp != undefined && maxp != "") ||
+        (minp != null && minp != undefined && minp != "") ||
+        (minc != null && minc != undefined && minc != "") ||
+        (maxc != null && maxc != undefined && maxc != "")
+      ) {
+        alert("max || min");
+        if (maxp == null || maxp == "" || maxp == undefined) {
+          maxp = Infinity;
+        }
+        if (minp == null || minp == "" || minp == undefined) {
+          minp = 0;
+        }
+        if (maxc == null || maxc == "" || maxc == undefined) {
+          maxc = Infinity;
+        }
+        if (minc == null || minc == "" || minc == undefined) {
+          minc = 0;
+        }
+        alert("maxp : " + maxp);
+        alert("minp : " + minp);
+        alert("maxc : " + maxc);
+        alert("minc : " + minc);
+        if (this.low == true) {
+          alert("max || min || low");
+          const lowmm = this.$store.getters[this.hds];
+          lowmm.sort(function (e, f) {
+            return parseFloat(e.profit_check) - parseFloat(f.profit_check);
+          });
+          this.main = [];
+          for (let sls = 0; sls < lowmm.length; sls++) {
+            if (
+              lowmm[sls].profit_check <= maxp &&
+              lowmm[sls].profit_check >= minp &&
+              lowmm[sls].city_buy_price_check <= maxc &&
+              lowmm[sls].city_buy_price_check >= minc
+            ) {
+              this.main.push(this.$store.getters[this.hds][sls]);
+            }
+          }
+        } else if (this.high == true) {
+          alert("max || min || high");
+          const highmm = this.$store.getters[this.hds];
+          highmm.sort(function (j, k) {
+            return parseFloat(k.profit_check) - parseFloat(j.profit_check);
+          });
+          this.main = [];
+          for (let shs = 0; shs < highmm.length; shs++) {
+            if (
+              highmm[shs].profit_check <= maxp &&
+              highmm[shs].profit_check >= minp &&
+              highmm[shs].city_buy_price_check <= maxc &&
+              highmm[shs].city_buy_price_check >= minc
+            ) {
+              this.main.push(this.$store.getters[this.hds][shs]);
+            }
+          }
+        }
+      } else if (
+        (maxp == null && minp == null) ||
+        (maxp == null && minp == undefined) ||
+        (maxp == null && minp == "") ||
+        (maxp == undefined && minp == null) ||
+        (maxp == undefined && minp == undefined) ||
+        (maxp == undefined && minp == "") ||
+        (maxp == "" && minp == null) ||
+        (maxp == "" && minp == undefined) ||
+        (maxp == "" && minp == "")
+      ) {
+        alert("input profit min / max [**number only**]");
+        if (this.high == true) {
+          this.main = [];
+          for (let x = 0; x < this.$store.getters[this.hds].length; x++) {
+            this.main.push(this.$store.getters[this.hds][x]);
+          }
+        } else if (this.low == true) {
+          const lowx = this.main;
+          lowx.sort(function (a, b) {
+            return parseFloat(b.profit_check) - parseFloat(a.profit_check);
+          });
+          this.main = [];
+          for (let sl = lowx.length - 1; sl >= 0; sl--) {
+            this.main.push(lowx[sl]);
+          }
+        }
+      }
+      /* if (
         ((maxp == null && minp == null) ||
           (maxp == null && minp == undefined) ||
           (maxp == null && minp == "")) ||
@@ -417,7 +529,7 @@ export default {
             }
           }
         }
-      }
+      } */
     },
   },
 };

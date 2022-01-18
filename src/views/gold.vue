@@ -43,7 +43,7 @@ export default {
       timeToDelay //delay
     ) => new Promise((resolve) => setTimeout(resolve, timeToDelay));
     //log
-    await wait(2000); //delay time
+    await wait(1); //delay time
 
     if (this.$store.getters.gold_price[1] == true) {
       //check Gold data
