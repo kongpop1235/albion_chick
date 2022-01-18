@@ -246,7 +246,7 @@ export default {
     sortlow() {
       const low = this.main;
       low.sort(function (a, b) {
-        return parseFloat(b.profit) - parseFloat(a.profit);
+        return parseFloat(b.profit_check) - parseFloat(a.profit_check);
       });
       this.main = [];
       for (let sl = low.length - 1; sl >= 0; sl--) {
@@ -258,7 +258,7 @@ export default {
     sorthigh() {
       const high = this.main;
       high.sort(function (c, d) {
-        return parseFloat(d.profit) - parseFloat(c.profit);
+        return parseFloat(d.profit_check) - parseFloat(c.profit_check);
       });
       this.main = [];
       for (let sh = 0; sh < high.length; sh++) {
@@ -291,7 +291,7 @@ export default {
         } else if (this.low == true) {
           const lowx = this.main;
           lowx.sort(function (a, b) {
-            return parseFloat(b.profit) - parseFloat(a.profit);
+            return parseFloat(b.profit_check) - parseFloat(a.profit_check);
           });
           this.main = [];
           for (let sl = lowx.length - 1; sl >= 0; sl--) {
@@ -313,11 +313,11 @@ export default {
           alert("max || min || low");
           const lowmm = this.$store.getters[this.hds];
           lowmm.sort(function (e, f) {
-            return parseFloat(e.profit) - parseFloat(f.profit);
+            return parseFloat(e.profit_check) - parseFloat(f.profit_check);
           });
           this.main = [];
           for (let sls = 0; sls < lowmm.length; sls++) {
-            if (lowmm[sls].profit <= maxp && lowmm[sls].profit >= minp) {
+            if (lowmm[sls].profit_check <= maxp && lowmm[sls].profit_check >= minp) {
               this.main.push(this.$store.getters[this.hds][sls]);
             }
           }
@@ -325,11 +325,11 @@ export default {
           alert("max || min || high");
           const highmm = this.$store.getters[this.hds];
           highmm.sort(function (j, k) {
-            return parseFloat(k.profit) - parseFloat(j.profit);
+            return parseFloat(k.profit_check) - parseFloat(j.profit_check);
           });
           this.main = [];
           for (let shs = 0; shs < highmm.length; shs++) {
-            if (highmm[shs].profit <= maxp && highmm[shs].profit >= minp) {
+            if (highmm[shs].profit_check <= maxp && highmm[shs].profit_check >= minp) {
               this.main.push(this.$store.getters[this.hds][shs]);
             }
           }
@@ -337,8 +337,8 @@ export default {
           this.main = [];
           for (let shs = 0; shs < this.$store.getters[this.hds].length; shs++) {
             if (
-              this.$store.getters[this.hds][shs].profit >= minp &&
-              this.$store.getters[this.hds][shs].profit <= maxp
+              this.$store.getters[this.hds][shs].profit_check >= minp &&
+              this.$store.getters[this.hds][shs].profit_check <= maxp
             ) {
               this.main.push(this.$store.getters[this.hds][shs]);
             }
@@ -359,11 +359,11 @@ export default {
           alert("max low");
           const highxl = this.$store.getters[this.hds];
           highxl.sort(function (a, b) {
-            return parseFloat(a.profit) - parseFloat(b.profit);
+            return parseFloat(a.profit_check) - parseFloat(b.profit_check);
           });
           this.main = [];
           for (let sls = 0; sls < highxl.length; sls++) {
-            if (highxl[sls].profit <= maxp) {
+            if (highxl[sls].profit_check <= maxp) {
               this.main.push(this.$store.getters[this.hds][sls]);
             }
           }
@@ -371,11 +371,11 @@ export default {
           alert("max high");
           const highxh = this.$store.getters[this.hds];
           highxh.sort(function (e, f) {
-            return parseFloat(f.profit) - parseFloat(e.profit);
+            return parseFloat(f.profit_check) - parseFloat(e.profit_check);
           });
           this.main = [];
           for (let shs = 0; shs < highxh.length; shs++) {
-            if (highxh[shs].profit <= maxp) {
+            if (highxh[shs].profit_check <= maxp) {
               this.main.push(this.$store.getters[this.hds][shs]);
             }
           }
@@ -395,11 +395,11 @@ export default {
           alert("min low");
           const lowm = this.$store.getters[this.hds];
           lowm.sort(function (c, d) {
-            return parseFloat(c.profit) - parseFloat(d.profit);
+            return parseFloat(c.profit_check) - parseFloat(d.profit_check);
           });
           this.main = [];
           for (let sls = 0; sls < lowm.length; sls++) {
-            if (lowm[sls].profit >= minp) {
+            if (lowm[sls].profit_check >= minp) {
               this.main.push(this.$store.getters[this.hds][sls]);
             }
           }
@@ -408,11 +408,11 @@ export default {
           this.main = [];
           const lownh = this.$store.getters[this.hds];
           lownh.sort(function (h, i) {
-            return parseFloat(i.profit) - parseFloat(h.profit);
+            return parseFloat(i.profit_check) - parseFloat(h.profit_check);
           });
           this.main = [];
           for (let shs = 0; shs < lownh.length; shs++) {
-            if (lownh[shs].profit >= minp) {
+            if (lownh[shs].profit_check >= minp) {
               this.main.push(this.$store.getters[this.hds][shs]);
             }
           }

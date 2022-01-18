@@ -467,7 +467,7 @@ export const store = new Vuex.Store({
 
       for (
         let HL_item_lenght = 0;
-        HL_item_lenght < this.getters.itemData.length-1;
+        HL_item_lenght < this.getters.itemData.length - 1;
         HL_item_lenght++
       ) {
         for (let h = 0; h < 6; h++) {
@@ -712,17 +712,26 @@ export const store = new Vuex.Store({
         if (hp < 200000 && lp != 0 && lp != null && lp != Infinity) {
           best_sell.push({
             item: this.getters.item[0].name[HL_item_lenght],
-            profit: hp,
+            profit: numeral(hp).format("0,0"),
+            profit_check: hp,
             city_buy: this.getters.itemData[HL_item_lenght].item_detail.details[
               cd[cl]
             ].city,
-            city_buy_price: this.getters.itemData[HL_item_lenght].item_detail
-              .details[cd[cl]].sell,
+            city_buy_price: numeral(
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[cl]]
+                .sell
+            ).format("0,0"),
+            city_buy_price_check: this.getters.itemData[HL_item_lenght]
+              .item_detail.details[cd[cl]].sell,
             city_color_buy: "color : " + city[cl],
             city_sell: this.getters.itemData[HL_item_lenght].item_detail
               .details[cd[ch]].city,
-            city_sell_price: this.getters.itemData[HL_item_lenght].item_detail
-              .details[cd[ch]].sell,
+            city_sell_price: numeral(
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[ch]]
+                .sell
+            ).format("0,0"),
+            city_sell_price_check: this.getters.itemData[HL_item_lenght]
+              .item_detail.details[cd[ch]].sell,
             city_color_sell: "color : " + city[ch],
             api_img:
               "https://render.albiononline.com/v1/item/" +
@@ -739,105 +748,231 @@ export const store = new Vuex.Store({
         }
         //Caerleon ส่วนบันทึกราคาไอเท็มต่อชิ้นก่อนขึ้นชิ้นใหม่
         if (c_bh < 200000 && c_bl != Infinity && c_bl != 0 && c_bl != null) {
-          c_best_sell.push(
-            {
+          c_best_sell.push({
             item: this.getters.item[0].name[HL_item_lenght],
-            profit: c_bh,
-            city_buy: this.getters.itemData[HL_item_lenght].item_detail.details[cd[c_cl]].city,
-            city_buy_price: this.getters.itemData[HL_item_lenght].item_detail.details[cd[c_cl]].sell,
+            profit: numeral(c_bh).format("0,0"),
+            profit_check: c_bh,
+            city_buy: this.getters.itemData[HL_item_lenght].item_detail.details[
+              cd[c_cl]
+            ].city,
+            city_buy_price: numeral(
+              this.getters.itemData[HL_item_lenght].item_detail.details[
+                cd[c_cl]
+              ].sell
+            ).format("0,0"),
+            city_buy_price_check: this.getters.itemData[HL_item_lenght]
+              .item_detail.details[cd[c_cl]].sell,
             city_color_buy: "color : " + city[c_cl],
-            city_sell: this.getters.itemData[HL_item_lenght].item_detail.details[cd[1]].city,
-            city_sell_price: this.getters.itemData[HL_item_lenght].item_detail.details[cd[1]].sell,
+            city_sell: this.getters.itemData[HL_item_lenght].item_detail
+              .details[cd[1]].city,
+            city_sell_price: numeral(
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[1]]
+                .sell
+            ).format("0,0"),
+            city_sell_price_check: this.getters.itemData[HL_item_lenght]
+              .item_detail.details[cd[1]].sell,
             city_color_sell: "color : " + city[1],
-            api_img: "https://render.albiononline.com/v1/item/" + this.getters.item[0].id[HL_item_lenght] + ".png",
-            percent: numeral((hp / this.getters.itemData[HL_item_lenght].item_detail.details[cd[1]].sell) * 100).format("0,0")
-            }
-          );
+            api_img:
+              "https://render.albiononline.com/v1/item/" +
+              this.getters.item[0].id[HL_item_lenght] +
+              ".png",
+            percent: numeral(
+              (hp /
+                this.getters.itemData[HL_item_lenght].item_detail.details[cd[1]]
+                  .sell) *
+                100
+            ).format("0,0"),
+          });
         }
         //Thetford ส่วนบันทึกราคาไอเท็มต่อชิ้นก่อนขึ้นชิ้นใหม่
         if (t_bh < 200000 && t_bl != Infinity && t_bl != 0 && t_bl != null) {
-          t_best_sell.push(
-            {
-              item: this.getters.item[0].name[HL_item_lenght],
-              profit: t_bh,
-              city_buy: this.getters.itemData[HL_item_lenght].item_detail.details[cd[t_cl]].city,
-              city_buy_price: this.getters.itemData[HL_item_lenght].item_detail.details[cd[t_cl]].sell,
-              city_color_buy: "color : " + city[t_cl],
-              city_sell: this.getters.itemData[HL_item_lenght].item_detail.details[cd[5]].city,
-              city_sell_price: this.getters.itemData[HL_item_lenght].item_detail.details[cd[5]].sell,
-              city_color_sell: "color : " + city[5],
-              api_img: "https://render.albiononline.com/v1/item/" + this.getters.item[0].id[HL_item_lenght] + ".png",
-              percent: numeral((hp / this.getters.itemData[HL_item_lenght].item_detail.details[cd[5]].sell) * 100).format("0,0"),
-            }
-          );
+          t_best_sell.push({
+            item: this.getters.item[0].name[HL_item_lenght],
+            profit: numeral(t_bh).format("0,0"),
+            profit_check: t_bh,
+            city_buy: this.getters.itemData[HL_item_lenght].item_detail.details[
+              cd[t_cl]
+            ].city,
+            city_buy_price: numeral(
+              this.getters.itemData[HL_item_lenght].item_detail.details[
+                cd[t_cl]
+              ].sell
+            ).format("0,0"),
+            city_buy_price_check: this.getters.itemData[HL_item_lenght]
+              .item_detail.details[cd[t_cl]].sell,
+            city_color_buy: "color : " + city[t_cl],
+            city_sell: this.getters.itemData[HL_item_lenght].item_detail
+              .details[cd[5]].city,
+            city_sell_price: numeral(
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[5]]
+                .sell
+            ).format("0,0"),
+            city_sell_price_check: this.getters.itemData[HL_item_lenght]
+              .item_detail.details[cd[5]].sell,
+            city_color_sell: "color : " + city[5],
+            api_img:
+              "https://render.albiononline.com/v1/item/" +
+              this.getters.item[0].id[HL_item_lenght] +
+              ".png",
+            percent: numeral(
+              (hp /
+                this.getters.itemData[HL_item_lenght].item_detail.details[cd[5]]
+                  .sell) *
+                100
+            ).format("0,0"),
+          });
         }
         //Martlock
         if (m_bh < 200000 && m_bl != Infinity && m_bl != 0 && m_bl != null) {
-          m_best_sell.push(
-            {
-              item: this.getters.item[0].name[HL_item_lenght],
-              profit: m_bh,
-              city_buy: this.getters.itemData[HL_item_lenght].item_detail.details[cd[m_cl]].city,
-              city_buy_price: this.getters.itemData[HL_item_lenght].item_detail.details[cd[m_cl]].sell,
-              city_color_buy: "color : " + city[m_cl],
-              city_sell: this.getters.itemData[HL_item_lenght].item_detail.details[cd[4]].city,
-              city_sell_price: this.getters.itemData[HL_item_lenght].item_detail.details[cd[4]].sell,
-              city_color_sell: "color : " + city[4],
-              api_img: "https://render.albiononline.com/v1/item/" + this.getters.item[0].id[HL_item_lenght] + ".png",
-              percent: numeral((hp / this.getters.itemData[HL_item_lenght].item_detail.details[cd[4]].sell) * 100).format("0,0"),
-            }
-          );
+          m_best_sell.push({
+            item: this.getters.item[0].name[HL_item_lenght],
+            profit: numeral(m_bh).format("0,0"),
+            profit_check: m_bh,
+            city_buy: this.getters.itemData[HL_item_lenght].item_detail.details[
+              cd[m_cl]
+            ].city,
+            city_buy_price: numeral(
+              this.getters.itemData[HL_item_lenght].item_detail.details[
+                cd[m_cl]
+              ].sell
+            ).format("0,0"),
+            city_buy_price_check: this.getters.itemData[HL_item_lenght]
+              .item_detail.details[cd[m_cl]].sell,
+            city_color_buy: "color : " + city[m_cl],
+            city_sell: this.getters.itemData[HL_item_lenght].item_detail
+              .details[cd[4]].city,
+            city_sell_price: numeral(
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[4]]
+                .sell
+            ).format("0,0"),
+            city_sell_price_check: this.getters.itemData[HL_item_lenght]
+              .item_detail.details[cd[4]].sell,
+            city_color_sell: "color : " + city[4],
+            api_img:
+              "https://render.albiononline.com/v1/item/" +
+              this.getters.item[0].id[HL_item_lenght] +
+              ".png",
+            percent: numeral(
+              (hp /
+                this.getters.itemData[HL_item_lenght].item_detail.details[cd[4]]
+                  .sell) *
+                100
+            ).format("0,0"),
+          });
         }
         //Lymhurst
         if (l_bh < 200000 && l_bl != Infinity && l_bl != 0 && l_bl != null) {
-          l_best_sell.push(
-            {
-              item: this.getters.item[0].name[HL_item_lenght],
-              profit: l_bh,
-              city_buy: this.getters.itemData[HL_item_lenght].item_detail.details[cd[l_cl]].city,
-              city_buy_price: this.getters.itemData[HL_item_lenght].item_detail.details[cd[l_cl]].sell,
-              city_color_buy: "color : " + city[l_cl],
-              city_sell: this.getters.itemData[HL_item_lenght].item_detail.details[cd[3]].city,
-              city_sell_price: this.getters.itemData[HL_item_lenght].item_detail.details[cd[3]].sell,
-              city_color_sell: "color : " + city[3],
-              api_img: "https://render.albiononline.com/v1/item/" + this.getters.item[0].id[HL_item_lenght] + ".png",
-              percent: numeral((hp / this.getters.itemData[HL_item_lenght].item_detail.details[cd[3]].sell) * 100).format("0,0"),
-            }
-          );
+          l_best_sell.push({
+            item: this.getters.item[0].name[HL_item_lenght],
+            profit: numeral(l_bh).format("0,0"),
+            profit_check: l_bh,
+            city_buy: this.getters.itemData[HL_item_lenght].item_detail.details[
+              cd[l_cl]
+            ].city,
+            city_buy_price: numeral(
+              this.getters.itemData[HL_item_lenght].item_detail.details[
+                cd[l_cl]
+              ].sell
+            ).format("0,0"),
+            city_buy_price_check: this.getters.itemData[HL_item_lenght]
+              .item_detail.details[cd[l_cl]].sell,
+            city_color_buy: "color : " + city[l_cl],
+            city_sell: this.getters.itemData[HL_item_lenght].item_detail
+              .details[cd[3]].city,
+            city_sell_price: numeral(
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[3]]
+                .sell
+            ).format("0,0"),
+            city_sell_price_check: this.getters.itemData[HL_item_lenght]
+              .item_detail.details[cd[3]].sell,
+            city_color_sell: "color : " + city[3],
+            api_img:
+              "https://render.albiononline.com/v1/item/" +
+              this.getters.item[0].id[HL_item_lenght] +
+              ".png",
+            percent: numeral(
+              (hp /
+                this.getters.itemData[HL_item_lenght].item_detail.details[cd[3]]
+                  .sell) *
+                100
+            ).format("0,0"),
+          });
         }
         //FortSterling
         if (f_bh < 200000 && f_bl != Infinity && f_bl != 0 && f_bl != null) {
-          f_best_sell.push(
-            {
-              item: this.getters.item[0].name[HL_item_lenght],
-              profit: f_bh,
-              city_buy: this.getters.itemData[HL_item_lenght].item_detail.details[cd[f_cl]].city,
-              city_buy_price: this.getters.itemData[HL_item_lenght].item_detail.details[cd[f_cl]].sell,
-              city_color_buy: "color : " + city[f_cl],
-              city_sell: this.getters.itemData[HL_item_lenght].item_detail.details[cd[2]].city,
-              city_sell_price: this.getters.itemData[HL_item_lenght].item_detail.details[cd[2]].sell,
-              city_color_sell: "color : " + city[2],
-              api_img: "https://render.albiononline.com/v1/item/" + this.getters.item[0].id[HL_item_lenght] + ".png",
-              percent: numeral((hp / this.getters.itemData[HL_item_lenght].item_detail.details[cd[2]].sell) * 100).format("0,0"),
-            }
-          );
+          f_best_sell.push({
+            item: this.getters.item[0].name[HL_item_lenght],
+            profit: numeral(f_bh).format("0,0"),
+            profit_check: f_bh,
+            city_buy: this.getters.itemData[HL_item_lenght].item_detail.details[
+              cd[f_cl]
+            ].city,
+            city_buy_price: numeral(
+              this.getters.itemData[HL_item_lenght].item_detail.details[
+                cd[f_cl]
+              ].sell
+            ).format("0,0"),
+            city_buy_price_check: this.getters.itemData[HL_item_lenght]
+              .item_detail.details[cd[f_cl]].sell,
+            city_color_buy: "color : " + city[f_cl],
+            city_sell: this.getters.itemData[HL_item_lenght].item_detail
+              .details[cd[2]].city,
+            city_sell_price: numeral(
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[2]]
+                .sell
+            ).format("0,0"),
+            city_sell_price_check: this.getters.itemData[HL_item_lenght]
+              .item_detail.details[cd[2]].sell,
+            city_color_sell: "color : " + city[2],
+            api_img:
+              "https://render.albiononline.com/v1/item/" +
+              this.getters.item[0].id[HL_item_lenght] +
+              ".png",
+            percent: numeral(
+              (hp /
+                this.getters.itemData[HL_item_lenght].item_detail.details[cd[2]]
+                  .sell) *
+                100
+            ).format("0,0"),
+          });
         }
         //Bridgewatch
         if (b_bh < 200000 && b_bl != Infinity && b_bl != 0 && b_bl != null) {
-          b_best_sell.push(
-            {
-              item: this.getters.item[0].name[HL_item_lenght],
-              profit: b_bh,
-              city_buy: this.getters.itemData[HL_item_lenght].item_detail.details[cd[b_cl]].city,
-              city_buy_price: this.getters.itemData[HL_item_lenght].item_detail.details[cd[b_cl]].sell,
-              city_color_buy: "color : " + city[b_cl],
-              city_sell: this.getters.itemData[HL_item_lenght].item_detail.details[cd[0]].city,
-              city_sell_price: this.getters.itemData[HL_item_lenght].item_detail.details[cd[0]].sell,
-              city_color_sell: "color : " + city[0],
-              api_img: "https://render.albiononline.com/v1/item/" + this.getters.item[0].id[HL_item_lenght] + ".png",
-              percent: numeral((hp / this.getters.itemData[HL_item_lenght].item_detail.details[cd[0]].sell) * 100).format("0,0"),
-            }
-          );
+          b_best_sell.push({
+            item: this.getters.item[0].name[HL_item_lenght],
+            profit: numeral(b_bh).format("0,0"),
+            profit_check: b_bh,
+            city_buy: this.getters.itemData[HL_item_lenght].item_detail.details[
+              cd[b_cl]
+            ].city,
+            city_buy_price: numeral(
+              this.getters.itemData[HL_item_lenght].item_detail.details[
+                cd[b_cl]
+              ].sell
+            ).format("0,0"),
+            city_buy_price_check: this.getters.itemData[HL_item_lenght]
+              .item_detail.details[cd[b_cl]].sell,
+            city_color_buy: "color : " + city[b_cl],
+            city_sell: this.getters.itemData[HL_item_lenght].item_detail
+              .details[cd[0]].city,
+            city_sell_price: numeral(
+              this.getters.itemData[HL_item_lenght].item_detail.details[cd[0]]
+                .sell
+            ).format("0,0"),
+            city_sell_price_check: this.getters.itemData[HL_item_lenght]
+              .item_detail.details[cd[0]].sell,
+            city_color_sell: "color : " + city[0],
+            api_img:
+              "https://render.albiononline.com/v1/item/" +
+              this.getters.item[0].id[HL_item_lenght] +
+              ".png",
+            percent: numeral(
+              (hp /
+                this.getters.itemData[HL_item_lenght].item_detail.details[cd[0]]
+                  .sell) *
+                100
+            ).format("0,0"),
+          });
         }
         //reset price
         //best sell
@@ -864,35 +999,35 @@ export const store = new Vuex.Store({
       }
 
       //best sell
-      best_sell.sort(function(a,b) {
-        return parseFloat(b.profit) - parseFloat(a.profit)
+      best_sell.sort(function(a, b) {
+        return parseFloat(b.profit_check) - parseFloat(a.profit_check);
       });
 
       //Caerleon
       c_best_sell.sort(function(c, d) {
-        return parseFloat(d.profit) - parseFloat(c.profit);
+        return parseFloat(d.profit_check) - parseFloat(c.profit_check);
       });
       // console.log("c_profit_check : " + c_profit_check);
       // console.log("c_best : " + c_best);
       //Thetford
       t_best_sell.sort(function(e, f) {
-        return parseFloat(f.profit) - parseFloat(e.profit);
+        return parseFloat(f.profit_check) - parseFloat(e.profit_check);
       });
       //Martlock
       m_best_sell.sort(function(g, h) {
-        return parseFloat(h.profit) - parseFloat(g.profit);
+        return parseFloat(h.profit_check) - parseFloat(g.profit_check);
       });
       //Lymhurst
       l_best_sell.sort(function(i, j) {
-        return parseFloat(j.profit) - parseFloat(i.profit);
+        return parseFloat(j.profit_check) - parseFloat(i.profit_check);
       });
       //FortSterling
       f_best_sell.sort(function(k, l) {
-        return parseFloat(l.profit) - parseFloat(k.profit);
+        return parseFloat(l.profit_check) - parseFloat(k.profit_check);
       });
       //Bridgewatch
       b_best_sell.sort(function(m, n) {
-        return parseFloat(n.profit) - parseFloat(m.profit);
+        return parseFloat(n.profit_check) - parseFloat(m.profit_check);
       });
       await commit("SET_H_L_PRICE", best_sell);
       await commit("SET_H_L_PRICE_C", c_best_sell);
