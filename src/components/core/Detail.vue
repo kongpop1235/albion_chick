@@ -272,12 +272,15 @@ export default {
       const maxp = this.maxp;
       const minp = this.minp;
       if (
-        maxp == null &&
-        maxp == undefined &&
-        maxp == "" &&
-        minp == null &&
-        minp == undefined &&
-        minp == ""
+        ((maxp == null && minp == null) ||
+          (maxp == null && minp == undefined) ||
+          (maxp == null && minp == "")) ||
+        ((maxp == undefined && minp == null) ||
+          (maxp == undefined && minp == undefined) ||
+          (maxp == undefined && minp == "")) ||
+        ((maxp == "" && minp == null) ||
+          (maxp == "" && minp == undefined) ||
+          (maxp == "" && minp == ""))
       ) {
         alert("input profit min / max [**number only**]");
         if (this.high == true) {
@@ -342,9 +345,15 @@ export default {
           }
         }
       } else if (
-        (maxp != null && maxp != undefined && maxp != "" && minp == null) ||
-        minp == undefined ||
-        minp == ""
+        ((maxp != null && minp == null) ||
+          (maxp != null && minp == undefined) ||
+          (maxp != null && minp == "")) &&
+        ((maxp != undefined && minp == null) ||
+          (maxp != undefined && minp == undefined) ||
+          (maxp != undefined && minp == "")) &&
+        ((maxp != "" && minp == null) ||
+          (maxp != "" && minp == undefined) ||
+          (maxp != "" && minp == ""))
       ) {
         if (this.low == true) {
           alert("max low");
@@ -372,9 +381,15 @@ export default {
           }
         }
       } else if (
-        maxp == null ||
-        maxp == undefined ||
-        (maxp == "" && minp != null && minp != undefined && minp != "")
+        ((minp != null && maxp == null) ||
+          (minp != null && maxp == undefined) ||
+          (minp != null && maxp == "")) &&
+        ((minp != undefined && maxp == null) ||
+          (minp != undefined && maxp == undefined) ||
+          (minp != undefined && maxp == "")) &&
+        ((minp != "" && maxp == null) ||
+          (minp != "" && maxp == undefined) ||
+          (minp != "" && maxp == ""))
       ) {
         if (this.low == true) {
           alert("min low");
