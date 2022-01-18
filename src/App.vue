@@ -132,8 +132,7 @@ html {
   color: var(--primary);
 }
 .segmented-control__1,
-.segmented-control__2,
-.segmented-control__3 {
+.segmented-control__2{
   width: 3.1rem;
   height: 3.1rem;
   font-size: 1.4rem;
@@ -145,15 +144,14 @@ html {
   transition: all 0.5s ease;
 }
 .segmented-control__1:hover,
-.segmented-control__2:hover,
-.segmented-control__3:hover {
+.segmented-control__2:hover {
   color: var(--primary);
 }
 .segmented-control__color {
   position: absolute;
   width: 2.9rem;
   height: 2.9rem;
-  margin-left: 0.3rem;
+  margin-left: 0.5rem;
   border-radius: 0.3rem;
   box-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
     inset -0.2rem -0.2rem 0.5rem var(--white);
@@ -161,12 +159,67 @@ html {
 }
 
 #tab-1:checked ~ .segmented-control__color {
-  transform: translateX(0.2rem);
+  transform: translateX(0rem);
   transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 #tab-2:checked ~ .segmented-control__color {
-  transform: translateX(3.75rem);
+  transform: translateX(3.65rem);
+  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+/*  SEGMENTED-CONTROL-mode */
+.segmented-control-mode {
+  grid-column: 3/4;
+  grid-row: 1/2;
+  width: 7.5rem;
+  height: 3.6rem;
+  box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
+  border-radius: 0.3rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.segmented-control-mode input {
+  display: none;
+}
+.segmented-control-mode > input:checked + label {
+  transition: all 0.5s ease;
+  color: var(--primary);
+}
+.segmented-control-mode__1,
+.segmented-control-mode__2{
+  width: 3.1rem;
+  height: 3.1rem;
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: var(--greyDark-05);
+  transition: all 0.5s ease;
+}
+.segmented-control-mode__1:hover,
+.segmented-control-mode__2:hover {
+  color: var(--primary);
+}
+.segmented-control-mode__color {
+  position: absolute;
+  width: 2.9rem;
+  height: 2.9rem;
+  margin-left: 0.5rem;
+  border-radius: 0.3rem;
+  box-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
+    inset -0.2rem -0.2rem 0.5rem var(--white);
+  pointer-events: none;
+}
+
+#tab-1-mode:checked ~ .segmented-control-mode__color {
+  transform: translateX(0rem);
+  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+#tab-2-mode:checked ~ .segmented-control-mode__color {
+  transform: translateX(3.65rem);
   transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 /*  FORM  */
