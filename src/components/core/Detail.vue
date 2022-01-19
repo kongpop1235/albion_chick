@@ -7,9 +7,9 @@
     <v-card-title class="mx-0 px-4 mb-5 pl-0">
       <h1 class="text-uppercase text-h">{{ hd }}</h1>
     </v-card-title>
-    <v-card-text class="mx-0 px-0">
+    <v-card-text class="px-4">
       <v-row>
-        <v-col cols="1">
+        <v-col cols="1" class="px-0">
           <div class="segmented-control">
             <v-spacer></v-spacer>
             <input type="radio" name="radio2" value="3" id="tab-1" @click="sorthigh" />
@@ -91,7 +91,7 @@
             <div class="segmented-control__color"></div>
           </div>
         </v-col>
-        <v-col cols="1">
+        <v-col cols="1" class="px-0">
           <div class="segmented-control-mode">
             <v-spacer></v-spacer>
             <input type="radio" name="radio3" value="5" id="tab-1-mode" />
@@ -177,7 +177,7 @@
           <v-row>
             <v-spacer></v-spacer>
             <v-col cols="2" class="d-flex align-center">
-              <p class="text-uppercase text-h6 text-detail my-auto mx-auto">cost :</p>
+              <p class="text-uppercase text-h6 text-detail my-auto mx-auto">cost</p>
             </v-col>
             <v-col cols="5">
               <div class="form">
@@ -207,7 +207,7 @@
         <v-col cols="4">
           <v-row>
             <v-col cols="2" class="d-flex align-center">
-              <p class="text-uppercase text-h6 text-detail my-auto mx-auto">profit :</p>
+              <p class="text-uppercase text-h6 text-detail my-auto mx-auto">profit</p>
             </v-col>
             <v-col cols="5">
               <div class="form">
@@ -233,9 +233,9 @@
             </v-col>
           </v-row>
         </v-col>
-        <v-col cols="1">
+        <v-col cols="1" class="pr-0">
           <div class="btn btn__secondary d-flex align-center" x-large @click="rangprofit">
-            <p class="my-auto">SEE</p>
+            <p class="my-auto">SORT</p>
           </div>
         </v-col>
       </v-row>
