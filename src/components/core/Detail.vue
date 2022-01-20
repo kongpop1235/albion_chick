@@ -316,11 +316,10 @@
                 style="height: 100%"
               >
                 <div
-                  
                   class="d-flex justify-center align-center"
                   style="height: 100%; width: 100%"
                 >
-                  <p>Details</p>
+                  <p class="my-auto">Details</p>
                 </div>
               </router-link>
             </v-expand-transition>
