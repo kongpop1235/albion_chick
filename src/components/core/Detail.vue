@@ -323,7 +323,7 @@ export default {
       main: [],
       low: false,
       high: true,
-      sort: false,
+      sort: true,
     };
   },
   mounted() {
@@ -352,47 +352,30 @@ export default {
   },
   methods: {
     sortlow() {
-      const low = this.main;
-      this.main = [];
       if (this.sort == true) {
-        low.sort(function (a, b) {
-          return parseFloat(b.profit_check) - parseFloat(a.profit_check);
+        this.main.sort(function (a, b) {
+          return parseFloat(a.profit_check) - parseFloat(b.profit_check);
         });
-        for (let sl = low.length - 1; sl >= 0; sl--) {
-          this.main.push(low[sl]);
-        }
       } else {
-        low.sort(function (aa, bb) {
+        this.main.sort(function (aa, bb) {
           return (
-            parseFloat(bb.city_buy_price_check) - parseFloat(aa.city_buy_price_check)
+            parseFloat(aa.city_buy_price_check) - parseFloat(bb.city_buy_price_check)
           );
         });
-        for (let sl = low.length - 1; sl >= 0; sl--) {
-          this.main.push(low[sl]);
-        }
       }
       this.low = true;
       this.high = false;
     },
     sorthigh() {
-      const high = this.main;
-      this.main = [];
       if (this.sort == true) {
-        high.sort(function (c, d) {
+        this.main.sort(function (c, d) {
           return parseFloat(d.profit_check) - parseFloat(c.profit_check);
         });
-        for (let sh = 0; sh < high.length; sh++) {
-          this.main.push(high[sh]);
-        }
       } else {
-        high.sort(function (c, d) {
-          return parseFloat(d.city_buy_price_check) - parseFloat(c.city_buy_price_check);
+        this.main.sort(function (cc, dd) {
+          return parseFloat(dd.city_buy_price_check) - parseFloat(cc.city_buy_price_check);
         });
-        for (let sh = 0; sh < high.length; sh++) {
-          this.main.push(high[sh]);
-        }
       }
-
       this.low = false;
       this.high = true;
     },
@@ -529,44 +512,28 @@ export default {
     },
     sortprofit() {
       this.sort = true;
-      const low = this.main;
-      this.main = [];
       if (this.low == true) {
-        low.sort(function (a, b) {
-          return parseFloat(b.profit_check) - parseFloat(a.profit_check);
+        this.main.sort(function (a, b) {
+          return parseFloat(a.profit_check) - parseFloat(b.profit_check);
         });
-        for (let sl = low.length - 1; sl >= 0; sl--) {
-          this.main.push(low[sl]);
-        }
       } else {
-        low.sort(function (aa, bb) {
-          return parseFloat(aa.profit_check) - parseFloat(bb.profit_check);
+        this.main.sort(function (aa, bb) {
+          return parseFloat(bb.profit_check) - parseFloat(aa.profit_check);
         });
-        for (let sl = low.length - 1; sl >= 0; sl--) {
-          this.main.push(low[sl]);
-        }
       }
     },
     sortcost() {
       this.sort = false;
-      const low = this.main;
-      this.main = [];
       if (this.low == true) {
-        low.sort(function (a, b) {
-          return parseFloat(b.city_buy_price_check) - parseFloat(a.city_buy_price_check);
+        this.main.sort(function (a, b) {
+          return parseFloat(a.city_buy_price_check) - parseFloat(b.city_buy_price_check);
         });
-        for (let sl = low.length - 1; sl >= 0; sl--) {
-          this.main.push(low[sl]);
-        }
       } else {
-        low.sort(function (aa, bb) {
+        this.main.sort(function (aa, bb) {
           return (
-            parseFloat(aa.city_buy_price_check) - parseFloat(bb.city_buy_price_check)
+            parseFloat(bb.city_buy_price_check) - parseFloat(aa.city_buy_price_check)
           );
         });
-        for (let sl = low.length - 1; sl >= 0; sl--) {
-          this.main.push(low[sl]);
-        }
       }
     },
   },

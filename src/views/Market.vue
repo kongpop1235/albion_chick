@@ -57,7 +57,13 @@
         <v-col cols="1" class="px-0">
           <div class="segmented-control-market">
             <v-spacer></v-spacer>
-            <input type="radio" name="radio2" value="3" id="tab-1-market"  />
+            <input
+              type="radio"
+              name="radio2"
+              value="3"
+              id="tab-1-market"
+              @click="sorthighs"
+            />
             <label for="tab-1-market" class="segmented-control-market__1">
               <svg
                 class="ml-1"
@@ -95,7 +101,13 @@
               </svg>
             </label>
             <v-spacer></v-spacer>
-            <input type="radio" name="radio2" value="4" id="tab-2-market"  />
+            <input
+              type="radio"
+              name="radio2"
+              value="4"
+              id="tab-2-market"
+              @click="sortlows"
+            />
             <label for="tab-2-market" class="segmented-control-market__2">
               <svg
                 class="ml-2"
@@ -139,7 +151,13 @@
         <v-col cols="1" class="px-0">
           <div class="segmented-control-market-mode">
             <v-spacer></v-spacer>
-            <input type="radio" name="radio3" value="5" id="tab-1-market-mode" />
+            <input
+              type="radio"
+              name="radio3"
+              value="5"
+              id="tab-1-market-mode"
+              @click="profit"
+            />
             <label for="tab-1-market-mode" class="segmented-control-market-mode__1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -176,7 +194,13 @@
               </svg>
             </label>
             <v-spacer></v-spacer>
-            <input type="radio" name="radio3" value="6" id="tab-2-market-mode" />
+            <input
+              type="radio"
+              name="radio3"
+              value="6"
+              id="tab-2-market-mode"
+              @click="cost"
+            />
             <label for="tab-2-market-mode" class="segmented-control-market-mode__2">
               <svg
                 class="ml-1"
@@ -226,22 +250,12 @@
             </v-col>
             <v-col cols="5">
               <div class="form">
-                <input
-                  type="text"
-                  class="form__input"
-                  placeholder="Max"
-                  v-model="maxc"
-                />
+                <input type="text" class="form__input" placeholder="Max" v-model="maxc" @keydown.enter="check_item"/>
               </div>
             </v-col>
             <v-col cols="5">
               <div class="form">
-                <input
-                  type="text"
-                  class="form__input"
-                  placeholder="Min"
-                  v-model="minc"
-                />
+                <input type="text" class="form__input" placeholder="Min" v-model="minc" @keydown.enter="check_item"/>
               </div>
             </v-col>
           </v-row>
@@ -253,22 +267,12 @@
             </v-col>
             <v-col cols="5">
               <div class="form">
-                <input
-                  type="text"
-                  class="form__input"
-                  placeholder="Max"
-                  v-model="maxp"
-                />
+                <input type="text" class="form__input" placeholder="Max" v-model="maxp" />
               </div>
             </v-col>
             <v-col cols="5">
               <div class="form">
-                <input
-                  type="text"
-                  class="form__input"
-                  placeholder="Min"
-                  v-model="minp"
-                />
+                <input type="text" class="form__input" placeholder="Min" v-model="minp" />
               </div>
             </v-col>
           </v-row>
@@ -348,7 +352,10 @@ export default {
   data() {
     return {
       main: [],
+      main_check: false,
       display: "d-none",
+      low_high: false,
+      profit_cost: true,
     };
   },
   methods: {
@@ -364,22 +371,114 @@ export default {
         sell_s != undefined &&
         sell_s != null
       ) {
-        console.log(this.$store.getters[sell_s].length);
         for (let x = 0; x < this.$store.getters[sell_s].length; x++) {
           // const check_buy = this.$store.getters[sell_s][x].city_buy;
           if (buy_s == this.$store.getters[sell_s][x].city_buy) {
-            console.log(this.$store.getters[sell_s][x]);
             this.main.push(this.$store.getters[sell_s][x]);
-          } else {
-            console.log("not true");
           }
         }
+
+        let maxp = this.maxp;
+        let minp = this.minp;
+        let maxc = this.maxc;
+        let minc = this.minc;
+        if (
+          (maxp != null && maxp != undefined && maxp != "") ||
+          (minp != null && minp != undefined && minp != "") ||
+          (minc != null && minc != undefined && minc != "") ||
+          (maxc != null && maxc != undefined && maxc != "")
+        ) {
+          if (maxp == null || maxp == undefined || maxp == "") {
+            maxp = Infinity;
+          }
+          if (minp == null || minp == undefined || minp == "") {
+            minp = 0;
+          }
+          if (maxc == null || maxc == undefined || maxc == "") {
+            maxc = Infinity;
+          }
+          if (minc == null || minc == undefined || minc == "") {
+            minc = 0;
+          }
+          if (this.low_high == true) {
+            if (this.profit_cost == true) {
+              const low_profit = this.main;
+              this.main = [];
+              low_profit.sort(function (lps, lpe) {
+                return parseFloat(lps.profit_check) - parseFloat(lpe.profit_check);
+              });
+              for (let x = 0; x < low_profit.length; x++) {
+                if (
+                  low_profit[x].profit_check <= maxp &&
+                  low_profit[x].profit_check >= minp &&
+                  low_profit[x].city_buy_price_check <= maxc &&
+                  low_profit[x].city_buy_price_check >= minc
+                ) {
+                  this.main.push(low_profit[x]);
+                }
+              }
+            } else {
+              const low_cost = this.main;
+              this.main = [];
+              low_cost.sort(function (lcs, lce) {
+                return (
+                  parseFloat(lcs.city_buy_price_check) -
+                  parseFloat(lce.city_buy_price_check)
+                );
+              });
+              for (let x = 0; x < low_cost.length; x++) {
+                if (
+                  low_cost[x].profit_check <= maxp &&
+                  low_cost[x].profit_check >= minp &&
+                  low_cost[x].city_buy_price_check <= maxc &&
+                  low_cost[x].city_buy_price_check >= minc
+                ) {
+                  this.main.push(low_cost[x]);
+                }
+              }
+            }
+          } else {
+            if (this.profit_cost == true) {
+              const high_profit = this.main;
+              this.main = [];
+              high_profit.sort(function (hps, hpe) {
+                return parseFloat(hpe.profit_check) - parseFloat(hps.profit_check);
+              });
+              for (let x = 0; x < high_profit.length; x++) {
+                if (
+                  high_profit[x].profit_check <= maxp &&
+                  high_profit[x].profit_check >= minp &&
+                  high_profit[x].city_buy_price_check <= maxc &&
+                  high_profit[x].city_buy_price_check >= minc
+                ) {
+                  this.main.push(high_profit[x]);
+                }
+              }
+            } else {
+              const high_cost = this.main;
+              this.main = [];
+              high_cost.sort(function (hcs, hce) {
+                return parseFloat(hce.profit_check) - hcs.profit_check;
+              });
+              for (let x = 0; x < high_cost.length; x++) {
+                if (
+                  high_cost[x].profit_check <= maxp &&
+                  high_cost[x].profit_check >= minp &&
+                  high_cost[x].city_buy_price_check <= maxc &&
+                  high_cost[x].city_buy_price_check >= minc
+                ) {
+                  this.main.push(high_cost[x]);
+                }
+              }
+            }
+          }
+        }
+        this.main_check = true;
         if (this.main.length == 0) {
+          this.main_check = false;
           alert("No profitable item found." + "\n" + "Please change to a new city.");
         }
         this.display = "d-flex bg_card rounded-lg position-relative mb-6";
-        console.log("this main");
-        console.log(this.main);
       } else if (
         buy_s == undefined &&
         buy_s == null &&
@@ -399,6 +498,71 @@ export default {
       }
       //ทำเรื่องกำไรแบบเป็น percen ใน data index.vue
     },
+    sortlows() {
+      if (this.main_check == true) {
+        if (this.profit_cost) {
+          this.main.sort(function (lps, lpe) {
+            return parseFloat(lps.profit_check) - parseFloat(lpe.profit_check);
+          });
+        } else {
+          this.main.sort(function (lcs, lce) {
+            return (
+              parseFloat(lcs.city_buy_price_check) - parseFloat(lce.city_buy_price_check)
+            );
+          });
+        }
+      }
+      this.low_high = true;
+    },
+    sorthighs() {
+      if (this.main_check == true) {
+        if (this.profit_cost == true) {
+          this.main.sort(function (hps, hpc) {
+            return parseFloat(hpc.profit_check) - parseFloat(hps.profit_check);
+          });
+        } else {
+          this.main.sort(function (hcs, hce) {
+            return (
+              parseFloat(hce.city_buy_price_check) - parseFloat(hcs.city_buy_price_check)
+            );
+          });
+        }
+      }
+      this.low_high = false;
+    },
+    profit() {
+      if (this.main_check == true) {
+        if (this.low_high == true) {
+          this.main.sort(function (lps, lpe) {
+            return parseFloat(lps.profit_check) - parseFloat(lpe.profit_check);
+          });
+        } else {
+          this.main.sort(function (hps, hpe) {
+            return parseFloat(hpe.profit_check) - parseFloat(hps.profit_check);
+          });
+        }
+      }
+      this.profit_cost = true;
+    },
+    cost() {
+      this.profit_cost = false;
+      if (this.main_check == true) {
+        if (this.low_high == true) {
+          this.main.sort(function (lcs, lce) {
+            return (
+              parseFloat(lcs.city_buy_price_check) - parseFloat(lce.city_buy_price_check)
+            );
+          });
+        } else {
+          this.main.sort(function (hcs, hce) {
+            return (
+              parseFloat(hce.city_buy_price_check) - parseFloat(hcs.city_buy_price_check)
+            );
+          });
+        }
+      }
+    },
+    rangprofit() {},
   },
   mounted() {},
 };
