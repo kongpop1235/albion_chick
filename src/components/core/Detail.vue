@@ -310,7 +310,7 @@
             </v-card-text>
             <v-expand-transition>
               <router-link
-                to="/Detail"
+                to="/item"
                 v-if="hover"
                 class="d-flex transition-fast-in-fast-out pa pl-0 darken-2 v-card--reveal white--text text-h text-uppercase font-weight-bold rounded-lg text-decoration-none"
                 style="height: 100%"

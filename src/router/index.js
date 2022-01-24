@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Market from '../views/Market.vue'
 import Gold from '../views/gold.vue'
 import Detail from '../components/core/Detail.vue'
+import item from "../components/core/item.vue"
 Vue.use(VueRouter)
 
 const routes = [
@@ -34,6 +35,11 @@ const routes = [
     path: '/Detail',
     name: 'Detail',
     component: Detail
+  },
+  {
+    path: '/item',
+    name: 'item',
+    component: item
   }
 ]
 
