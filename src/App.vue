@@ -38,6 +38,9 @@ export default {
   font-size: 23px;
   letter-spacing: 2px;
 }
+.ls-1 {
+  letter-spacing: 0.4rem;
+}
 .text-menu {
   letter-spacing: 5px;
 }
@@ -52,6 +55,10 @@ export default {
 }
 .position-absolute {
   position: absolute;
+}
+table,th{
+  border: 1px solid red;
+
 }
 #h-overlay {
   display: none;
