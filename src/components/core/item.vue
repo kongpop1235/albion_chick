@@ -73,13 +73,66 @@
           <td>Nan</td>
         </tr>
       </table>
+      <div>
+        <canvas id="test"></canvas>
+      </div>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
+import Chart from "chart.js/auto";
+
 export default {
   name: "item",
+  mounted() {
+    const data = {
+      labels: ["Red", "Orange", "Yellow", "Green", "Blue"],
+      datasets: [
+        {
+          label: "Dataset 1",
+          data: [90,25,30,50,70],
+          backgroundColor: [
+            "rgba(255, 159, 64, 0.8)",
+            "#bdbdbd",
+            "#9155fd",
+            "red",
+            "blue",
+          ],
+        },
+      ],
+    };
+
+    var ctx = document.getElementById("test").getContext("2d");
+    var myChart = new Chart(ctx, {
+      type: "polarArea",
+      data: data,
+      options: {
+        responsive: true,
+        scales: {
+          r: {
+            pointLabels: {
+              display: true,
+              centerPointLabels: true,
+              font: {
+                size: 18,
+              },
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: "Chart.js Polar Area Chart With Centered Point Labels",
+          },
+        },
+      },
+    });
+    console.log(myChart);
+  },
 };
 </script>
 
