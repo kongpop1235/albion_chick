@@ -96,7 +96,7 @@ export default {
             "rgba(255, 159, 64, 0.8)",
             "#bdbdbd",
             "#9155fd",
-            "yello",
+            "red",
             "blue",
           ],
         },
