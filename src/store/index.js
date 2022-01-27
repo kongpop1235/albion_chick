@@ -20,7 +20,7 @@ const city = ["#FF952C", "#FF2626", "#F9F9F9", "#38CD00", "#00ADE9", "#C62EFF"];
 export const store = new Vuex.Store({
   state: {
     gold_price: [[], false],
-    item: [{ id: null, name: null }, false],
+    item: [{ id: null, name: null }],
     itemData: [
       /*{item_id : null, details: [{city : null, buy : null, buy_data : null, sell : null, sell_data : null}]}*/
     ],
@@ -35,7 +35,7 @@ export const store = new Vuex.Store({
       Bridgewatch: null,
     },
     Detail: [null, false],
-    item_detail: [null],
+    item_detail_check: [null],
   },
   getters: {
     gold_price: (state) => state.gold_price,
@@ -50,7 +50,7 @@ export const store = new Vuex.Store({
     Martlock: (state) => state.item_profit.Martlock,
     Thetford: (state) => state.item_profit.Thetford,
     Detail: (state) => state.Detail,
-    item_detail: (state) => state.item_detail,
+    item_detail_check: (state) => state.item_detail_check,
   },
   actions: {
     getGoldPrice({ commit }) {
@@ -380,7 +380,7 @@ export const store = new Vuex.Store({
                   },
                 };
                 // commit("SET_ITEM_DATA_ITEM", [items.data[il*6].item_id]);
-
+                
                 if (items.data[aa].item_id == this.state.item[0]["id"][ic]) {
                   console.log(item_detail);
                   for (let cl = 0; cl < 6; cl++) {
@@ -713,6 +713,7 @@ export const store = new Vuex.Store({
         //best sell ส่วนบันทึกราคาไอเท็มต่อชิ้นก่อนขึ้นชิ้นใหม่
         if (hp < 200000 && lp != 0 && lp != null && lp != Infinity) {
           best_sell.push({
+            id: this.getters.item[0].id[HL_item_lenght],
             item: this.getters.item[0].name[HL_item_lenght],
             profit: numeral(hp).format("0,0"),
             profit_check: hp,
@@ -751,6 +752,7 @@ export const store = new Vuex.Store({
         //Caerleon ส่วนบันทึกราคาไอเท็มต่อชิ้นก่อนขึ้นชิ้นใหม่
         if (c_bh < 200000 && c_bl != Infinity && c_bl != 0 && c_bl != null) {
           c_best_sell.push({
+            id: this.getters.item[0].id[HL_item_lenght],
             item: this.getters.item[0].name[HL_item_lenght],
             profit: numeral(c_bh).format("0,0"),
             profit_check: c_bh,
@@ -789,6 +791,7 @@ export const store = new Vuex.Store({
         //Thetford ส่วนบันทึกราคาไอเท็มต่อชิ้นก่อนขึ้นชิ้นใหม่
         if (t_bh < 200000 && t_bl != Infinity && t_bl != 0 && t_bl != null) {
           t_best_sell.push({
+            id: this.getters.item[0].id[HL_item_lenght],
             item: this.getters.item[0].name[HL_item_lenght],
             profit: numeral(t_bh).format("0,0"),
             profit_check: t_bh,
@@ -827,6 +830,7 @@ export const store = new Vuex.Store({
         //Martlock
         if (m_bh < 200000 && m_bl != Infinity && m_bl != 0 && m_bl != null) {
           m_best_sell.push({
+            id: this.getters.item[0].id[HL_item_lenght],
             item: this.getters.item[0].name[HL_item_lenght],
             profit: numeral(m_bh).format("0,0"),
             profit_check: m_bh,
@@ -865,6 +869,7 @@ export const store = new Vuex.Store({
         //Lymhurst
         if (l_bh < 200000 && l_bl != Infinity && l_bl != 0 && l_bl != null) {
           l_best_sell.push({
+            id: this.getters.item[0].id[HL_item_lenght],
             item: this.getters.item[0].name[HL_item_lenght],
             profit: numeral(l_bh).format("0,0"),
             profit_check: l_bh,
@@ -903,6 +908,7 @@ export const store = new Vuex.Store({
         //FortSterling
         if (f_bh < 200000 && f_bl != Infinity && f_bl != 0 && f_bl != null) {
           f_best_sell.push({
+            id: this.getters.item[0].id[HL_item_lenght],
             item: this.getters.item[0].name[HL_item_lenght],
             profit: numeral(f_bh).format("0,0"),
             profit_check: f_bh,
@@ -941,6 +947,7 @@ export const store = new Vuex.Store({
         //Bridgewatch
         if (b_bh < 200000 && b_bl != Infinity && b_bl != 0 && b_bl != null) {
           b_best_sell.push({
+            id: this.getters.item[0].id[HL_item_lenght],
             item: this.getters.item[0].name[HL_item_lenght],
             profit: numeral(b_bh).format("0,0"),
             profit_check: b_bh,

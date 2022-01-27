@@ -73,7 +73,7 @@
           <td>Nan</td>
         </tr>
       </table>
-      <div>
+      <div class="text-canvas mx-auto">
         <canvas id="test"></canvas>
       </div>
     </v-card-text>
@@ -90,14 +90,13 @@ export default {
       labels: ["Red", "Orange", "Yellow", "Green", "Blue"],
       datasets: [
         {
-          label: "Dataset 1",
-          data: [90,25,30,50,70],
+          label: "Dataset",
+          data: [1, 2, 3, 4, 5],
+          borderColor: ["rgba(207, 0, 0, 1)"],
           backgroundColor: [
-            "rgba(255, 159, 64, 0.8)",
-            "#bdbdbd",
-            "#9155fd",
-            "red",
-            "blue",
+            "rgba(207, 0, 0, 0.5)",
+            "rgba(7, 207, 0, 0.5)",
+            "rgba(224, 224, 224, 0.5)",
           ],
         },
       ],
@@ -105,28 +104,35 @@ export default {
 
     var ctx = document.getElementById("test").getContext("2d");
     var myChart = new Chart(ctx, {
-      type: "polarArea",
+      type: "radar",
       data: data,
       options: {
         responsive: true,
-        scales: {
-          r: {
-            pointLabels: {
-              display: true,
-              centerPointLabels: true,
+        plugins: {
+          legend: {
+            labels: {
               font: {
-                size: 18,
+                size: '20rem',
               },
             },
           },
         },
-        plugins: {
-          legend: {
-            position: "top",
-          },
-          title: {
-            display: true,
-            text: "Chart.js Polar Area Chart With Centered Point Labels",
+        scales: {
+          r: {
+            min: 0,
+            pointLabels: {
+              color: ["rgb(54, 162, 235)", "red", "green", "yellow", "white"],
+              font: {
+                size: '15rem',
+              },
+            },
+            ticks: {
+              color: "#ffffff",
+              backdropColor: "rgba(255, 255, 255, 0)",
+            },
+            grid: {
+              color: "rgba(255, 255, 255, 0.3)",
+            },
           },
         },
       },
@@ -136,4 +142,17 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+test.color {
+  color: #ffffff00;
+}
+.text-canvas {
+  font-size: 1rem;
+  letter-spacing: 5px;
+  font-weight: 900;
+  width: 100%;
+}
+.wd{
+  width: 100%;
+}
+</style>

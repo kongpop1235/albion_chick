@@ -241,7 +241,7 @@
       </v-row>
     </v-card-text>
     <v-card-text>
-      <v-row id="row_main" v-for="(item, index) in main" :key="index">
+      <v-row id="row_main" v-for="(item, index) in main" :key="index" @click="check_name(item, index)">
         <v-hover v-slot="{ hover }">
           <v-col
             cols="12"
@@ -559,6 +559,12 @@ export default {
           );
         });
       }
+    },
+    check_name: async function(item, index) {
+      console.log(item.id);
+      console.log(index);
+      const obj = await this.$store.getters.itemData.find(o => o.item_detail.item_id === item.id);
+      console.log(obj);
     },
   },
 };
