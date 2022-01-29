@@ -1,14 +1,18 @@
 <template>
   <v-card
-    class="rounded-0 bg_main px-0 mx-10 my-6 grey--text text--lighten-1"
+    class="rounded-0 bg_card rounded-lg px-0 mx-10 my-6 grey--text text--lighten-1"
     elevation="0"
     rounded-0
   >
     <v-card-title class="mx-0 px-4 mb-5 pl-0">
-      <h1 class="text-uppercase ls-1">Title</h1>
+      <h1 class="text-uppercase ls-1 ml-10 mt-7">{{this.name}}</h1>
     </v-card-title>
-    <v-card-text>
-      <table>
+    <v-card-text class="mb-16">
+
+      <div class="text-canvas mx-auto mb-10">
+        <canvas id="test"></canvas>
+      </div>
+      <table class="mx-auto">
         <tr>
           <th></th>
           <th>caerleon</th>
@@ -73,9 +77,6 @@
           <td>Nan</td>
         </tr>
       </table>
-      <div class="text-canvas mx-auto">
-        <canvas id="test"></canvas>
-      </div>
     </v-card-text>
   </v-card>
 </template>
@@ -85,19 +86,63 @@ import Chart from "chart.js/auto";
 
 export default {
   name: "item",
+  data() {
+    return {
+      item: null,
+      name: null
+    }
+  },
+  methods: {},
   mounted() {
+    this.item = this.$store.getters.item_detail_check[0];
+    this.item = this.$store.getters.itemData.find(o => o.item_detail.item_id === this.item);
+    this.name = this.$store.getters.item_detail_check[1];
+    console.log(this.item.item_detail);
     const data = {
-      labels: ["Red", "Orange", "Yellow", "Green", "Blue"],
+      labels: [
+        "Caerleon",
+        "FortSterling",
+        "Lymhurst",
+        "Bridgewatch",
+        "Martlock",
+        "Thetford",
+      ],
       datasets: [
         {
-          label: "Dataset",
-          data: [1, 2, 3, 4, 5],
-          borderColor: ["rgba(207, 0, 0, 1)"],
-          backgroundColor: [
-            "rgba(207, 0, 0, 0.5)",
-            "rgba(7, 207, 0, 0.5)",
-            "rgba(224, 224, 224, 0.5)",
-          ],
+          label: ["Caerlron"],
+          data: [0, 15, 12, 13, 17, 20],
+          borderColor: ["#FF2626"],
+          backgroundColor: ["rgb(255, 38, 38, 0.5)"],
+        },
+        {
+          label: ["Bridgewatch"],
+          data: [12, 0, 14, 10, 15, 20],
+          borderColor: ["#FF952C"],
+          backgroundColor: ["rgb(255, 149, 44, 0.5)"],
+        },
+        {
+          label: ["FortSterling"],
+          data: [15, 10, 0, 13, 11, 12],
+          borderColor: ["#F9F9F9"],
+          backgroundColor: ["rgb(249, 249, 249, 0.5)"],
+        },
+        {
+          label: ["Lymhurst"],
+          data: [13, 15, 12, 17, 11, 10],
+          borderColor: ["#38CD00"],
+          backgroundColor: ["rgb(56, 205, 0, 0.5)"],
+        },
+        {
+          label: ["Martlock"],
+          data: [10, 2, 3, 4, 5, 10],
+          borderColor: ["#00ADE9"],
+          backgroundColor: ["rgb(0, 173, 233, 0.5)"],
+        },
+        {
+          label: ["Thetford"],
+          data: [10, 2, 3, 4, 5, 15],
+          borderColor: ["#C62EFF"],
+          backgroundColor: ["rgb(198, 46, 255, 0.5)"],
         },
       ],
     };
@@ -112,7 +157,7 @@ export default {
           legend: {
             labels: {
               font: {
-                size: '20rem',
+                size: "20rem",
               },
             },
           },
@@ -121,9 +166,9 @@ export default {
           r: {
             min: 0,
             pointLabels: {
-              color: ["rgb(54, 162, 235)", "red", "green", "yellow", "white"],
+              color: ["#FF2626", "#F9F9F9", "#38CD00", "#FF952C", "#00ADE9", "#C62EFF"],
               font: {
-                size: '15rem',
+                size: "15rem",
               },
             },
             ticks: {
@@ -144,15 +189,15 @@ export default {
 
 <style scoped>
 test.color {
-  color: #ffffff00;
+  color: rgb(198, 46, 255);
 }
 .text-canvas {
   font-size: 1rem;
   letter-spacing: 5px;
   font-weight: 900;
-  width: 100%;
+  width: 80%;
 }
-.wd{
+.wd {
   width: 100%;
 }
 </style>

@@ -35,7 +35,7 @@ export const store = new Vuex.Store({
       Bridgewatch: null,
     },
     Detail: [null, false],
-    item_detail_check: [null],
+    item_detail_check: [null,null],
   },
   getters: {
     gold_price: (state) => state.gold_price,
@@ -80,15 +80,9 @@ export const store = new Vuex.Store({
           "https://raw.githubusercontent.com/broderickhyman/ao-bin-dumps/master/formatted/items.json"
         )
         .then((item_id) => {
-          /*let authors = item_id.data; //api map
-            return authors.map(function(author) {
-              item_api_id[i] = author.UniqueName;
-              item_api_name[i] = author.LocalizedNames["EN-US"];
-              i++;
-            }); */
-          let ic = 1;
+          let ic = 1;//start get id
 
-          for (let i = 1; i < 1000; i++) {
+          for (let i = 1; i < 1000; i++) { //limit API 280 * 100 //limit test 4700
             //max loop 7694
             if (ic == 187) {
               ic = 188;
@@ -98,6 +92,8 @@ export const store = new Vuex.Store({
               ic = 410;
             } else if (ic == 1200) {
               ic = 1202;
+            } else if (ic == 1520) {
+              ic = 1530
             } else if (ic == 2208) {
               ic = 2210;
             } else if (ic == 2259) {
@@ -145,14 +141,8 @@ export const store = new Vuex.Store({
           item_api += this.state.item[0].id[index];
         }
       } */
-      let item_lenght = 0;
+      let item_lenght = 0;//start get item data
       for (; item_lenght < this.state.item[0].id.length - 1; ) {
-        // sell[item_lenght] = [];
-        // sell_date[item_lenght] = [];
-        // buy[item_lenght] = [];
-        // buy_date[item_lenght] = [];
-        // city_data[item_lenght] = [];
-
         //loop city
         await axios
           .get(
