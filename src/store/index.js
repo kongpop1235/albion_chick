@@ -36,6 +36,7 @@ export const store = new Vuex.Store({
     },
     Detail: [null, false],
     item_detail_check: [null,null],
+    item_detail_chart: [null],
   },
   getters: {
     gold_price: (state) => state.gold_price,
@@ -51,6 +52,7 @@ export const store = new Vuex.Store({
     Thetford: (state) => state.item_profit.Thetford,
     Detail: (state) => state.Detail,
     item_detail_check: (state) => state.item_detail_check,
+    item_chart: (state) => state.item_detail_chart,
   },
   actions: {
     getGoldPrice({ commit }) {
@@ -382,10 +384,14 @@ export const store = new Vuex.Store({
                     item_detail.details[cd[cl]] = {
                       city: items.data[s].city,
                       color: city[cl],
-                      buy: items.data[s].buy_price_max,
-                      buy_date: items.data[s].buy_price_max_date,
-                      sell: items.data[s].sell_price_min,
-                      sell_date: items.data[s].sell_price_min_date,
+                      buy_max: items.data[s].buy_price_max,
+                      buy_max_date: items.data[s].buy_price_max_date,
+                      buy_min: items.data[s].buy_price_min,
+                      buy_min_date: items.data[s].buy_price_min_date,
+                      sell_max: items.data[s].sell_price_max,
+                      sell_max_date: items.data[s].sell_price_max_date,
+                      sell_min: items.data[s].sell_price_min,
+                      sell_min_date: items.data[s].sell_price_min_date,
                     };
                   }
                   commit("SET_ITEM_DATA_CITY", {
@@ -467,38 +473,38 @@ export const store = new Vuex.Store({
           //find best hight price
           if (
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-              .sell >= hp &&
+              .sell_min >= hp &&
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-              .sell != 0 &&
+              .sell_min != 0 &&
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-              .sell != null
+              .sell_min != null
           ) {
             hp = this.getters.itemData[HL_item_lenght].item_detail.details[
               cd[h]
-            ].sell;
+            ].sell_min;
             ch = h;
             //find best low price
             for (let hl = 0; hl < 6; hl++) {
               if (
                 this.getters.itemData[HL_item_lenght].item_detail.details[
                   cd[hl]
-                ].sell <
+                ].sell_min <
                   this.getters.itemData[HL_item_lenght].item_detail.details[
                     cd[h]
-                  ].sell &&
+                  ].sell_min &&
                 this.getters.itemData[HL_item_lenght].item_detail.details[
                   cd[hl]
-                ].sell != 0 &&
+                ].sell_min != 0 &&
                 this.getters.itemData[HL_item_lenght].item_detail.details[
                   cd[hl]
-                ].sell != null &&
+                ].sell_min != null &&
                 this.getters.itemData[HL_item_lenght].item_detail.details[
                   cd[hl]
-                ].sell < lp
+                ].sell_min < lp
               ) {
                 lp = this.getters.itemData[HL_item_lenght].item_detail.details[
                   cd[hl]
-                ].sell;
+                ].sell_min;
                 cl = hl;
               }
             }
@@ -506,180 +512,180 @@ export const store = new Vuex.Store({
           //caerleon
           if (
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[1]]
-              .sell >= c_bh &&
+              .sell_min >= c_bh &&
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[1]]
-              .sell != 0 &&
+              .sell_min != 0 &&
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[1]]
-              .sell != null
+              .sell_min != null
           ) {
             c_bh = this.getters.itemData[HL_item_lenght].item_detail.details[
               cd[1]
-            ].sell;
+            ].sell_min;
             if (
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell <
+                .sell_min <
                 this.getters.itemData[HL_item_lenght].item_detail.details[cd[1]]
-                  .sell &&
+                  .sell_min &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell != 0 &&
+                .sell_min != 0 &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell != null &&
+                .sell_min != null &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell < c_bl
+                .sell_min < c_bl
             ) {
               c_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
                 cd[h]
-              ].sell;
+              ].sell_min;
               c_cl = h;
             }
           }
           //Thetford
           if (
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[5]]
-              .sell >= t_bh &&
+              .sell_min >= t_bh &&
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[5]]
-              .sell != 0 &&
+              .sell_min != 0 &&
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[5]]
-              .sell != null
+              .sell_min != null
           ) {
             t_bh = this.getters.itemData[HL_item_lenght].item_detail.details[
               cd[5]
-            ].sell;
+            ].sell_min;
             if (
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell <
+                .sell_min <
                 this.getters.itemData[HL_item_lenght].item_detail.details[cd[5]]
-                  .sell &&
+                  .sell_min &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell != 0 &&
+                .sell_min != 0 &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell != null &&
+                .sell_min != null &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell < t_bl
+                .sell_min < t_bl
             ) {
               t_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
                 cd[h]
-              ].sell;
+              ].sell_min;
               t_cl = h;
             }
           }
           //Martlock
           if (
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[4]]
-              .sell >= m_bh &&
+              .sell_min >= m_bh &&
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[4]]
-              .sell != 0 &&
+              .sell_min != 0 &&
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[4]]
-              .sell != null
+              .sell_min != null
           ) {
             m_bh = this.getters.itemData[HL_item_lenght].item_detail.details[
               cd[4]
-            ].sell;
+            ].sell_min;
             if (
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell <
+                .sell_min <
                 this.getters.itemData[HL_item_lenght].item_detail.details[cd[4]]
-                  .sell &&
+                .sell_min &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell != 0 &&
+                .sell_min != 0 &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell != null &&
+                .sell_min != null &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell < m_bl
+                .sell_min < m_bl
             ) {
               m_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
                 cd[h]
-              ].sell;
+              ].sell_min;
               m_cl = h;
             }
           }
           //Lymhurst
           if (
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[3]]
-              .sell >= l_bh &&
+              .sell_min >= l_bh &&
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[3]]
-              .sell != 0 &&
+              .sell_min != 0 &&
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[3]]
-              .sell != null
+              .sell_min != null
           ) {
             l_bh = this.getters.itemData[HL_item_lenght].item_detail.details[
               cd[3]
-            ].sell;
+            ].sell_min;
             if (
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell <
+                .sell_min <
                 this.getters.itemData[HL_item_lenght].item_detail.details[cd[3]]
-                  .sell &&
+                .sell_min &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell != 0 &&
+                .sell_min != 0 &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell != null &&
+                .sell_min != null &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell < l_bl
+                .sell_min < l_bl
             ) {
               l_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
                 cd[h]
-              ].sell;
+              ].sell_min;
               l_cl = h;
             }
           }
           //FortSterling
           if (
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[2]]
-              .sell >= f_bh &&
+              .sell_min >= f_bh &&
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[2]]
-              .sell != 0 &&
+              .sell_min != 0 &&
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[2]]
-              .sell != null
+              .sell_min != null
           ) {
             f_bh = this.getters.itemData[HL_item_lenght].item_detail.details[
               cd[2]
-            ].sell;
+            ].sell_min;
             if (
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell <
+                .sell_min <
                 this.getters.itemData[HL_item_lenght].item_detail.details[cd[2]]
-                  .sell &&
+                .sell_min &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell != 0 &&
+                .sell_min != 0 &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell != null &&
+                .sell_min != null &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell < f_bl
+                .sell_min < f_bl
             ) {
               f_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
                 cd[h]
-              ].sell;
+              ].sell_min;
               f_cl = h;
             }
           }
           //Bridgewatch
           if (
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[0]]
-              .sell >= f_bh &&
+              .sell_min >= f_bh &&
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[0]]
-              .sell != 0 &&
+              .sell_min != 0 &&
             this.getters.itemData[HL_item_lenght].item_detail.details[cd[0]]
-              .sell != null
+              .sell_min != null
           ) {
             b_bh = this.getters.itemData[HL_item_lenght].item_detail.details[
               cd[0]
-            ].sell;
+            ].sell_min;
             if (
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell <
+                .sell_min <
                 this.getters.itemData[HL_item_lenght].item_detail.details[cd[0]]
-                  .sell &&
+                .sell_min &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell != 0 &&
+                .sell_min != 0 &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell != null &&
+                .sell_min != null &&
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[h]]
-                .sell < f_bl
+                .sell_min < f_bl
             ) {
               b_bl = this.getters.itemData[HL_item_lenght].item_detail.details[
                 cd[h]
-              ].sell;
+              ].sell_min;
               b_cl = h;
             }
           }
@@ -712,19 +718,19 @@ export const store = new Vuex.Store({
             ].city,
             city_buy_price: numeral(
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[cl]]
-                .sell
+                .sell_min
             ).format("0,0"),
             city_buy_price_check: this.getters.itemData[HL_item_lenght]
-              .item_detail.details[cd[cl]].sell,
+              .item_detail.details[cd[cl]].sell_min,
             city_color_buy: "color : " + city[cl],
             city_sell: this.getters.itemData[HL_item_lenght].item_detail
               .details[cd[ch]].city,
             city_sell_price: numeral(
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[ch]]
-                .sell
+                .sell_min
             ).format("0,0"),
             city_sell_price_check: this.getters.itemData[HL_item_lenght]
-              .item_detail.details[cd[ch]].sell,
+              .item_detail.details[cd[ch]].sell_min,
             city_color_sell: "color : " + city[ch],
             api_img:
               "https://render.albiononline.com/v1/item/" +
@@ -734,7 +740,7 @@ export const store = new Vuex.Store({
               (hp /
                 this.getters.itemData[HL_item_lenght].item_detail.details[
                   cd[ch]
-                ].sell) *
+                ].sell_min) *
                 100
             ).format("0,0"),
           });
@@ -752,19 +758,19 @@ export const store = new Vuex.Store({
             city_buy_price: numeral(
               this.getters.itemData[HL_item_lenght].item_detail.details[
                 cd[c_cl]
-              ].sell
+              ].sell_min
             ).format("0,0"),
             city_buy_price_check: this.getters.itemData[HL_item_lenght]
-              .item_detail.details[cd[c_cl]].sell,
+              .item_detail.details[cd[c_cl]].sell_min,
             city_color_buy: "color : " + city[c_cl],
             city_sell: this.getters.itemData[HL_item_lenght].item_detail
               .details[cd[1]].city,
             city_sell_price: numeral(
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[1]]
-                .sell
+                .sell_min
             ).format("0,0"),
             city_sell_price_check: this.getters.itemData[HL_item_lenght]
-              .item_detail.details[cd[1]].sell,
+              .item_detail.details[cd[1]].sell_min,
             city_color_sell: "color : " + city[1],
             api_img:
               "https://render.albiononline.com/v1/item/" +
@@ -773,7 +779,7 @@ export const store = new Vuex.Store({
             percent: numeral(
               (hp /
                 this.getters.itemData[HL_item_lenght].item_detail.details[cd[1]]
-                  .sell) *
+                  .sell_min) *
                 100
             ).format("0,0"),
           });
@@ -791,19 +797,19 @@ export const store = new Vuex.Store({
             city_buy_price: numeral(
               this.getters.itemData[HL_item_lenght].item_detail.details[
                 cd[t_cl]
-              ].sell
+              ].sell_min
             ).format("0,0"),
             city_buy_price_check: this.getters.itemData[HL_item_lenght]
-              .item_detail.details[cd[t_cl]].sell,
+              .item_detail.details[cd[t_cl]].sell_min,
             city_color_buy: "color : " + city[t_cl],
             city_sell: this.getters.itemData[HL_item_lenght].item_detail
               .details[cd[5]].city,
             city_sell_price: numeral(
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[5]]
-                .sell
+                .sell_min
             ).format("0,0"),
             city_sell_price_check: this.getters.itemData[HL_item_lenght]
-              .item_detail.details[cd[5]].sell,
+              .item_detail.details[cd[5]].sell_min,
             city_color_sell: "color : " + city[5],
             api_img:
               "https://render.albiononline.com/v1/item/" +
@@ -812,7 +818,7 @@ export const store = new Vuex.Store({
             percent: numeral(
               (hp /
                 this.getters.itemData[HL_item_lenght].item_detail.details[cd[5]]
-                  .sell) *
+                  .sell_min) *
                 100
             ).format("0,0"),
           });
@@ -830,19 +836,19 @@ export const store = new Vuex.Store({
             city_buy_price: numeral(
               this.getters.itemData[HL_item_lenght].item_detail.details[
                 cd[m_cl]
-              ].sell
+              ].sell_min
             ).format("0,0"),
             city_buy_price_check: this.getters.itemData[HL_item_lenght]
-              .item_detail.details[cd[m_cl]].sell,
+              .item_detail.details[cd[m_cl]].sell_min,
             city_color_buy: "color : " + city[m_cl],
             city_sell: this.getters.itemData[HL_item_lenght].item_detail
               .details[cd[4]].city,
             city_sell_price: numeral(
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[4]]
-                .sell
+                .sell_min
             ).format("0,0"),
             city_sell_price_check: this.getters.itemData[HL_item_lenght]
-              .item_detail.details[cd[4]].sell,
+              .item_detail.details[cd[4]].sell_min,
             city_color_sell: "color : " + city[4],
             api_img:
               "https://render.albiononline.com/v1/item/" +
@@ -851,7 +857,7 @@ export const store = new Vuex.Store({
             percent: numeral(
               (hp /
                 this.getters.itemData[HL_item_lenght].item_detail.details[cd[4]]
-                  .sell) *
+                  .sell_min) *
                 100
             ).format("0,0"),
           });
@@ -869,19 +875,19 @@ export const store = new Vuex.Store({
             city_buy_price: numeral(
               this.getters.itemData[HL_item_lenght].item_detail.details[
                 cd[l_cl]
-              ].sell
+              ].sell_min
             ).format("0,0"),
             city_buy_price_check: this.getters.itemData[HL_item_lenght]
-              .item_detail.details[cd[l_cl]].sell,
+              .item_detail.details[cd[l_cl]].sell_min,
             city_color_buy: "color : " + city[l_cl],
             city_sell: this.getters.itemData[HL_item_lenght].item_detail
               .details[cd[3]].city,
             city_sell_price: numeral(
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[3]]
-                .sell
+                .sell_min
             ).format("0,0"),
             city_sell_price_check: this.getters.itemData[HL_item_lenght]
-              .item_detail.details[cd[3]].sell,
+              .item_detail.details[cd[3]].sell_min,
             city_color_sell: "color : " + city[3],
             api_img:
               "https://render.albiononline.com/v1/item/" +
@@ -890,7 +896,7 @@ export const store = new Vuex.Store({
             percent: numeral(
               (hp /
                 this.getters.itemData[HL_item_lenght].item_detail.details[cd[3]]
-                  .sell) *
+                  .sell_min) *
                 100
             ).format("0,0"),
           });
@@ -908,19 +914,19 @@ export const store = new Vuex.Store({
             city_buy_price: numeral(
               this.getters.itemData[HL_item_lenght].item_detail.details[
                 cd[f_cl]
-              ].sell
+              ].sell_min
             ).format("0,0"),
             city_buy_price_check: this.getters.itemData[HL_item_lenght]
-              .item_detail.details[cd[f_cl]].sell,
+              .item_detail.details[cd[f_cl]].sell_min,
             city_color_buy: "color : " + city[f_cl],
             city_sell: this.getters.itemData[HL_item_lenght].item_detail
               .details[cd[2]].city,
             city_sell_price: numeral(
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[2]]
-                .sell
+                .sell_min
             ).format("0,0"),
             city_sell_price_check: this.getters.itemData[HL_item_lenght]
-              .item_detail.details[cd[2]].sell,
+              .item_detail.details[cd[2]].sell_min,
             city_color_sell: "color : " + city[2],
             api_img:
               "https://render.albiononline.com/v1/item/" +
@@ -929,7 +935,7 @@ export const store = new Vuex.Store({
             percent: numeral(
               (hp /
                 this.getters.itemData[HL_item_lenght].item_detail.details[cd[2]]
-                  .sell) *
+                  .sell_min) *
                 100
             ).format("0,0"),
           });
@@ -947,19 +953,19 @@ export const store = new Vuex.Store({
             city_buy_price: numeral(
               this.getters.itemData[HL_item_lenght].item_detail.details[
                 cd[b_cl]
-              ].sell
+              ].sell_min
             ).format("0,0"),
             city_buy_price_check: this.getters.itemData[HL_item_lenght]
-              .item_detail.details[cd[b_cl]].sell,
+              .item_detail.details[cd[b_cl]].sell_min,
             city_color_buy: "color : " + city[b_cl],
             city_sell: this.getters.itemData[HL_item_lenght].item_detail
               .details[cd[0]].city,
             city_sell_price: numeral(
               this.getters.itemData[HL_item_lenght].item_detail.details[cd[0]]
-                .sell
+                .sell_min
             ).format("0,0"),
             city_sell_price_check: this.getters.itemData[HL_item_lenght]
-              .item_detail.details[cd[0]].sell,
+              .item_detail.details[cd[0]].sell_min,
             city_color_sell: "color : " + city[0],
             api_img:
               "https://render.albiononline.com/v1/item/" +
@@ -968,7 +974,7 @@ export const store = new Vuex.Store({
             percent: numeral(
               (hp /
                 this.getters.itemData[HL_item_lenght].item_detail.details[cd[0]]
-                  .sell) *
+                  .sell_min) *
                 100
             ).format("0,0"),
           });

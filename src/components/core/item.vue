@@ -1,17 +1,68 @@
 <template>
   <v-card
-    class="rounded-0 bg_card rounded-lg px-0 mx-10 my-6 grey--text text--lighten-1"
+    class="rounded-0 bg_card rounded-lg px-12 mx-10 my-6 grey--text text--lighten-1"
     elevation="0"
     rounded-0
   >
-    <v-card-title class="mx-0 px-4 mb-5 pl-0">
-      <h1 class="text-uppercase ls-1 ml-10 mt-7">{{this.name}}</h1>
+    <v-card-title class="mx-0 px-4 mb-5 pl-0 mt-10">
+      <v-img max-height="120" max-width="120" :src="item.api_img"></v-img>
+      <h1 class="text-uppercase ls-1 ml-5">{{ this.name }}</h1>
     </v-card-title>
     <v-card-text class="mb-16">
-
-      <div class="text-canvas mx-auto mb-10">
-        <canvas id="test"></canvas>
-      </div>
+      <p>Item power :</p>
+      <p></p>
+      <table class="mx-auto text-h6">
+        <tr>
+          <th class="th-b text-left pr-7 pb-2">CITY</th>
+          <th class="th-b text-center px-5 pb-2">SELL ORDER PRICE MIN</th>
+          <th class="th-b text-center px-5 pb-2">SELL ORDER PRICE MAX</th>
+          <th class="th-b text-center px-5 pb-2">BUY ORDER PRICE MIN</th>
+          <th class="th-b text-right pl-5 pb-2">BUY ORDER PRICE MAX</th>
+        </tr>
+        <tr>
+          <th class="text-uppercase text-left pr-8 cc py-3">caerleon</th>
+          <td class="text-center py-3 sell">{{ item.details.Caerleon.sell_min }}</td>
+          <td class="text-center py-3 sell">{{ item.details.Caerleon.sell_max }}</td>
+          <td class="text-center py-3 buy">{{ item.details.Caerleon.buy_min }}</td>
+          <td class="text-center py-3 buy">{{ item.details.Caerleon.buy_max }}</td>
+        </tr>
+        <tr>
+          <th class="text-uppercase text-left pr-7 cb pb-3">bridgewatch</th>
+          <td class="text-center pb-3 sell">{{ item.details.Bridgewatch.sell_min }}</td>
+          <td class="text-center pb-3 sell">{{ item.details.Bridgewatch.sell_max }}</td>
+          <td class="text-center pb-3 buy">{{ item.details.Bridgewatch.buy_min }}</td>
+          <td class="text-center pb-3 buy">{{ item.details.Bridgewatch.buy_max }}</td>
+        </tr>
+        <tr>
+          <th class="text-uppercase text-left pr-7 cf pb-3">fort sterling</th>
+          <td class="text-center pb-3 sell">{{ item.details.FortSterling.sell_min }}</td>
+          <td class="text-center pb-3 sell">{{ item.details.FortSterling.sell_max }}</td>
+          <td class="text-center pb-3 buy">{{ item.details.FortSterling.buy_min }}</td>
+          <td class="text-center pb-3 buy">{{ item.details.FortSterling.buy_max }}</td>
+        </tr>
+        <tr>
+          <th class="text-uppercase text-left pr-7 cl pb-3">lymhurst</th>
+          <td class="text-center pb-3 sell">{{ item.details.Lymhurst.sell_min }}</td>
+          <td class="text-center pb-3 sell">{{ item.details.Lymhurst.sell_max }}</td>
+          <td class="text-center pb-3 buy">{{ item.details.Lymhurst.buy_min }}</td>
+          <td class="text-center pb-3 buy">{{ item.details.Lymhurst.buy_max }}</td>
+        </tr>
+        <tr>
+          <th class="text-uppercase text-left pr-7 cm pb-3">martlock</th>
+          <td class="text-center pb-3 sell">{{ item.details.Martlock.sell_min }}</td>
+          <td class="text-center pb-3 sell">{{ item.details.Martlock.sell_max }}</td>
+          <td class="text-center pb-3 buy">{{ item.details.Martlock.buy_min }}</td>
+          <td class="text-center pb-3 buy">{{ item.details.Martlock.buy_max }}</td>
+        </tr>
+        <tr>
+          <th class="text-uppercase text-left pr-7 ct pb-3">thetford</th>
+          <td class="text-center pb-3 sell">{{ item.details.Thetford.sell_min }}</td>
+          <td class="text-center pb-3 sell">{{ item.details.Thetford.sell_max }}</td>
+          <td class="text-center pb-3 buy">{{ item.details.Thetford.buy_min }}</td>
+          <td class="text-center pb-3 buy">{{ item.details.Thetford.buy_max }}</td>
+        </tr>
+      </table>
+      <item_chart />
       <table class="mx-auto">
         <tr>
           <th></th>
@@ -20,7 +71,7 @@
           <th>martlock</th>
           <th>lymhurst</th>
           <th>fort sterling</th>
-          <th>bridwatch</th>
+          <th>bridgewatch</th>
         </tr>
         <tr>
           <th>caerleon</th>
@@ -58,7 +109,7 @@
           <td>Nan</td>
           <td>Nan</td>
         </tr>
-        <tr>
+        <tr class="tr-b">
           <th>fort sterling</th>
           <td>Nan</td>
           <td>Nan</td>
@@ -67,8 +118,8 @@
           <td>Nan</td>
           <td>Nan</td>
         </tr>
-        <tr>
-          <th>bridwatch</th>
+        <tr class="tr-b">
+          <th>bridgewatch</th>
           <td>Nan</td>
           <td>Nan</td>
           <td>Nan</td>
@@ -82,23 +133,66 @@
 </template>
 
 <script>
-import Chart from "chart.js/auto";
+import item_chart from "../card/item_chart.vue";
+import numeral from "numeral";
 
 export default {
+  components: { item_chart },
   name: "item",
   data() {
     return {
       item: null,
-      name: null
-    }
+      name: null,
+      max_min: null,
+    };
   },
   methods: {},
   mounted() {
     this.item = this.$store.getters.item_detail_check[0];
-    this.item = this.$store.getters.itemData.find(o => o.item_detail.item_id === this.item);
+    this.item = this.$store.getters.itemData.find(
+      (o) => o.item_detail.item_id === this.item
+    );
+    this.item = this.item.item_detail;
     this.name = this.$store.getters.item_detail_check[1];
-    console.log(this.item.item_detail);
-    const data = {
+    console.log(this.item.details);
+    const city = [
+      "Bridgewatch",
+      "Caerleon",
+      "FortSterling",
+      "Lymhurst",
+      "Martlock",
+      "Thetford",
+    ];
+    const price_time = [
+      "buy_max",
+      "buy_max_date",
+      "buy_min",
+      "buy_min_date",
+      "sell_max",
+      "sell_max_date",
+      "sell_min",
+      "sell_min_date",
+    ];
+    for (let x = 0; x < city.length; x++) {
+      for (let y = 0; y < price_time.length; y++) {
+        this.item.details[city[x]][price_time[y]] = numeral(
+          this.item.details[city[x]][price_time[y]]
+        ).format("0,0");
+      }
+    }
+
+    //find word
+    let example = "Example String!";
+    let ourSubstring = "Example";
+    if (example.includes(ourSubstring)) {
+      console.log("The word Example is in the string.");
+    } else {
+      console.log("The word Example is not in the string.");
+    }
+
+    
+
+    this.$store.getters.item_chart[0] = {
       labels: [
         "Caerleon",
         "FortSterling",
@@ -110,7 +204,7 @@ export default {
       datasets: [
         {
           label: ["Caerlron"],
-          data: [0, 15, 12, 13, 17, 20],
+          data: [18, 15, 12, 13, 17, 20],
           borderColor: ["#FF2626"],
           backgroundColor: ["rgb(255, 38, 38, 0.5)"],
         },
@@ -146,50 +240,29 @@ export default {
         },
       ],
     };
-
-    var ctx = document.getElementById("test").getContext("2d");
-    var myChart = new Chart(ctx, {
-      type: "radar",
-      data: data,
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            labels: {
-              font: {
-                size: "20rem",
-              },
-            },
-          },
-        },
-        scales: {
-          r: {
-            min: 0,
-            pointLabels: {
-              color: ["#FF2626", "#F9F9F9", "#38CD00", "#FF952C", "#00ADE9", "#C62EFF"],
-              font: {
-                size: "15rem",
-              },
-            },
-            ticks: {
-              color: "#ffffff",
-              backdropColor: "rgba(255, 255, 255, 0)",
-            },
-            grid: {
-              color: "rgba(255, 255, 255, 0.3)",
-            },
-          },
-        },
-      },
-    });
-    console.log(myChart);
   },
 };
 </script>
 
 <style scoped>
-test.color {
-  color: rgb(198, 46, 255);
+table {
+  border-style: none;
+  border-collapse: collapse;
+}
+th {
+  color: #9155fd;
+}
+th,
+td {
+  border-style: none;
+}
+td {
+  color : #bdbdbd;
+}
+.th-b {
+  border-bottom-style: solid;
+  border-color: #9155fd;
+  border-width: 1px;
 }
 .text-canvas {
   font-size: 1rem;
@@ -199,5 +272,32 @@ test.color {
 }
 .wd {
   width: 100%;
+}
+.cc {
+  color: #ff2626;
+}
+.cb {
+  color: #ff952c;
+}
+.cf {
+  color: #f9f9f9;
+}
+.cl {
+  color: #38cd00;
+}
+.cm {
+  color: #00ade9;
+}
+.ct {
+  color: #c62eff;
+}
+.font-size{
+  font-size: 1.5rem;
+}
+.sell{
+  color:#4caf50;
+}
+.buy{
+  color: #cf3737;
 }
 </style>
