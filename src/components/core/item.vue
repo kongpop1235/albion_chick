@@ -190,7 +190,14 @@ export default {
       console.log("The word Example is not in the string.");
     }
 
-    
+    const city_chart = [];
+    for (let i = 0; i < city.length; i++) {
+      for (let v = 0; v < city.length; v++) {
+        city_chart.push(
+          this.$store.getters[city[i]].sell_min - this.$store.getters[city[v]].sell_min
+        );
+      }
+    }
 
     this.$store.getters.item_chart[0] = {
       labels: [
@@ -204,37 +211,37 @@ export default {
       datasets: [
         {
           label: ["Caerlron"],
-          data: [18, 15, 12, 13, 17, 20],
+          data: city_chart[0],
           borderColor: ["#FF2626"],
           backgroundColor: ["rgb(255, 38, 38, 0.5)"],
         },
         {
           label: ["Bridgewatch"],
-          data: [12, 0, 14, 10, 15, 20],
+          data: city_chart[1],
           borderColor: ["#FF952C"],
           backgroundColor: ["rgb(255, 149, 44, 0.5)"],
         },
         {
           label: ["FortSterling"],
-          data: [15, 10, 0, 13, 11, 12],
+          data: city_chart[2],
           borderColor: ["#F9F9F9"],
           backgroundColor: ["rgb(249, 249, 249, 0.5)"],
         },
         {
           label: ["Lymhurst"],
-          data: [13, 15, 12, 17, 11, 10],
+          data: city_chart[3],
           borderColor: ["#38CD00"],
           backgroundColor: ["rgb(56, 205, 0, 0.5)"],
         },
         {
           label: ["Martlock"],
-          data: [10, 2, 3, 4, 5, 10],
+          data: city_chart[4],
           borderColor: ["#00ADE9"],
           backgroundColor: ["rgb(0, 173, 233, 0.5)"],
         },
         {
           label: ["Thetford"],
-          data: [10, 2, 3, 4, 5, 15],
+          data: city_chart[5],
           borderColor: ["#C62EFF"],
           backgroundColor: ["rgb(198, 46, 255, 0.5)"],
         },
@@ -257,7 +264,7 @@ td {
   border-style: none;
 }
 td {
-  color : #bdbdbd;
+  color: #bdbdbd;
 }
 .th-b {
   border-bottom-style: solid;
@@ -291,13 +298,13 @@ td {
 .ct {
   color: #c62eff;
 }
-.font-size{
+.font-size {
   font-size: 1.5rem;
 }
-.sell{
-  color:#4caf50;
+.sell {
+  color: #4caf50;
 }
-.buy{
+.buy {
   color: #cf3737;
 }
 </style>
