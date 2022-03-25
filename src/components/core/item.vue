@@ -149,10 +149,6 @@ export default {
   methods: {},
   mounted() {
     this.item = this.$store.getters.item_detail_check[0];
-    this.item = this.$store.getters.itemData.find(
-      (o) => o.item_detail.item_id === this.item
-    );
-    this.item = this.item.item_detail;
     this.name = this.$store.getters.item_detail_check[1];
     console.log(this.item.details);
     const city = [
@@ -194,7 +190,7 @@ export default {
     for (let i = 0; i < city.length; i++) {
       for (let v = 0; v < city.length; v++) {
         city_chart.push(
-          this.$store.getters[city[i]].sell_min - this.$store.getters[city[v]].sell_min
+          this.item.city
         );
       }
     }

@@ -562,11 +562,11 @@ export default {
       }
     },
     check_name: function(item, index) {
-      console.log(item.id);
       console.log(index);
       const obj = this.$store.getters.itemData.find(o => o.item_detail.item_id === item.id);
-      console.log(obj);
-      this.$store.getters.item_detail_check[0] = item.id;
+      console.log("obj :");
+      console.log(obj.item_detail);
+      this.$store.getters.item_detail_check[0] = obj.item_detail;
       this.$store.getters.item_detail_check[1] = item.item;
     },
   },
